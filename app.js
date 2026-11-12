@@ -73,7 +73,7 @@ function cnt(el,v){const a=+el.dataset.v||0;el.dataset.v=v;if(a===v||calm()){el.
 function hud(){cnt($('#sc'),total());$('#pt').textContent=nd()+'/'+ALL;$('#pb').style.width=(nd()/ALL*100)+'%'}
 let REDRAW=null; /* ridisegna il canvas del gioco aperto (cambio tema, font caricati) */
 function go(html,s){unsay();REDRAW=null;document.body.dataset.s=s||'';$('#main').innerHTML='<div class="scr">'+(NAVS.includes(s)?navBar():'')+html+'</div>';hud();window.scrollTo({top:0,behavior:'smooth'})}
-function toast(m,k){const t=$('#toast');t.textContent=m;t.className=(k||'')+' s';clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('s'),2800)}
+function toast(m,k){const t=$('#toast');t.innerHTML=(k?ic(k==='ko'?'cross':'check')+' ':'')+esc(m);t.className=(k||'')+' s';clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('s'),2800)}
 /* messaggio in pagina al posto di alert(): k = 'ok' oppure 'ko' */
 function say(m,k){const d=$('#dlg');$('#dlgT').textContent=m;$('#dlgI').innerHTML=ic(k==='ok'?'trophy':'warn');d.dataset.k=k||'';d.classList.remove('hidden');$('#dlgOk').focus({preventScroll:true})}
 function unsay(){$('#dlg').classList.add('hidden')}
@@ -625,7 +625,7 @@ const playSound=t=>t==='tick'?beep(600,.04,'sine'):t==='win'?sWin():sKo();
             runProgram();
         }
 
-function markDone(id){if(!S.done[id]){S.done[id]={pts:BONUS,ok:0};save();hud();toast('Missione completata: +'+BONUS+' punti!')}}
+function markDone(id){if(!S.done[id]){S.done[id]={pts:BONUS,ok:0};save();hud();toast('Missione completata: +'+BONUS+' punti!','ok')}}
 if(typeof confetti!=='function')window.confetti=()=>conf(40);
 const ORDER=[...ACT.map(a=>a.id),'ruota','ruotaq','robot','pin','ctf'],NAVS=['play','res','ruota','game'];let CUR='';
 const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
