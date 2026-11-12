@@ -39,7 +39,9 @@ const ACT=[
 const COST=1000;
 const FR=[['Hardware','MOUSE E TASTIERA'],['Internet e Web','NAVIGARE SU INTERNET'],['Programmazione','IL CODICE SORGENTE'],['Scuola','IL LABORATORIO DI INFORMATICA'],['Dispositivi','LO SCHERMO TOUCH'],['Sicurezza','PASSWORD SICURA'],['Hardware','PROCESSORE VELOCE'],['Intelligenza Artificiale','ROBOT INTELLIGENTE'],['Programmazione','CICLO FOR E WHILE'],['Reti','IL ROUTER COLLEGA I COMPUTER'],['Videogiochi','CREARE UN VIDEOGIOCO'],['Sicurezza','ATTENTO AL PHISHING'],['Hardware','SCHEDA MADRE E MEMORIA RAM']];
 const SP=[100,200,500,50,300,1000,200,400,'BANCAROTTA',150,600,300,800,'PERDI TURNO',250,500];
-const SC=['#27d3ff','#ffd23f','#2ee59d','#ff9f1c','#b583ff','#ff7ab8'];
+const SC=['#1d71b8','#99bbdc','#123f69','#6097ca','#1d71b8','#dbe8f5'];
+/* colore del testo leggibile sopra un colore di sfondo */
+const ink=c=>{const n=parseInt(c.slice(1),16);return .299*(n>>16)+.587*(n>>8&255)+.114*(n&255)>150?'#0b0e18':'#fff'};
 const SITE='https://www.secondarieclago.edu.it/',CS='https://cspace.spaggiari.eu//pub/PGII0004/Doc_Vari_2425/';
 const LINKS=[
 ['🏫','Sito ufficiale della scuola',SITE,1],
@@ -76,20 +78,22 @@ function toast(m,k){const t=$('#toast');t.textContent=m;t.className=(k||'')+' s'
 function say(m,k){const d=$('#dlg');$('#dlgT').textContent=m;$('#dlgI').textContent=k==='ok'?'🏆':'⚠️';d.dataset.k=k||'';d.classList.remove('hidden');$('#dlgOk').focus({preventScroll:true})}
 function unsay(){$('#dlg').classList.add('hidden')}
 $('#dlgOk').onclick=()=>{sClk();unsay()};$('#dlg').onclick=e=>{if(e.target.id==='dlg')unsay()};
-function conf(n=50){const E=['🎉','⭐','💻','🟧','✨','🏆','👾'];for(let i=0;i<n;i++){const s=document.createElement('span');s.className='cf';s.textContent=E[i%E.length];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(2+Math.random()*2.5)+'s';s.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),5500)}}
+/* coriandoli nei colori del sito; se la libreria non è disponibile si usano quelli a emoji */
+const HASCF=typeof confetti==='function',CFC=['#1d71b8','#6097ca','#99bbdc','#ffffff','#ffd23f'];
+function conf(n=50){if(HASCF){confetti({particleCount:n*2,spread:100,origin:{y:.35},colors:CFC});return}const E=['🎉','⭐','💻','🟦','✨','🏆','👾'];for(let i=0;i<n;i++){const s=document.createElement('span');s.className='cf';s.textContent=E[i%E.length];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(2+Math.random()*2.5)+'s';s.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),5500)}}
 const LOGO=$('#hl').src;
 $('#hl').onclick=()=>{sClk();start()};
 /* ===== SCHERMATE ===== */
 const WORD='INFORMATICA';
 /* adatta la parola gigante alla larghezza dello schermo */
-function fitWord(){const s=$('#hw');if(!s)return;const c=document.createElement('canvas').getContext('2d');c.font='900 100px "Big Shoulders Display","Arial Narrow",Impact,sans-serif';
+function fitWord(){const s=$('#hw');if(!s)return;const c=document.createElement('canvas').getContext('2d');c.font='700 100px "IBM Plex Sans Condensed","Arial Narrow",sans-serif';
  const ws=[...WORD].map(ch=>c.measureText(ch).width),gap=6,H=Math.round(c.measureText('I').actualBoundingBoxAscent)||72;let x=0;
  s.setAttribute('viewBox','0 0 '+(ws.reduce((a,b)=>a+b,0)+gap*(WORD.length-1))+' '+H);$('#wfill').setAttribute('y2',H);
  s.querySelectorAll('text').forEach((t,i)=>{t.setAttribute('x',x);t.setAttribute('y',H);x+=ws[i]+gap})}
 addEventListener('resize',fitWord);
 function start(){
  go(`<section class="hero">
- <div class="hero-word" aria-hidden="true"><svg id="hw" preserveAspectRatio="none"><defs><linearGradient id="wfill" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="72"><stop offset="0" stop-color="#f15a22"/><stop offset="1" stop-color="#a73a12"/></linearGradient></defs>${[...WORD].map((ch,i)=>`<text style="--i:${i}">${ch}</text>`).join('')}</svg></div>
+ <div class="hero-word" aria-hidden="true"><svg id="hw" preserveAspectRatio="none"><defs><linearGradient id="wfill" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="72"><stop offset="0" class="w0"/><stop offset="1" class="w1"/></linearGradient></defs>${[...WORD].map((ch,i)=>`<text style="--i:${i}">${ch}</text>`).join('')}</svg></div>
  <aside class="hero-note"><p>Mettiti alla prova, supera le sfide e scopri se hai la stoffa per diventare un informatico!</p><b>${MAX} PUNTI IN PALIO</b></aside>
  <div class="hero-main"><img class="big" src="${LOGO}" alt="IIS Rosselli – Polo tecnologico economico professionale">
  <h1>BENVENUTO NEL MONDO DELL’INFORMATICA!</h1>
@@ -162,9 +166,9 @@ function ruota(){CUR='ruota';
   document.querySelectorAll('.k').forEach(b=>b.onclick=()=>pick(b.dataset.l))}
  function draw(){const x=g('wc').getContext('2d'),n=SP.length,arc=2*Math.PI/n,m=180,r=170;x.setTransform(g('wc').width/360,0,0,g('wc').width/360,0,0);x.clearRect(0,0,360,360);x.save();x.translate(m,m);x.rotate(R.ang);
   SP.forEach((v,i)=>{const sp=typeof v==='string';x.beginPath();x.moveTo(0,0);x.arc(0,0,r,i*arc,(i+1)*arc);x.closePath();x.fillStyle=sp?(v[0]==='B'?'#2a2a3a':'#6b1f33'):SC[i%6];x.fill();x.lineWidth=2;x.strokeStyle='#0b0e18';x.stroke();
-   x.save();x.rotate(i*arc+arc/2);x.textAlign='right';x.fillStyle=sp?'#fff':'#0b0e18';x.font=(sp?'900 11px':'900 16px')+' "Bricolage Grotesque",Arial,sans-serif';x.fillText(v,r-12,5);x.restore()});
-  x.restore();x.beginPath();x.arc(m,m,24,0,7);x.fillStyle='#f15a22';x.fill();x.lineWidth=4;x.strokeStyle='#fff';x.stroke();
-  x.beginPath();x.moveTo(m-15,2);x.lineTo(m+15,2);x.lineTo(m,36);x.closePath();x.fillStyle='#fff';x.fill();x.strokeStyle='#f15a22';x.lineWidth=3;x.stroke()}
+   x.save();x.rotate(i*arc+arc/2);x.textAlign='right';x.fillStyle=sp?'#fff':ink(SC[i%6]);x.font=(sp?'700 11px':'700 16px')+' "IBM Plex Sans",Arial,sans-serif';x.fillText(v,r-12,5);x.restore()});
+  x.restore();x.beginPath();x.arc(m,m,24,0,7);x.fillStyle='#1d71b8';x.fill();x.lineWidth=4;x.strokeStyle='#fff';x.stroke();
+  x.beginPath();x.moveTo(m-15,2);x.lineTo(m+15,2);x.lineTo(m,36);x.closePath();x.fillStyle='#fff';x.fill();x.strokeStyle='#1d71b8';x.lineWidth=3;x.stroke()}
  function np(){R.k++;R.ph=FR[Math.random()*FR.length|0];R.g=[];R.st='spin';R.over=false;g('cat').textContent='Categoria: '+R.ph[0];g('wn').innerHTML='';g('fr').style.display='none';g('sp').disabled=false;board();keys();ms(nm()+', gira la ruota!');ui()}
  function turn(){if(R.over)return;R.t=1-R.t;R.st='spin';keys();g('sp').disabled=false;ms('Tocca a '+nm()+': gira la ruota!');ui()}
  function res(v){
@@ -338,14 +342,14 @@ function final(){
            3. GAME 1: RUOTA DELLA FORTUNA ENGINE
         ---------------------------------------------------- */
         const wheelSectors = [
-            { label: "100 PT", points: 100, color: "#27d3ff" },
-            { label: "200 PT", points: 200, color: "#ffd23f" },
-            { label: "300 PT", points: 300, color: "#2ee59d" },
-            { label: "BONUS", points: 500, color: "#f15a22" },
-            { label: "150 PT", points: 150, color: "#27d3ff" },
-            { label: "250 PT", points: 250, color: "#ffd23f" },
-            { label: "400 PT", points: 400, color: "#2ee59d" },
-            { label: "500 PT", points: 500, color: "#ff5470" }
+            { label: "100 PT", points: 100, color: "#1d71b8" },
+            { label: "200 PT", points: 200, color: "#99bbdc" },
+            { label: "300 PT", points: 300, color: "#123f69" },
+            { label: "BONUS", points: 500, color: "#ffd23f" },
+            { label: "150 PT", points: 150, color: "#1d71b8" },
+            { label: "250 PT", points: 250, color: "#dbe8f5" },
+            { label: "400 PT", points: 400, color: "#123f69" },
+            { label: "500 PT", points: 500, color: "#6097ca" }
         ];
 
         const techQuestions = [
@@ -391,8 +395,8 @@ function final(){
                 wheelCtx.translate(centerX, centerY);
                 wheelCtx.rotate(angle + arc / 2);
                 wheelCtx.textAlign = "right";
-                wheelCtx.fillStyle = wheelSectors[i].label === "BONUS" ? "#ffffff" : "#0b0e18";
-                wheelCtx.font = "900 " + Math.round(radius * 0.13) + "px 'Big Shoulders Display', 'Arial Narrow', sans-serif";
+                wheelCtx.fillStyle = ink(wheelSectors[i].color);
+                wheelCtx.font = "700 " + Math.round(radius * 0.115) + "px 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif";
                 wheelCtx.fillText(wheelSectors[i].label, radius - radius * 0.07, radius * 0.045);
                 wheelCtx.restore();
             }
@@ -400,7 +404,7 @@ function final(){
             // Mozzo centrale
             wheelCtx.beginPath();
             wheelCtx.arc(centerX, centerY, radius * 0.14, 0, Math.PI * 2);
-            wheelCtx.fillStyle = "#f15a22";
+            wheelCtx.fillStyle = "#1d71b8";
             wheelCtx.fill();
             wheelCtx.lineWidth = radius * 0.025;
             wheelCtx.strokeStyle = "#ffffff";
@@ -486,7 +490,7 @@ function final(){
                     scoreB += pendingPoints;
                     document.getElementById("scoreB").innerText = scoreB;
                 }
-                confetti({ particleCount: 70, spread: 60 });
+                confetti({ particleCount: 70, spread: 60, colors: CFC });
                 markDone('ruotaq');
                 document.getElementById("wheelStatusLog").innerText = `ESATTO! +${pendingPoints} punti assegnati!`;
             } else {
@@ -586,13 +590,13 @@ function final(){
             const ry = botPos.y * cs + cs / 2;
             x.save();
             x.translate(rx, ry);
-            x.fillStyle = '#27d3ff';
+            x.fillStyle = '#1d71b8';
             x.beginPath();
             x.arc(0, 0, cs * 0.33, 0, Math.PI * 2);
             x.fill();
-            x.lineWidth = cs * 0.03; x.strokeStyle = '#0b0e18'; x.stroke();
+            x.lineWidth = cs * 0.03; x.strokeStyle = '#ffffff'; x.stroke();
             x.rotate(botPos.dir * Math.PI / 2);
-            x.fillStyle = '#f15a22';
+            x.fillStyle = '#ffd23f'; x.strokeStyle = '#0b0e18';
             x.beginPath();
             x.moveTo(0, -cs * 0.48); x.lineTo(cs * 0.13, -cs * 0.34); x.lineTo(-cs * 0.13, -cs * 0.34);
             x.closePath(); x.fill(); x.stroke();
@@ -652,7 +656,7 @@ function final(){
                 isExecuting = false;
                 if (botPos.x === lvl.goal.x && botPos.y === lvl.goal.y && collected.length === lvl.chips.length) {
                     playSound('win');
-                    confetti({ particleCount: 80 });
+                    confetti({ particleCount: 80, colors: CFC });
                     markDone('robot');
                     say("MISSIONE COMPLETATA! RoboBot è al Server!", 'ok');
                 } else {
@@ -743,7 +747,7 @@ function final(){
         function submitKeypad() {
             if (keypadInput === pinDigits.join("")) {
                 playSound('win');
-                confetti({ particleCount: 150, spread: 90 });
+                confetti({ particleCount: 150, spread: 90, colors: CFC });
                 markDone('pin');
                 say("EVACUAZIONE RIUSCITA! Codice PIN " + pinDigits.join("") + " Corretto! Benvenuti al Rosselli Rasetti!", 'ok');
             } else {
@@ -834,6 +838,6 @@ function rs(){cv.width=innerWidth;cv.height=innerHeight;dr=Array.from({length:Ma
 addEventListener('resize',rs);rs();
 setInterval(()=>{if(document.hidden||document.body.dataset.s==='game'||calm())return;
  cx.fillStyle=cssv('--fade');cx.fillRect(0,0,cv.width,cv.height);cx.font='16px monospace';
- dr.forEach((y,i)=>{cx.fillStyle=i%3?'rgba(39,211,255,.55)':'rgba(241,90,34,.65)';cx.fillText(Math.random()<.5?'0':'1',i*20,y*20);dr[i]=y*20>cv.height&&Math.random()>.97?0:y+1})},70);
+ dr.forEach((y,i)=>{cx.fillStyle=i%3?'rgba(96,151,202,.6)':'rgba(29,113,184,.8)';cx.fillText(Math.random()<.5?'0':'1',i*20,y*20);dr[i]=y*20>cv.height&&Math.random()>.97?0:y+1})},70);
 start();
 

@@ -177,7 +177,7 @@ Risposta **scritta** invece che a scelta multipla:
 
 ### Aggiungere una missione a domande
 
-Inserisci in `ACT` un oggetto con `id`, `ic` (icona), `t` (titolo), `c` (colore), `d` (descrizione) e `qs` (domande): la card nel menu, il conteggio dei progressi e il punteggio massimo si aggiornano da soli.
+Inserisci in `ACT` un oggetto con `id`, `ic` (icona), `t` (titolo), `d` (descrizione) e `qs` (domande): la card nel menu, il conteggio dei progressi e il punteggio massimo si aggiornano da soli.
 
 ---
 
@@ -218,7 +218,7 @@ flowchart LR
 ### Scelte tecniche
 
 - **Tre file separati** (struttura, grafica, logica) per poter cambiare l'aspetto senza toccare i giochi e viceversa.
-- **Un solo sistema grafico**: tutte le schermate usano le stesse variabili CSS, quindi il tema scuro/chiaro vale ovunque.
+- **Un solo sistema grafico**: tutte le schermate usano le stesse variabili CSS, quindi il tema scuro/chiaro vale ovunque. Il colore principale è il blu del logo dell'indirizzo Informatica (`#1d71b8`); verde e rosso servono solo per giusto/sbagliato.
 - **Testo fluido**: la dimensione di base cresce con lo schermo (circa 20px su un proiettore Full HD), e tutte le misure sono in `rem`.
 - **Messaggi in pagina** al posto delle finestre `alert()` del browser.
 - **Stato in memoria + `localStorage`** (chiavi `rr_open` per i progressi e `rr_theme` per il tema) con gestione degli errori se lo storage non è disponibile.
@@ -230,9 +230,9 @@ Caricate da CDN, quindi serve la connessione a Internet:
 
 | Libreria | A cosa serve |
 |----------|--------------|
-| Google Fonts: *Big Shoulders Display*, *Bricolage Grotesque*, *JetBrains Mono* | Titoli, testi, codice |
+| Google Fonts: *IBM Plex Sans Condensed*, *IBM Plex Sans*, *IBM Plex Mono* | Titoli, testi, codice |
 | Font Awesome 6.4 | Icone dei pulsanti in Ruota dei quiz, Robot e PIN |
-| canvas-confetti 1.6 | Coriandoli (se manca, entrano in gioco quelli a emoji già inclusi) |
+| canvas-confetti 1.6 | Coriandoli nei colori del sito (se manca, entrano in gioco quelli a emoji già inclusi) |
 
 ---
 
@@ -261,7 +261,7 @@ Segnalazioni e proposte sono benvenute: apri una *issue* descrivendo il problema
 ## 📄 Crediti e licenza
 
 - **Logo e contenuti istituzionali**: © Istituto Omnicomprensivo "Rosselli-Rasetti". Il logo non è coperto da licenza libera e va usato solo per le attività della scuola.
-- **Font**: [Big Shoulders Display](https://fonts.google.com/specimen/Big+Shoulders+Display), [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) e [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono), licenza SIL Open Font License.
+- **Font**: famiglia [IBM Plex](https://fonts.google.com/?query=IBM+Plex) (Sans, Sans Condensed, Mono), licenza SIL Open Font License.
 - **Icone**: [Font Awesome Free](https://fontawesome.com/).
 - **Coriandoli**: [canvas-confetti](https://github.com/catdad/canvas-confetti).
 - **Codice**: da definire. Prima di pubblicare la repository aggiungi un file `LICENSE` con la licenza scelta dall'istituto.
