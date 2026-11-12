@@ -6,31 +6,31 @@
 /* ===== CONTENUTI (modifica qui domande, testi e punti) ===== */
 const PT=10, BONUS=20;
 const ACT=[
-{id:'quiz',ic:'🧠',t:'QUIZ INFORMATICO',c:'#27d3ff',d:'5 domande su computer, Internet e tecnologia. Quanto ne sai?',qs:[
+{id:'quiz',ic:'quiz',t:'QUIZ INFORMATICO',c:'#27d3ff',d:'5 domande su computer, Internet e tecnologia. Quanto ne sai?',qs:[
  {q:'Cosa significa la sigla “www”?',o:['World Wide Web','Wide Window Web','Web World Wire','Wonderful Web Works'],a:0,x:'Il World Wide Web è l’insieme delle pagine collegate tra loro su Internet.'},
  {q:'Quanti bit ci sono in un byte?',o:['4','8','10','16'],a:1,x:'1 byte = 8 bit. Ogni bit può valere solo 0 oppure 1!'},
  {q:'Quale di questi è un sistema operativo?',o:['Chrome','Word','Linux','Google'],a:2,x:'Linux, come Windows, macOS e Android, gestisce il computer. Chrome e Word sono programmi.'},
  {q:'A cosa serve un antivirus?',o:['Ad andare più veloce online','A proteggere il PC da software dannosi','A stampare i documenti','A cambiare lo sfondo'],a:1,x:'Un antivirus cerca e blocca i malware prima che facciano danni.'},
  {q:'Che cos’è un file “.jpg”?',o:['Un videogioco','Una canzone','Un’immagine','Un programma'],a:2,x:'JPG è un formato di immagine compressa, usato per le foto.'}]},
-{id:'code',ic:'💻',t:'INDOVINA IL CODICE',c:'#2ee59d',d:'Leggi piccoli pezzi di codice Python e trova cosa fanno… o dov’è l’errore!',qs:[
+{id:'code',ic:'code',t:'INDOVINA IL CODICE',c:'#2ee59d',d:'Leggi piccoli pezzi di codice Python e trova cosa fanno… o dov’è l’errore!',qs:[
  {q:'Cosa stampa questo codice?',k:'print(2 + 3)',o:['23','5','2 + 3','Errore'],a:1,x:'Python calcola 2 + 3 e stampa il risultato: 5.'},
  {q:'Cosa stampa questo ciclo?',k:'for i in range(3):\n    print(i)',o:['1 2 3','0 1 2','0 1 2 3','3 3 3'],a:1,x:'range(3) parte da 0: i vale 0, 1 e 2.'},
  {q:'Trova l’errore!',k:'x = 7\nif x = 5:\n    print("Cinque")',o:['Manca print','Per confrontare serve ==','x non può valere 7','Manca un punto'],a:1,x:'Un = assegna un valore, un == confronta due valori.'},
  {q:'Quanto vale x alla fine?',k:'x = 4\nx = x + 1',o:['4','1','5','x + 1'],a:2,x:'Si prende x (4), si somma 1 e il risultato (5) torna in x.'},
  {q:'Completa per scrivere “Ciao” 3 volte:',k:'___ i in range(3):\n    print("Ciao")',o:['for','if','print','stop'],a:0,x:'“for” crea un ciclo che ripete le istruzioni.'}]},
-{id:'hack',ic:'🕵️',t:'HACKER CHALLENGE',c:'#f15a22',d:'Decifra messaggi segreti, binario e PIN. Sei pronto a violare il sistema?',qs:[
+{id:'hack',ic:'hack',t:'HACKER CHALLENGE',c:'#f15a22',d:'Decifra messaggi segreti, binario e PIN. Sei pronto a violare il sistema?',qs:[
  {q:'Messaggio in codice! Ogni lettera è spostata di +1 nell’alfabeto: “DJBP”. Qual è la parola vera?',o:['CIAO','DAVE','BEBE','CAPO'],a:0,x:'D→C, J→I, B→A, P→O: la parola è CIAO. È il cifrario di Cesare!'},
  {q:'Il numero binario 101 quanto vale in decimale?',o:['3','4','5','101'],a:2,x:'1×4 + 0×2 + 1×1 = 5.'},
  {q:'Trova il PIN a 3 cifre: tutte le cifre sono uguali e la loro somma è 6.',in:1,a:'222',x:'2 + 2 + 2 = 6. PIN: 222.'},
  {q:'Decifra (ogni lettera è spostata di +1): “TFSWFS”. Scrivi la parola.',in:1,a:'SERVER',x:'T→S, F→E, S→R, W→V, F→E, S→R: SERVER, il computer che fornisce servizi in rete.'},
  {q:'Ricevi un’email: “Hai vinto un iPhone! Clicca qui e inserisci la password”. Che fai?',o:['Clicco subito','Rispondo con la password','La cancello: è phishing','La inoltro a tutti'],a:2,x:'È una truffa (phishing). Mai dare password a chi te le chiede via email.'}]},
-{id:'hw',ic:'🔧',t:'HARDWARE DETECTIVE',c:'#ffd23f',d:'Riconosci i componenti del computer dagli indizi. Chi è chi?',qs:[
+{id:'hw',ic:'chip',t:'HARDWARE DETECTIVE',c:'#ffd23f',d:'Riconosci i componenti del computer dagli indizi. Chi è chi?',qs:[
  {e:'🧠',q:'È il “cervello” del PC: esegue tutti i calcoli.',o:['CPU','RAM','SSD','GPU'],a:0,x:'La CPU (processore) esegue le istruzioni dei programmi.'},
  {e:'🎮',q:'Disegna la grafica dei videogiochi e dei video.',o:['SSD','GPU','Scheda madre','RAM'],a:1,x:'La GPU (scheda video) è specializzata nella grafica.'},
  {e:'💾',q:'Conserva file e programmi, anche a PC spento. È veloce e non ha parti in movimento.',o:['RAM','CPU','SSD','GPU'],a:2,x:'L’SSD è la memoria di massa moderna: sostituisce il vecchio hard disk.'},
  {e:'🧩',q:'Memoria velocissima ma temporanea: ricorda i programmi aperti.',o:['SSD','CPU','Scheda madre','RAM'],a:3,x:'La RAM si svuota allo spegnimento: serve solo per lavorare in fretta.'},
  {e:'🔌',q:'È la grande scheda su cui si collegano tutti gli altri componenti.',o:['Scheda madre','Alimentatore','GPU','Mouse'],a:0,x:'La scheda madre fa comunicare CPU, RAM, SSD e GPU tra loro.'}]},
-{id:'logic',ic:'🧩',t:'LOGIC GAME',c:'#b583ff',d:'Sequenze e rompicapi per allenare il ragionamento da programmatore.',qs:[
+{id:'logic',ic:'puzzle',t:'LOGIC GAME',c:'#b583ff',d:'Sequenze e rompicapi per allenare il ragionamento da programmatore.',qs:[
  {q:'Quale numero continua? 2, 4, 8, 16, …',o:['24','30','32','36'],a:2,x:'Ogni numero è il doppio del precedente: 16 × 2 = 32.'},
  {q:'Quale numero continua? 1, 1, 2, 3, 5, …',o:['6','7','8','9'],a:2,x:'Sequenza di Fibonacci: ogni numero è la somma dei due precedenti (3 + 5 = 8).'},
  {q:'Tutti i robot sono macchine. R2 è un robot. Quindi R2 è…',o:['Una persona','Una macchina','Un animale','Non si sa'],a:1,x:'Se tutti i robot sono macchine, ogni robot (R2 compreso) lo è.'},
@@ -44,19 +44,66 @@ const SC=['#1d71b8','#99bbdc','#123f69','#6097ca','#1d71b8','#dbe8f5'];
 const ink=c=>{const n=parseInt(c.slice(1),16);return .299*(n>>16)+.587*(n>>8&255)+.114*(n&255)>150?'#0b0e18':'#fff'};
 const SITE='https://www.secondarieclago.edu.it/',CS='https://cspace.spaggiari.eu//pub/PGII0004/Doc_Vari_2425/';
 const LINKS=[
-['🏫','Sito ufficiale della scuola',SITE,1],
-['📄','Presentazione indirizzo Informatica (PDF)',CS+'Orientamento/Presentazioni/Presentazione_corso_inf.pdf?_t=1731347532'],
-['💻','Pagina dell’indirizzo Informatico',SITE+'percorsi-studio?id=210'],
-['🎬','Video: Intelligenza Artificiale',CS+'Video%20indirizzi/INF/IA.MOV?_t=1700074555'],
-['🏗️','Video: nuovi laboratori del Polo Tecnologico',CS+'INIZIATIVE&EVENTI/VIDEO/Video%20scuola_laboratori_nuovi%20.mp4?_t=1700074555'],
-['🌐','Video: lezione di Sistemi e reti',CS+'Video%20indirizzi/INF/Video-INF.mp4?_t=1700074555'],
-['📅','Open Day e Mini Stage: date e prenotazioni',SITE+'pagine/orientamento'],
-['🎒','Studente per un giorno',SITE+'pagine/prenotazioni---studente-per-un-giorno'],
-['🖼️','Locandina e brochure',SITE+'pagine/locandina-brochure']];
-const school=()=>`<div class="panel school"><h2>🏫 SCOPRI LA NOSTRA SCUOLA</h2><p>Presentazioni, video e informazioni ufficiali sull’indirizzo Informatica (si aprono in una nuova scheda).</p><div class="lk">${LINKS.map(l=>`<a class="btn ${l[3]?'':'g'}" href="${l[2]}" target="_blank" rel="noopener noreferrer"><span>${l[0]}</span> ${l[1]}</a>`).join('')}</div></div>`;
-const QN=5;const GAMES=[{id:'ruota',ic:'🔤',t:'RUOTA DELLE LETTERE',c:'#ff9f1c',d:'Sfida a 2 squadre: gira la ruota, scegli le lettere e indovina la frase misteriosa!'},{id:'ruotaq',ic:'🎡',t:'RUOTA DEI QUIZ',c:'#ffd23f',d:'Gira la ruota, poi rispondi alla domanda a scelta multipla per vincere i punti!'},{id:'robot',ic:'🤖',t:'GUIDA IL ROBOT',c:'#27d3ff',d:'Programma RoboBot con le istruzioni giuste e portalo fino al Server!'},{id:'pin',ic:'🔐',t:'CYBER ESCAPE: TROVA IL PIN',c:'#2ee59d',d:'Risolvi 6 stazioni informatiche, scopri le cifre e inserisci il PIN!'},{id:'ctf',ic:'🚩',t:'CTF LAB',c:'#ff5470',d:'Cinque sfide da hacker buono: messaggi al contrario, binario, testo invisibile e truffe da scovare!'}];
+['home','Sito ufficiale della scuola',SITE,1],
+['doc','Presentazione indirizzo Informatica (PDF)',CS+'Orientamento/Presentazioni/Presentazione_corso_inf.pdf?_t=1731347532'],
+['code','Pagina dell’indirizzo Informatico',SITE+'percorsi-studio?id=210'],
+['play','Video: Intelligenza Artificiale',CS+'Video%20indirizzi/INF/IA.MOV?_t=1700074555'],
+['chip','Video: nuovi laboratori del Polo Tecnologico',CS+'INIZIATIVE&EVENTI/VIDEO/Video%20scuola_laboratori_nuovi%20.mp4?_t=1700074555'],
+['globe','Video: lezione di Sistemi e reti',CS+'Video%20indirizzi/INF/Video-INF.mp4?_t=1700074555'],
+['cal','Open Day e Mini Stage: date e prenotazioni',SITE+'pagine/orientamento'],
+['star','Studente per un giorno',SITE+'pagine/prenotazioni---studente-per-un-giorno'],
+['doc','Locandina e brochure',SITE+'pagine/locandina-brochure']];
+const school=()=>`<div class="panel school"><h2>${ic('home')} SCOPRI LA NOSTRA SCUOLA</h2><div class="lk">${LINKS.map(l=>`<a class="btn ${l[3]?'':'g'}" href="${l[2]}" target="_blank" rel="noopener noreferrer"><span>${ic(l[0])}</span> ${l[1]}</a>`).join('')}</div></div>`;
+const QN=5;const GAMES=[{id:'ruota',ic:'abc',t:'RUOTA DELLE LETTERE',c:'#ff9f1c',d:'Sfida a 2 squadre: gira la ruota, scegli le lettere e indovina la frase misteriosa!'},{id:'ruotaq',ic:'wheel',t:'RUOTA DEI QUIZ',c:'#ffd23f',d:'Gira la ruota, poi rispondi alla domanda a scelta multipla per vincere i punti!'},{id:'robot',ic:'robot',t:'GUIDA IL ROBOT',c:'#27d3ff',d:'Programma RoboBot con le istruzioni giuste e portalo fino al Server!'},{id:'pin',ic:'lock',t:'CYBER ESCAPE: TROVA IL PIN',c:'#2ee59d',d:'Risolvi 6 stazioni informatiche, scopri le cifre e inserisci il PIN!'},{id:'ctf',ic:'flag',t:'CTF LAB',c:'#ff5470',d:'Cinque sfide da hacker buono: messaggi al contrario, binario, testo invisibile e truffe da scovare!'}];
 /* ===== STATO ===== */
 const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+/* ===== ICONE: SVG inline in stile "cartoon" (contorno scuro, riempimento a colori della palette).
+   Classi: a = colore principale (--ia), b = chiaro, y = giallo, g = verde, r = rosso, w = tratto bianco, senza classe = solo contorno ===== */
+const ICP={
+up:'<path class="a" d="M12 3 5 11h4v9h6v-9h4z"/>',
+rotl:'<path d="M4 12a8 8 0 1 0 3-6.2"/><path class="a" d="M3 3v6h6z"/>',
+rotr:'<path d="M20 12a8 8 0 1 1-3-6.2"/><path class="a" d="M21 3v6h-6z"/>',
+repeat:'<path d="M4 11V9a3 3 0 0 1 3-3h11M20 13v2a3 3 0 0 1-3 3H6"/><path class="a" d="m15 2 4 4-4 4zM9 14l-4 4 4 4z"/>',
+hand:'<path class="a" d="M8 11V5a1.5 1.5 0 0 1 3 0v5V4a1.5 1.5 0 0 1 3 0v6V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a5 5 0 0 1-4-2l-3-4a1.5 1.5 0 0 1 2.4-1.8L8 14z"/>',
+bug:'<ellipse class="a" cx="12" cy="14" rx="5" ry="6"/><path d="M9 8a3 3 0 0 1 6 0M3 12h4M17 12h4M4 19l3-2M20 19l-3-2M12 10v10"/>',
+users:'<circle class="a" cx="9" cy="8" r="3.5"/><path class="a" d="M2.5 20a6.5 6.5 0 0 1 13 0z"/><circle class="b" cx="17" cy="9" r="2.8"/><path class="b" d="M17 14a5 5 0 0 1 4.5 6H17"/>',
+list:'<rect class="a" x="4" y="3" width="16" height="18" rx="3"/><path class="w" d="M8 9h8M8 13h8M8 17h5"/>',
+cubes:'<path class="a" d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path class="w" d="M4 7.5 12 12l8-4.5M12 12v9"/>',
+ptr:'<path class="b" d="M3 5h18l-9 15z"/>',
+home:'<path class="a" d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path class="b" d="M10 21v-6h4v6z"/>',
+games:'<path class="a" d="M6 8h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.2 2L15 14H9l-1.8 2A3 3 0 0 1 2 14v-2a4 4 0 0 1 4-4z"/><path class="w" d="M7 10.5v3M5.5 12h3"/><circle class="b" cx="16" cy="11" r="1.1"/><circle class="b" cx="18.3" cy="13.2" r="1.1"/>',
+star:'<path class="y" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+sound:'<path class="a" d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+mute:'<path class="a" d="M4 9h4l5-4v14l-5-4H4z"/><path d="m16 9 5 6M21 9l-5 6"/>',
+sun:'<circle class="y" cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>',
+moon:'<path class="a" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+quiz:'<path class="a" d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path class="w" d="M9.8 9a2.2 2.2 0 1 1 3.3 1.9c-.7.4-1.1.8-1.1 1.6M12 14.6v.01"/>',
+code:'<rect class="a" x="3" y="4" width="18" height="16" rx="3"/><path class="w" d="m9.5 10-3 2.5 3 2.5M14.5 10l3 2.5-3 2.5"/>',
+hack:'<path class="a" d="M12 3a8 8 0 0 0-8 8v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a8 8 0 0 0-8-8z"/><rect class="b" x="7" y="9" width="10" height="7" rx="3"/><path d="M10 12.5v.01M14 12.5v.01"/>',
+chip:'<path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/><rect class="a" x="6" y="6" width="12" height="12" rx="2.5"/><rect class="b" x="9.5" y="9.5" width="5" height="5" rx="1"/>',
+puzzle:'<path class="a" d="M10 4a2 2 0 1 1 4 0v2h4a1 1 0 0 1 1 1v4h-2a2 2 0 1 0 0 4h2v4a1 1 0 0 1-1 1h-4v-2a2 2 0 1 0-4 0v2H6a1 1 0 0 1-1-1v-4h2a2 2 0 1 0 0-4H5V7a1 1 0 0 1 1-1h4z"/>',
+abc:'<rect class="a" x="3" y="5" width="18" height="14" rx="3"/><path class="w" d="m8 16 3-8 3 8M9.3 13.5h3.4M17 9v7"/>',
+wheel:'<circle class="a" cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle class="b" cx="12" cy="12" r="2.3"/>',
+robot:'<path d="M12 8V4.5M3 12.5v3M21 12.5v3"/><circle class="y" cx="12" cy="3.8" r="1.4"/><rect class="a" x="5" y="8" width="14" height="11.5" rx="3.2"/><circle class="b" cx="9.5" cy="13" r="1.7"/><circle class="b" cx="14.5" cy="13" r="1.7"/><path d="M9.5 16.5h5"/>',
+lock:'<path d="M8 11V8a4 4 0 0 1 8 0v3"/><rect class="a" x="5" y="11" width="14" height="10" rx="2.5"/><circle class="b" cx="12" cy="15.5" r="1.5"/>',
+unlock:'<path d="M8 11V8a4 4 0 0 1 7.6-1.7"/><rect class="g" x="5" y="11" width="14" height="10" rx="2.5"/><circle class="b" cx="12" cy="15.5" r="1.5"/>',
+flag:'<path d="M6 21V4"/><path class="a" d="M6 4h12l-2.5 4 2.5 4H6z"/>',
+key:'<path d="m11 12 9-9M16 7l3 3M14 9l2 2"/><circle class="a" cx="8" cy="15" r="4.5"/><circle class="b" cx="7" cy="14" r="1.2"/>',
+check:'<circle class="g" cx="12" cy="12" r="9.5"/><path class="w" d="m7.5 12.5 3 3 6-6.5"/>',
+cross:'<circle class="r" cx="12" cy="12" r="9.5"/><path class="w" d="m8.5 8.5 7 7M15.5 8.5l-7 7"/>',
+play:'<path class="a" d="M7 4.5 19.5 12 7 19.5z"/>',
+prev:'<path d="m14.5 5-7 7 7 7" style="stroke-width:3"/>',
+next:'<path d="m9.5 5 7 7-7 7" style="stroke-width:3"/>',
+trophy:'<path d="M7 5H4v2.5A3.5 3.5 0 0 0 7.5 11M17 5h3v2.5a3.5 3.5 0 0 1-3.5 3.5M12 14v4M8 21h8M9.5 18h5"/><path class="y" d="M7 3.5h10V9a5 5 0 0 1-10 0z"/>',
+warn:'<path class="y" d="m12 3 10 18H2z"/><path d="M12 10v5M12 18v.01"/>',
+bulb:'<path d="M9.5 21h5"/><path class="y" d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+doc:'<path class="a" d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path class="w" d="M8.5 12h7M8.5 16h5"/>',
+globe:'<circle class="a" cx="12" cy="12" r="9"/><path class="w" d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+cal:'<rect class="a" x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4"/><path class="w" d="M3.5 10h17"/>'};
+const ic=(n,c)=>`<svg class="i${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${ICP[n]||''}</svg>`;
+/* mascotte: RoboBot, sbuca da sopra le card come gli uccellini del video */
+const MASCOT=`<svg class="mas" viewBox="0 0 80 84" aria-hidden="true"><g class="mas-b"><path d="M40 20V9" class="mo"/><circle cx="40" cy="7" r="4.5" class="my mo"/><path d="M8 48v10M72 48v10" class="mo" style="stroke-width:5"/><rect x="14" y="20" width="52" height="46" rx="14" class="mp mo"/><rect x="21" y="29" width="38" height="24" rx="9" class="mw mo"/><circle cx="32" cy="41" r="4.2" class="mo mi"/><circle cx="48" cy="41" r="4.2" class="mo mi"/><path d="M33 59h14" class="mo" style="stroke-width:3.5"/><rect x="22" y="66" width="12" height="10" rx="4" class="mp mo"/><rect x="46" y="66" width="12" height="10" rx="4" class="mp mo"/></g></svg>`;
+document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic));
 let S={done:{}},snd=true,P=null;
 try{const x=JSON.parse(localStorage.getItem('rr_open'));if(x&&x.done)S=x}catch(_){}
 const save=()=>{try{localStorage.setItem('rr_open',JSON.stringify(S))}catch(_){}};
@@ -65,7 +112,7 @@ const MAX=ACT.length*(QN*PT+BONUS)+5*BONUS;
 /* ===== SUONI ===== */
 let AC;function beep(f,d=.12,t='square',dl=0){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.08,AC.currentTime+dl);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+dl+d);o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+dl);o.stop(AC.currentTime+dl+d)}catch(_){}}
 const sOk=()=>{beep(660,.1);beep(880,.18,'square',.1)},sKo=()=>beep(150,.3,'sawtooth'),sClk=()=>beep(440,.06),sWin=()=>[523,659,784,1047].forEach((f,i)=>beep(f,.2,'triangle',i*.12));
-$('#sb').onclick=()=>{snd=!snd;$('#sb').textContent=snd?'🔊':'🔇';sClk()};
+$('#sb').onclick=()=>{snd=!snd;$('#sb .ti').innerHTML=ic(snd?'sound':'mute');sClk()};
 /* ===== UI ===== */
 const calm=()=>matchMedia('(prefers-reduced-motion:reduce)').matches, cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 /* contatore animato per il punteggio */
@@ -75,7 +122,7 @@ let REDRAW=null; /* ridisegna il canvas del gioco aperto (cambio tema, font cari
 function go(html,s){unsay();REDRAW=null;document.body.dataset.s=s||'';$('#main').innerHTML='<div class="scr">'+(NAVS.includes(s)?navBar():'')+html+'</div>';hud();window.scrollTo({top:0,behavior:'smooth'})}
 function toast(m,k){const t=$('#toast');t.textContent=m;t.className=(k||'')+' s';clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('s'),2800)}
 /* messaggio in pagina al posto di alert(): k = 'ok' oppure 'ko' */
-function say(m,k){const d=$('#dlg');$('#dlgT').textContent=m;$('#dlgI').textContent=k==='ok'?'🏆':'⚠️';d.dataset.k=k||'';d.classList.remove('hidden');$('#dlgOk').focus({preventScroll:true})}
+function say(m,k){const d=$('#dlg');$('#dlgT').textContent=m;$('#dlgI').innerHTML=ic(k==='ok'?'trophy':'warn');d.dataset.k=k||'';d.classList.remove('hidden');$('#dlgOk').focus({preventScroll:true})}
 function unsay(){$('#dlg').classList.add('hidden')}
 $('#dlgOk').onclick=()=>{sClk();unsay()};$('#dlg').onclick=e=>{if(e.target.id==='dlg')unsay()};
 /* coriandoli nei colori del sito; se la libreria non è disponibile si usano quelli a emoji */
@@ -95,10 +142,10 @@ function start(){
  go(`<section class="hero">
  <div class="hero-word" aria-hidden="true"><svg id="hw" preserveAspectRatio="none"><defs><linearGradient id="wfill" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="72"><stop offset="0" class="w0"/><stop offset="1" class="w1"/></linearGradient></defs>${[...WORD].map((ch,i)=>`<text style="--i:${i}">${ch}</text>`).join('')}</svg></div>
  <aside class="hero-note"><p>Mettiti alla prova, supera le sfide e scopri se hai la stoffa per diventare un informatico!</p><b>${MAX} PUNTI IN PALIO</b></aside>
- <div class="hero-main"><img class="big" src="${LOGO}" alt="IIS Rosselli – Polo tecnologico economico professionale">
+ <div class="hero-main">${MASCOT}<img class="big" src="${LOGO}" alt="IIS Rosselli – Polo tecnologico economico professionale">
  <h1>BENVENUTO NEL MONDO DELL’INFORMATICA!</h1>
- <div class="term" id="tm"></div><button class="btn big-btn" id="go" style="visibility:hidden">▶ INIZIA L’AVVENTURA</button></div>
- <aside class="hero-list"><h2>${ALL} MISSIONI</h2><ol>${[...ACT,...GAMES].map(a=>`<li><span>${a.ic}</span>${a.t}</li>`).join('')}</ol></aside>
+ <div class="term" id="tm"></div><button class="btn big-btn" id="go" style="visibility:hidden">${ic('play')} INIZIA L’AVVENTURA</button></div>
+ <aside class="hero-list"><h2>${ALL} MISSIONI</h2><ol>${[...ACT,...GAMES].map(a=>`<li><span>${ic(a.ic)}</span>${a.t}</li>`).join('')}</ol></aside>
  </section>`,'start');
  fitWord();
  const L=['> avvio sistema Rosselli...','> caricamento sfide... OK','> giocatore pronto_'];let i=0,j=0,out='';const tm=$('#tm');
@@ -106,11 +153,10 @@ function start(){
   out+=L[i][j++];tm.innerHTML=esc(out).replace(/\n/g,'<br>')+'<b>█</b>';if(j>=L[i].length){i++;j=0;out+='\n';setTimeout(type,250)}else setTimeout(type,28)})();
  $('#go').onclick=()=>{sWin();menu()};
 }
-function card(a,onclick,label){const d=S.done[a.id];return `<div class="card" style="--c:${a.c}"><span class="no">${ORDER.indexOf(a.id)+1}</span><div class="ic">${a.ic}</div><h3>${a.t}</h3><p>${a.d}</p>${d?`<div class="tag">✔ Completata · ${d.pts} pt</div>`:''}<button class="btn" data-a="${a.id}">${d?'↻ RIGIOCA':label}</button></div>`}
+function card(a,onclick,label){const d=S.done[a.id];return `<div class="card" style="--c:${a.c}"><span class="no">${ORDER.indexOf(a.id)+1}</span><div class="ic">${ic(a.ic)}</div><h3>${a.t}</h3><p>${a.d}</p>${d?`<div class="tag">${ic('check')} Completata · ${d.pts} pt</div>`:''}<button class="btn" data-a="${a.id}">${d?'RIGIOCA':label}</button></div>`}
 function menu(){
  const all=nd()>=ALL;
- go(`<div class="mh"><img class="il" src="assets/informatica.png" alt="Logo Informatica"><h2>🎮 SCEGLI LA TUA MISSIONE</h2></div><div class="mg">${ACT.map(a=>card(a,0,'▶ INIZIA')).join('')}${GAMES.map(a=>card(a,0,'▶ GIOCA')).join('')}</div>
- <div class="row"><button class="btn g" data-nv="start">🏠 Home</button><button class="btn" data-nv="next">⏭ Prossimo gioco</button></div><div class="row">${all?'<button class="btn" id="fin">🏁 VEDI IL RISULTATO FINALE</button>':`<div class="chip">Completa tutte le missioni per sbloccare il finale: ${nd()}/${ALL}</div>`}</div>
+ go(`<div class="mh"><img class="il" src="assets/informatica.png" alt="Logo Informatica"><h2>SCEGLI LA TUA MISSIONE</h2>${all?'<button class="btn" id="fin">VEDI IL RISULTATO FINALE</button>':`<span class="mh-hint">Scegli una missione e gioca · completate ${nd()}/${ALL}: finiscile tutte per sbloccare il finale</span>`}</div><div class="mg">${ACT.map(a=>card(a,0,'INIZIA')).join('')}${GAMES.map(a=>card(a,0,'GIOCA')).join('')}</div>
  ${school()}`,'menu');
  document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{sClk();openG(b.dataset.a)});
  if(all)$('#fin').onclick=final;
@@ -119,12 +165,11 @@ function begin(id){CUR=id;const A=ACT.find(a=>a.id===id);P={id,i:0,ok:0,r:[],qs:
 function ask(){
  const A=ACT.find(a=>a.id===P.id),Q=P.qs[P.i];P.lock=0;
  const dots=P.qs.map((_,i)=>`<i class="${i<P.i?P.r[i]:i===P.i?'on':''}"></i>`).join('');
- go(`<div class="panel qp" style="--c:${A.c}"><div class="qh"><span class="ft">${A.ic} ${A.t}</span><span class="qn">${P.i+1}/${P.qs.length}</span></div><div class="dots">${dots}</div>
- ${Q.e?`<div class="big-e">${Q.e}</div>`:''}<p class="q">${esc(Q.q)}</p>${Q.k?`<pre>${esc(Q.k)}</pre>`:''}
+ go(`<div class="panel qp" style="--c:${A.c}"><div class="qh"><span class="ft">${ic(A.ic)} ${A.t}</span><span class="qn">${P.i+1}/${P.qs.length}</span></div><div class="dots">${dots}</div>
+ <div class="qb"><div class="ql">${Q.e?`<div class="big-e">${Q.e}</div>`:''}<p class="q">${esc(Q.q)}</p>${Q.k?`<pre>${esc(Q.k)}</pre>`:''}</div><div class="qr">
  ${Q.in?`<input class="inp" id="in" autocomplete="off" autocapitalize="characters" placeholder="Scrivi qui…"><div class="center"><button class="btn" id="ck">VERIFICA</button></div>`
  :`<div class="opts">${Q.o.map((o,k)=>`<button class="opt" data-k="${k}"><b>${'ABCD'[k]}</b><span>${esc(o)}</span></button>`).join('')}</div>`}
- <div id="fb"></div></div><div class="row"><button class="btn g" id="mn">⌂ MENU</button></div>`,'play');
- $('#mn').onclick=menu;
+ <div id="fb"></div></div></div></div>`,'play');
  if(Q.in){$('#ck').onclick=()=>answer(null);$('#in').onkeydown=e=>{if(e.key==='Enter')answer(null)};$('#in').focus({preventScroll:true})}
  else document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k));
 }
@@ -134,7 +179,7 @@ function answer(k){
  else{ok=k===Q.a;document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true;if(i===Q.a)b.classList.add('ok');else if(i===k)b.classList.add('ko')})}
  P.lock=1;P.r[P.i]=ok?'ok':'ko';if(ok){P.ok++;sOk()}else sKo();
  const last=P.i===P.qs.length-1;
- $('#fb').innerHTML=`<div class="fb ${ok?'ok':'ko'}"><b>${ok?'✅ Esatto! +'+PT+' punti':'❌ Quasi!'+(Q.in?' La risposta era '+Q.a:'')}</b><br>${esc(Q.x)}</div><div class="row"><button class="btn" id="nx">${last?'🏁 VEDI RISULTATO':'AVANTI ▶'}</button></div>`;
+ $('#fb').innerHTML=`<div class="fb ${ok?'ok':'ko'}"><b>${ic(ok?'check':'cross')} ${ok?'Esatto! +'+PT+' punti':'Quasi!'+(Q.in?' La risposta era '+Q.a:'')}</b><br>${esc(Q.x)}</div><div class="row"><button class="btn" id="nx">${last?'VEDI RISULTATO':'AVANTI'} ${ic('next')}</button></div>`;
  $('#nx').onclick=()=>{sClk();last?finish():(P.i++,ask())};$('#nx').focus({preventScroll:true});
 }
 function finish(){
@@ -142,11 +187,11 @@ function finish(){
  if(!old||pts>=old.pts)S.done[P.id]={pts,ok:P.ok};save();
  const msg=P.ok===n?'Perfetto! Sei un fenomeno! 🚀':P.ok>=n-1?'Ottimo lavoro! 💪':P.ok>=2?'Bella prova! Riprova per fare ancora meglio.':'Non mollare: i migliori informatici imparano dagli errori!';
  P.ok>=n-1?(conf(),sWin()):beep(330,.25,'triangle');
- done(`${A.ic} ${A.t}`,P.ok+'/'+n+' risposte corrette',pts,msg,()=>begin(P.id));
+ done(`${ic(A.ic)} ${A.t}`,P.ok+'/'+n+' risposte corrette',pts,msg,()=>begin(P.id));
 }
 function done(t,sub,pts,msg,again){
  go(`<div class="panel center res"><div class="ft">MISSIONE COMPLETATA</div><h2>${t}</h2><p>${sub}</p><div class="score">+${pts}</div><p>${msg}</p>
- <div class="row"><button class="btn g" id="ag">↻ RIPROVA</button><button class="btn" id="mn">⌂ TORNA AL MENU</button>${nd()>=ALL?'<button class="btn" id="fin">🏁 VAI AL FINALE</button>':''}</div></div>`,'res');
+ <div class="row"><button class="btn g" id="ag">RIPROVA</button><button class="btn" id="mn">TORNA AL MENU</button>${nd()>=ALL?'<button class="btn" id="fin">VAI AL FINALE</button>':''}</div></div>`,'res');
  $('#ag').onclick=again;$('#mn').onclick=menu;if(nd()>=ALL)$('#fin').onclick=final;
 }
 function ruota(){CUR='ruota';
@@ -209,17 +254,17 @@ function ruota(){CUR='ruota';
 }
 const V_Wheel=`<div class="game gw">
  <section class="panel gw-wheel">
-  <div class="gh"><h2><i class="fa-solid fa-dharmachakra"></i> Ruota Tech - Rosselli Rasetti</h2><span id="turnDisplay" class="pill">Turno: SQUADRA ALPHA</span></div>
-  <div class="wheel-wrap"><div class="wheel-ptr"><i class="fa-solid fa-caret-down"></i></div><canvas id="wheelCanvas" width="720" height="720"></canvas></div>
-  <button id="btnSpin" onclick="spinWheel()" class="btn"><i class="fa-solid fa-rotate-right"></i><span>GIRA LA RUOTA!</span></button>
+  <div class="gh"><h2>${ic('wheel')} Ruota Tech - Rosselli Rasetti</h2><span id="turnDisplay" class="pill">Turno: SQUADRA ALPHA</span></div>
+  <div class="wheel-wrap"><div class="wheel-ptr">${ic('ptr')}</div><canvas id="wheelCanvas" width="720" height="720"></canvas></div>
+  <button id="btnSpin" onclick="spinWheel()" class="btn">${ic('rotr')}<span>GIRA LA RUOTA!</span></button>
  </section>
  <section class="gw-side">
-  <div class="panel"><h3 class="sub"><i class="fa-solid fa-users"></i> Punteggi Squadre</h3>
+  <div class="panel"><h3 class="sub">${ic('users')} Punteggi Squadre</h3>
    <div class="tm2">
     <div id="teamCardA" class="team v on"><span>SQUADRA ALPHA</span><b id="scoreA">0</b><small>Punti</small></div>
     <div id="teamCardB" class="team v"><span>SQUADRA BETA</span><b id="scoreB">0</b><small>Punti</small></div>
    </div></div>
-  <div class="panel"><h3 class="sub"><i class="fa-solid fa-list-check"></i> Esito Estrazione</h3>
+  <div class="panel"><h3 class="sub">${ic('list')} Esito Estrazione</h3>
    <div id="wheelStatusLog" class="log">Premi "GIRA LA RUOTA!" per iniziare la partita!</div></div>
  </section>
 </div>
@@ -236,30 +281,30 @@ const V_Maze=`<div class="game gm">
   <div class="gm-status"><span>Microchip: <strong id="chipsStatus">0 / 0</strong></span><span id="botDirectionStatus">Direzione: <strong id="dirIndicator">EST ➔</strong></span></div>
  </section>
  <section class="gm-side">
-  <div class="panel"><h3 class="sub"><i class="fa-solid fa-cubes"></i> Istruzioni di Codice</h3>
+  <div class="panel"><h3 class="sub">${ic('cubes')} Istruzioni di Codice</h3>
    <div class="cmds">
-    <button onclick="addCommand('FORWARD')" class="cmd c-move"><i class="fa-solid fa-arrow-up"></i> Avanza</button>
-    <button onclick="addCommand('TURN_LEFT')" class="cmd c-turn"><i class="fa-solid fa-rotate-left"></i> Ruota SX</button>
-    <button onclick="addCommand('TURN_RIGHT')" class="cmd c-turn"><i class="fa-solid fa-rotate-right"></i> Ruota DX</button>
-    <button onclick="addCommand('REPEAT_2')" class="cmd c-rep"><i class="fa-solid fa-repeat"></i> Ripeti 2x</button>
-    <button onclick="addCommand('REPEAT_3')" class="cmd c-rep"><i class="fa-solid fa-rotate"></i> Ripeti 3x</button>
-    <button onclick="addCommand('COLLECT')" class="cmd c-get"><i class="fa-solid fa-hand-holding"></i> Raccogli</button>
+    <button onclick="addCommand('FORWARD')" class="cmd c-move">${ic('up')} Avanza</button>
+    <button onclick="addCommand('TURN_LEFT')" class="cmd c-turn">${ic('rotl')} Ruota SX</button>
+    <button onclick="addCommand('TURN_RIGHT')" class="cmd c-turn">${ic('rotr')} Ruota DX</button>
+    <button onclick="addCommand('REPEAT_2')" class="cmd c-rep">${ic('repeat')} Ripeti 2x</button>
+    <button onclick="addCommand('REPEAT_3')" class="cmd c-rep">${ic('rotr')} Ripeti 3x</button>
+    <button onclick="addCommand('COLLECT')" class="cmd c-get">${ic('hand')} Raccogli</button>
    </div></div>
   <div class="panel gm-prog">
-   <div class="gh"><h3 class="sub"><i class="fa-solid fa-code"></i> Sequenza (<span id="commandCountText">0</span>)</h3><button onclick="clearProgram()" class="lnk">Cancella</button></div>
+   <div class="gh"><h3 class="sub">${ic('code')} Sequenza (<span id="commandCountText">0</span>)</h3><button onclick="clearProgram()" class="lnk">Cancella</button></div>
    <div id="programWorkspace" class="ws"><div id="emptyWorkspaceHint" class="hint">Clicca sulle istruzioni in alto per programmare il RoboBot!</div></div>
   </div>
   <div class="panel tools">
-   <button id="btnRun" onclick="runProgram()" class="btn run"><i class="fa-solid fa-play"></i> Esegui</button>
-   <button id="btnStep" onclick="stepDebug()" class="btn step"><i class="fa-solid fa-bug"></i> Passo-Passo</button>
-   <button onclick="resetBotPosition()" class="btn g"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+   <button id="btnRun" onclick="runProgram()" class="btn run">${ic('play')} Esegui</button>
+   <button id="btnStep" onclick="stepDebug()" class="btn step">${ic('bug')} Passo-Passo</button>
+   <button onclick="resetBotPosition()" class="btn g">${ic('rotl')} Reset</button>
   </div>
  </section>
 </div>`;
 function final(){
  const p=total(),r=p/MAX,m=r>.85?'Sei un vero genio dell’informatica!':r>.6?'Hai un grande talento da programmatore!':'Hai fatto il primo passo: il bello viene adesso!';
  sWin();conf(90);setTimeout(()=>conf(60),1800);
- go(`<div class="panel center fin"><div class="big-e">🏆</div><h2>MISSIONE COMPIUTA!</h2><p>Complimenti! Hai completato la tua prima missione nel mondo dell’informatica!</p>
+ go(`<div class="panel center fin"><div class="big-e">${ic('trophy')}</div><h2>MISSIONE COMPIUTA!</h2><p>Complimenti! Hai completato la tua prima missione nel mondo dell’informatica!</p>
  <div class="score big">${p} / ${MAX}</div><p>${m}</p>${school()}
  <div class="row"><button class="btn" id="rp">↻ RIGIOCA</button><button class="btn g" id="st">⌂ TORNA ALL’INIZIO</button></div></div>`,'fin');
  $('#rp').onclick=()=>{S={done:{}};save();menu()};$('#st').onclick=start;
@@ -549,8 +594,8 @@ const playSound=t=>t==='tick'?beep(600,.04,'sine'):t==='win'?sWin():sKo();
         }
 
         const CMD = {
-            FORWARD: ['fa-arrow-up', 'Avanza', 'c-move'], TURN_LEFT: ['fa-rotate-left', 'Ruota SX', 'c-turn'], TURN_RIGHT: ['fa-rotate-right', 'Ruota DX', 'c-turn'],
-            REPEAT_2: ['fa-repeat', 'Ripeti 2x', 'c-rep'], REPEAT_3: ['fa-rotate', 'Ripeti 3x', 'c-rep'], COLLECT: ['fa-hand-holding', 'Raccogli', 'c-get']
+            FORWARD: ['up', 'Avanza', 'c-move'], TURN_LEFT: ['rotl', 'Ruota SX', 'c-turn'], TURN_RIGHT: ['rotr', 'Ruota DX', 'c-turn'],
+            REPEAT_2: ['repeat', 'Ripeti 2x', 'c-rep'], REPEAT_3: ['repeat', 'Ripeti 3x', 'c-rep'], COLLECT: ['hand', 'Raccogli', 'c-get']
         };
         function renderProgramWorkspace() {
             const ws = document.getElementById("programWorkspace");
@@ -559,7 +604,7 @@ const playSound=t=>t==='tick'?beep(600,.04,'sine'):t==='win'?sWin():sKo();
                 ws.innerHTML = `<div class="hint">Clicca sulle istruzioni in alto per programmare il RoboBot!</div>`;
                 return;
             }
-            ws.innerHTML = program.map((c, i) => `<span class="blk ${CMD[c][2]}">${i + 1}. <i class="fa-solid ${CMD[c][0]}"></i> ${CMD[c][1]}</span>`).join("");
+            ws.innerHTML = program.map((c, i) => `<span class="blk ${CMD[c][2]}">${i + 1}. ${ic(CMD[c][0])} ${CMD[c][1]}</span>`).join("");
             ws.scrollTop = ws.scrollHeight;
         }
 
@@ -627,12 +672,12 @@ const playSound=t=>t==='tick'?beep(600,.04,'sine'):t==='win'?sWin():sKo();
             runProgram();
         }
 
-function markDone(id){if(!S.done[id]){S.done[id]={pts:BONUS,ok:0};save();hud();toast('✅ Missione completata: +'+BONUS+' punti!')}}
+function markDone(id){if(!S.done[id]){S.done[id]={pts:BONUS,ok:0};save();hud();toast('Missione completata: +'+BONUS+' punti!')}}
 if(typeof confetti!=='function')window.confetti=()=>conf(40);
 const ORDER=[...ACT.map(a=>a.id),'ruota','ruotaq','robot','pin','ctf'],NAVS=['play','res','ruota','game'];let CUR='';
 const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const shq=q=>{if(!q.o)return q;const ix=sh(q.o.map((_,i)=>i));return {...q,o:ix.map(i=>q.o[i]),a:ix.indexOf(q.a)}};
-const navBar=()=>{const i=ORDER.indexOf(CUR);return '<div class="nv"><button class="btn g" data-nv="start" title="Home">🏠</button><button class="btn g" data-nv="menu">🎮 Menu</button><button class="btn g" data-nv="-1">◀ Indietro</button><span class="np">'+(i+1)+' / '+ORDER.length+'</span><button class="btn" data-nv="1">Avanti ▶</button></div>'};
+const navBar=()=>{const i=ORDER.indexOf(CUR);return '<div class="nv"><button class="btn g" data-nv="-1">'+ic('prev')+' Indietro</button><span class="np">Gioco '+(i+1)+' di '+ORDER.length+'</span><button class="btn g" data-nv="1">Avanti '+ic('next')+'</button></div>'};
 function openG(id){const f={ruota:ruota,ruotaq:gameWheel,robot:gameMaze,pin:gamePin,ctf:gameCtf}[id];f?f():begin(id)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-nv]');if(!b)return;sClk();const v=b.dataset.nv;v==='start'?start():v==='menu'?menu():v==='next'?openG(ORDER.find(i=>!S.done[i])||ORDER[0]):openG(ORDER[(ORDER.indexOf(CUR)+ +v+ORDER.length)%ORDER.length])});
 /* domande extra: [domanda, risposta giusta, [sbagliate], spiegazione, codice] */
@@ -689,20 +734,20 @@ function gameMaze(){gameShell('robot',V_Maze,()=>{mazeCanvas=document.getElement
 /* ===== CYBER ESCAPE: 6 stazioni -> PIN di 6 cifre. Risposte e PIN restano in memoria (non nel DOM) ===== */
 const norm=v=>String(v).trim().toUpperCase().replace(/^RR\{(.*)\}$/,'$1').replace(/\s+/g,' ');
 let cool=0; /* dopo un errore i pulsanti restano fermi per 1,5 s: niente click a caso */
-const wrong=card=>{sKo();card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake');cool=Date.now()+1500;toast('❌ Risposta non corretta! Riprova tra un attimo.','ko')};
+const wrong=card=>{sKo();card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake');cool=Date.now()+1500;toast('Risposta non corretta! Riprova tra un attimo.','ko')};
 function gamePin(){
  const st=sh(PIN_ST).slice(0,6).map(s=>({t:s.t,q:s.p[Math.random()*s.p.length|0]})),n=st.length,
   dg=st.map(()=>Math.random()*10|0),pin=dg.join(''),open=st.map(()=>0),opts=st.map(s=>s.q.w?sh([s.q.a,...s.q.w]):0);let kp='';
- const html=`<div class="game gp"><section class="panel gp-head"><div><h2><i class="fa-solid fa-key"></i> CyberEscape - Rosselli Rasetti</h2><p>Sblocca le ${n} stazioni informatiche per ottenere le ${n} cifre del PIN!</p></div>
-  <div class="locks">${st.map((_,i)=>`<div id="lk${i}" class="lock"><span>🔒</span> <span>Cifra ${i+1}: ?</span></div>`).join('')}</div></section>
-  <div class="gp-grid"><div class="stations">${st.map((s,i)=>`<div id="sc${i}" class="panel station"><div class="gh"><span class="st-t">Stazione ${i+1}: ${esc(s.t)}</span><span id="ss${i}" class="st-s">🔒 BLOCCATO</span></div><p>${esc(s.q.q)}</p>${s.q.k?`<pre>${esc(s.q.k)}</pre>`:''}
+ const html=`<div class="game gp"><section class="panel gp-head"><div><h2>${ic('key')} CyberEscape - Rosselli Rasetti</h2><p>Sblocca le ${n} stazioni informatiche per ottenere le ${n} cifre del PIN!</p></div>
+  <div class="locks">${st.map((_,i)=>`<div id="lk${i}" class="lock"><span>${ic('lock')}</span> <span>${i+1}: ?</span></div>`).join('')}</div></section>
+  <div class="gp-grid"><div class="stations">${st.map((s,i)=>`<div id="sc${i}" class="panel station"><div class="gh"><span class="st-t">Stazione ${i+1}: ${esc(s.t)}</span><span id="ss${i}" class="st-s">${ic('lock')} BLOCCATA</span></div><p>${esc(s.q.q)}</p>${s.q.k?`<pre>${esc(s.q.k)}</pre>`:''}
    ${opts[i]?`<div class="opts one">${opts[i].map((o,k)=>`<button class="opt" data-s="${i}" data-o="${k}">${esc(o)}</button>`).join('')}</div>`:`<div class="row" style="margin:0"><input class="inp" id="in${i}" autocomplete="off" placeholder="Scrivi qui…" style="margin:0;flex:1;min-width:8rem;font-size:1.2rem"><button class="btn" data-t="${i}">VERIFICA</button></div>`}</div>`).join('')}</div>
   <div class="panel keypad"><h3 class="sub">Terminale Evacuazione</h3><div id="kd" class="kd">${'_ '.repeat(n).trim()}</div>
    <div class="keys">${[1,2,3,4,5,6,7,8,9].map(d=>`<button class="key" data-d="${d}">${d}</button>`).join('')}<button class="key clr" data-d="c">CLR</button><button class="key" data-d="0">0</button><button class="key ok" data-d="ok">OK</button></div></div></div></div>`;
  gameShell('pin',html,()=>{
   const g=id=>document.getElementById(id),show=()=>g('kd').textContent=kp.padEnd(n,'_').split('').join(' ');
   const solve=(i,ok)=>{if(open[i]||Date.now()<cool)return;if(!ok)return wrong(g('sc'+i));
-   sWin();open[i]=1;g('lk'+i).className='lock open';g('lk'+i).innerHTML=`<span>🔓</span> <span>Cifra ${i+1}: ${dg[i]}</span>`;g('ss'+i).textContent='🔓 SBLOCCATO';g('ss'+i).className='st-s open';g('sc'+i).classList.add('open');
+   sWin();open[i]=1;g('lk'+i).className='lock open';g('lk'+i).innerHTML=`<span>${ic('unlock')}</span> <span>${i+1}: ${dg[i]}</span>`;g('ss'+i).innerHTML=ic('unlock')+' SBLOCCATA';g('ss'+i).className='st-s open';g('sc'+i).classList.add('open');
    g('sc'+i).querySelectorAll('button,input').forEach(e=>e.disabled=true)};
   document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const i=+b.dataset.s;solve(i,opts[i][+b.dataset.o]===st[i].q.a)});
   document.querySelectorAll('[data-t]').forEach(b=>{const i=+b.dataset.t,f=()=>{if(g('in'+i).value.trim())solve(i,norm(g('in'+i).value)===st[i].q.a)};b.onclick=f;g('in'+i).onkeydown=e=>{if(e.key==='Enter')f()}});
@@ -711,12 +756,12 @@ function gamePin(){
    else if(kp.length<n)kp+=d;show()})})}
 /* ===== CTF LAB: esercizi basilari, si vince trovando tutte le risposte ===== */
 function gameCtf(){
- const ok=CTF.map(()=>0),html=`<div class="game"><section class="panel gp-head"><div><h2>🚩 CTF LAB</h2><p>Capture The Flag: trova la parola nascosta in ogni sfida. Le maiuscole non contano!</p></div><div class="chip" id="cn">0/${CTF.length}</div></section>
-  <div class="stations">${CTF.map((c,i)=>`<div id="cc${i}" class="panel station"><div class="gh"><span class="st-t">Flag ${i+1}: ${esc(c.t)}</span><span id="cs${i}" class="st-s">🚩</span></div><p>${esc(c.q)}</p>${c.k?`<pre>${esc(c.k)}</pre>`:''}${c.ghost?`<span class="ghost">${esc(c.ghost)}</span>`:''}<details><summary>💡 Indizio</summary><p>${esc(c.h)}</p></details>
+ const ok=CTF.map(()=>0),html=`<div class="game"><section class="panel gp-head"><div><h2>${ic('flag')} CTF LAB</h2><p>Capture The Flag: trova la parola nascosta in ogni sfida. Le maiuscole non contano!</p></div><div class="chip" id="cn">0/${CTF.length}</div></section>
+  <div class="stations">${CTF.map((c,i)=>`<div id="cc${i}" class="panel station"><div class="gh"><span class="st-t">Flag ${i+1}: ${esc(c.t)}</span><span id="cs${i}" class="st-s">${ic('flag')}</span></div><p>${esc(c.q)}</p>${c.k?`<pre>${esc(c.k)}</pre>`:''}${c.ghost?`<span class="ghost">${esc(c.ghost)}</span>`:''}<details><summary>${ic('bulb')} Indizio</summary><p>${esc(c.h)}</p></details>
    <div class="row" style="margin:0"><input class="inp" id="ci${i}" autocomplete="off" placeholder="Scrivi qui…" style="margin:0;flex:1;min-width:8rem;font-size:1.2rem"><button class="btn" data-c="${i}">VERIFICA</button></div></div>`).join('')}</div></div>`;
  gameShell('ctf',html,()=>{
   const g=id=>document.getElementById(id),chk=i=>{if(ok[i]||Date.now()<cool||!g('ci'+i).value.trim())return;if(norm(g('ci'+i).value)!==CTF[i].a)return wrong(g('cc'+i));
-   sWin();ok[i]=1;g('cs'+i).textContent='✅ TROVATA';g('cs'+i).className='st-s open';g('cc'+i).classList.add('open');g('ci'+i).disabled=true;g('cc'+i).querySelector('[data-c]').disabled=true;g('cn').textContent=ok.filter(Boolean).length+'/'+CTF.length;
+   sWin();ok[i]=1;g('cs'+i).innerHTML=ic('check')+' TROVATA';g('cs'+i).className='st-s open';g('cc'+i).classList.add('open');g('ci'+i).disabled=true;g('cc'+i).querySelector('[data-c]').disabled=true;g('cn').textContent=ok.filter(Boolean).length+'/'+CTF.length;
    if(ok.every(Boolean)){conf(80);markDone('ctf');say('FLAG CATTURATE! Hai completato il CTF Lab: sei un vero hacker buono (white hat)!','ok')}};
   document.querySelectorAll('[data-c]').forEach(b=>{const i=+b.dataset.c;b.onclick=()=>chk(i);g('ci'+i).onkeydown=e=>{if(e.key==='Enter')chk(i)}})})}
 $('#hh').onclick=()=>{sClk();start()};$('#hm').onclick=()=>{sClk();menu()};
@@ -724,7 +769,7 @@ addEventListener('keydown',e=>{if(!$('#dlg').classList.contains('hidden')){if(e.
 /* tema: 'dark' (predefinito) oppure 'light'; la scelta resta salvata nel browser */
 function setTheme(t,sv){t=t==='light'||t==='xmas'?t:'dark';document.documentElement.dataset.theme=t;$('#tb').setAttribute('aria-checked',t!=='light');$('#tb').title=t!=='light'?'Passa al tema chiaro':'Passa al tema scuro';document.querySelector('meta[name=theme-color]').content={dark:'#0b0e18',light:'#eef2fb',xmas:'#0b1a12'}[t];if(sv)try{localStorage.setItem('rr_theme',t)}catch(_){}}
 /* easter egg: 5 click rapidi sul grande logo della home alternano il tema Natale */
-let lc=[];document.addEventListener('click',e=>{if(!e.target.closest('img.big'))return;const n=Date.now();lc=lc.filter(t=>n-t<2500);lc.push(n);if(lc.length<5)return;lc=[];const x=document.documentElement.dataset.theme!=='xmas';setTheme(x?'xmas':'dark',1);cx.clearRect(0,0,cv.width,cv.height);REDRAW&&REDRAW();x&&(sWin(),conf(60));toast(x?'🎄 Buon Natale dal Rosselli!':'Tema scuro ripristinato')});
+let lc=[];document.addEventListener('click',e=>{if(!e.target.closest('img.big'))return;const n=Date.now();lc=lc.filter(t=>n-t<2500);lc.push(n);if(lc.length<5)return;lc=[];const x=document.documentElement.dataset.theme!=='xmas';setTheme(x?'xmas':'dark',1);cx.clearRect(0,0,cv.width,cv.height);REDRAW&&REDRAW();x&&(sWin(),conf(60));toast(x?'Buon Natale dal Rosselli!':'Tema scuro ripristinato')});
 $('#tb').onclick=()=>{sClk();setTheme(document.documentElement.dataset.theme==='light'?'dark':'light',1);cx.clearRect(0,0,cv.width,cv.height);REDRAW&&REDRAW()};
 setTheme(document.documentElement.dataset.theme);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fitWord();REDRAW&&REDRAW()});
