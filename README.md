@@ -36,12 +36,13 @@ Non è un sito scolastico tradizionale: è un'esperienza di **gamification** che
 
 | | |
 |---|---|
-| 🎯 **Pensato per l'aula** | Testi grandi e leggibili dal fondo, ogni gioco sta in una schermata a 1920×1080 e 1366×768 |
+| 🎯 **Pensato per l'aula** | Testi grandi e leggibili dal fondo, menu, quiz, robot e ruote stanno in una schermata a 1920×1080 e 1366×768; PIN e CTF a 1366×768 scorrono di pochi pixel |
 | 🧩 **Nessuna build** | HTML, CSS e JavaScript puri: pochi file, nessun framework, nessun server |
 | 🔒 **Privacy by design** | Nessun login, nessun dato personale, nessun tracciamento |
 | 📱 **Ovunque** | Responsive: proiettore, LIM, PC, tablet e smartphone |
 | 💾 **Progressi salvati** | Salvataggio automatico nel browser (`localStorage`) |
 | 🔊 **Audio sintetizzato** | Effetti sonori generati con la Web Audio API, attivabili con un pulsante |
+| 🎮 **Stile "gioco"** | Bottoni con bordo estruso, carte arrotondate, barra a pillola con tab Home/Giochi, icone SVG a colori e mascotte robot |
 | 🌗 **Tema scuro/chiaro** | Un interruttore in alto a destra; il chiaro rende meglio con proiettori deboli in aule luminose |
 | ♿ **Rispetto delle preferenze** | Animazioni ridotte con `prefers-reduced-motion` |
 
@@ -125,7 +126,7 @@ Non serve installare nulla.
 
 ### Pubblicazione con GitHub Pages
 
-1. Carica nella repository `index.html`, `style.css`, `app.js`, `contenuti.js`, `favicon.png` e le cartelle `assets/` e `docs/`.
+1. Carica nella repository `index.html`, `style.css`, `icons.js`, `app.js`, `contenuti.js`, `favicon.png` e le cartelle `assets/` e `docs/`.
 2. Vai in **Settings → Pages**.
 3. In *Build and deployment* scegli **Deploy from a branch**, branch `main`, cartella `/ (root)`.
 4. Dopo qualche minuto il sito sarà online all'indirizzo mostrato da GitHub.
@@ -154,7 +155,8 @@ Le domande extra, le stazioni del PIN e gli esercizi CTF stanno in `contenuti.js
 | Livelli del robot | array `mazeLevels` |
 | Domande delle stazioni del PIN | oggetto `PS` |
 | Link del box "Scopri la nostra scuola" | array `LINKS` |
-| Colori e tema | variabili CSS in `:root`, all'inizio di `style.css` |
+| Colori e tema | variabili CSS in `:root`, all'inizio di `style.css` (forme: `--r`, `--bw`, `--ex`) |
+| Icone e mascotte | oggetto `ICP` e costante `MASCOT` in `icons.js` (helper `ic('nome')`) |
 | Logo | file `assets/logo.png` |
 
 ### Aggiungere una domanda
@@ -178,7 +180,7 @@ Risposta **scritta** invece che a scelta multipla:
 
 ### Aggiungere una missione a domande
 
-Inserisci in `ACT` un oggetto con `id`, `ic` (icona), `t` (titolo), `d` (descrizione) e `qs` (domande): la card nel menu, il conteggio dei progressi e il punteggio massimo si aggiornano da soli.
+Inserisci in `ACT` un oggetto con `id`, `ic` (nome di un'icona presente in `ICP`, es. `'quiz'`, `'code'`, `'chip'`; se il nome non esiste compare un'icona di riserva e un avviso in console), `t` (titolo), `d` (descrizione) e `qs` (domande): la card nel menu, il conteggio dei progressi e il punteggio massimo si aggiornano da soli.
 
 ---
 
@@ -207,6 +209,7 @@ flowchart LR
 .
 ├── index.html          # struttura della pagina e collegamenti a font e librerie
 ├── style.css           # tutta la grafica: colori, tipografia, componenti, schermate
+├── icons.js            # set di icone SVG inline e mascotte robot
 ├── app.js              # logica dei giochi e contenuti base
 ├── contenuti.js        # domande extra, stazioni PIN, esercizi CTF
 ├── favicon.png
@@ -220,6 +223,7 @@ flowchart LR
 ### Scelte tecniche
 
 - **File separati** (struttura, grafica, logica) per poter cambiare l'aspetto senza toccare i giochi e viceversa.
+- **Icone SVG inline** (`icons.js`): contorno scuro e riempimento a colori della palette, nessuna libreria esterna; ricolorabili con la variabile `--ia`.
 - **Un solo sistema grafico**: tutte le schermate usano le stesse variabili CSS, quindi il tema scuro/chiaro vale ovunque. Il colore principale è il blu del logo dell'indirizzo Informatica (`#1d71b8`); verde e rosso servono solo per giusto/sbagliato.
 - **Testo fluido**: la dimensione di base cresce con lo schermo (circa 20px su un proiettore Full HD), e tutte le misure sono in `rem`.
 - **Messaggi in pagina** al posto delle finestre `alert()` del browser.
@@ -232,8 +236,7 @@ Caricate da CDN, quindi serve la connessione a Internet:
 
 | Libreria | A cosa serve |
 |----------|--------------|
-| Google Fonts: *IBM Plex Sans Condensed*, *IBM Plex Sans*, *IBM Plex Mono* | Titoli, testi, codice |
-| Font Awesome 6.4 | Icone dei pulsanti in Ruota dei quiz, Robot e PIN |
+| Google Fonts: *Fredoka*, *IBM Plex Sans Condensed*, *IBM Plex Sans*, *IBM Plex Mono* | Titoli e bottoni (Fredoka), testi, codice |
 | canvas-confetti 1.6 | Coriandoli nei colori del sito (se manca, entrano in gioco quelli a emoji già inclusi) |
 
 ---
@@ -263,8 +266,8 @@ Segnalazioni e proposte sono benvenute: apri una *issue* descrivendo il problema
 ## 📄 Crediti e licenza
 
 - **Logo e contenuti istituzionali**: © Istituto Omnicomprensivo "Rosselli-Rasetti". Il logo non è coperto da licenza libera e va usato solo per le attività della scuola.
-- **Font**: famiglia [IBM Plex](https://fonts.google.com/?query=IBM+Plex) (Sans, Sans Condensed, Mono), licenza SIL Open Font License.
-- **Icone**: [Font Awesome Free](https://fontawesome.com/).
+- **Font**: [Fredoka](https://fonts.google.com/specimen/Fredoka) e famiglia [IBM Plex](https://fonts.google.com/?query=IBM+Plex) (Sans, Sans Condensed, Mono), licenza SIL Open Font License.
+- **Icone e mascotte**: disegnate per il progetto come SVG inline (`icons.js`); lo stile dell'interfaccia prende spunto da un video di riferimento.
 - **Coriandoli**: [canvas-confetti](https://github.com/catdad/canvas-confetti).
 - **Codice**: da definire. Prima di pubblicare la repository aggiungi un file `LICENSE` con la licenza scelta dall'istituto.
 
