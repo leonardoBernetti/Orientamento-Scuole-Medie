@@ -240,7 +240,7 @@ const V_Maze=`<div class="game gm">
     <button onclick="addCommand('TURN_LEFT')" class="cmd c-turn">${ic('rotl')} Ruota SX</button>
     <button onclick="addCommand('TURN_RIGHT')" class="cmd c-turn">${ic('rotr')} Ruota DX</button>
     <button onclick="addCommand('REPEAT_2')" class="cmd c-rep">${ic('repeat')} Ripeti 2x</button>
-    <button onclick="addCommand('REPEAT_3')" class="cmd c-rep">${ic('rotr')} Ripeti 3x</button>
+    <button onclick="addCommand('REPEAT_3')" class="cmd c-rep">${ic('rep3')} Ripeti 3x</button>
     <button onclick="addCommand('COLLECT')" class="cmd c-get">${ic('hand')} Raccogli</button>
    </div></div>
   <div class="panel gm-prog">
@@ -250,7 +250,7 @@ const V_Maze=`<div class="game gm">
   <div class="panel tools">
    <button id="btnRun" onclick="runProgram()" class="btn run">${ic('play')} Esegui</button>
    <button id="btnStep" onclick="stepDebug()" class="btn step">${ic('bug')} Passo-Passo</button>
-   <button onclick="resetBotPosition()" class="btn g">${ic('rotl')} Reset</button>
+   <button onclick="resetBotPosition()" class="btn g">${ic('reset')} Reset</button>
   </div>
  </section>
 </div>`;
@@ -548,7 +548,7 @@ const playSound=t=>t==='tick'?beep(600,.04,'sine'):t==='win'?sWin():sKo();
 
         const CMD = {
             FORWARD: ['up', 'Avanza', 'c-move'], TURN_LEFT: ['rotl', 'Ruota SX', 'c-turn'], TURN_RIGHT: ['rotr', 'Ruota DX', 'c-turn'],
-            REPEAT_2: ['repeat', 'Ripeti 2x', 'c-rep'], REPEAT_3: ['repeat', 'Ripeti 3x', 'c-rep'], COLLECT: ['hand', 'Raccogli', 'c-get']
+            REPEAT_2: ['repeat', 'Ripeti 2x', 'c-rep'], REPEAT_3: ['rep3', 'Ripeti 3x', 'c-rep'], COLLECT: ['hand', 'Raccogli', 'c-get']
         };
         function renderProgramWorkspace() {
             const ws = document.getElementById("programWorkspace");
