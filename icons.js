@@ -1,0 +1,47 @@
+/* ===== ICONE: SVG inline in stile "cartoon" (contorno scuro, riempimento a colori della palette).
+   Classi: a = colore principale (--ia), b = chiaro, y = giallo, g = verde, r = rosso, w = tratto bianco, senza classe = solo contorno ===== */
+const ICP={
+up:'<path class="a" d="M12 3 5 11h4v9h6v-9h4z"/>',
+rotl:'<path d="M4 12a8 8 0 1 0 3-6.2"/><path class="a" d="M3 3v6h6z"/>',
+rotr:'<path d="M20 12a8 8 0 1 1-3-6.2"/><path class="a" d="M21 3v6h-6z"/>',
+repeat:'<path d="M4 11V9a3 3 0 0 1 3-3h11M20 13v2a3 3 0 0 1-3 3H6"/><path class="a" d="m15 2 4 4-4 4zM9 14l-4 4 4 4z"/>',
+hand:'<path class="a" d="M8 11V5a1.5 1.5 0 0 1 3 0v5V4a1.5 1.5 0 0 1 3 0v6V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a5 5 0 0 1-4-2l-3-4a1.5 1.5 0 0 1 2.4-1.8L8 14z"/>',
+bug:'<ellipse class="a" cx="12" cy="14" rx="5" ry="6"/><path d="M9 8a3 3 0 0 1 6 0M3 12h4M17 12h4M4 19l3-2M20 19l-3-2M12 10v10"/>',
+users:'<circle class="a" cx="9" cy="8" r="3.5"/><path class="a" d="M2.5 20a6.5 6.5 0 0 1 13 0z"/><circle class="b" cx="17" cy="9" r="2.8"/><path class="b" d="M17 14a5 5 0 0 1 4.5 6H17"/>',
+list:'<rect class="a" x="4" y="3" width="16" height="18" rx="3"/><path class="w" d="M8 9h8M8 13h8M8 17h5"/>',
+cubes:'<path class="a" d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path class="w" d="M4 7.5 12 12l8-4.5M12 12v9"/>',
+ptr:'<path class="b" d="M3 5h18l-9 15z"/>',
+home:'<path class="a" d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path class="b" d="M10 21v-6h4v6z"/>',
+games:'<path class="a" d="M6 8h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.2 2L15 14H9l-1.8 2A3 3 0 0 1 2 14v-2a4 4 0 0 1 4-4z"/><path class="w" d="M7 10.5v3M5.5 12h3"/><circle class="b" cx="16" cy="11" r="1.1"/><circle class="b" cx="18.3" cy="13.2" r="1.1"/>',
+star:'<path class="y" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+sound:'<path class="a" d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+mute:'<path class="a" d="M4 9h4l5-4v14l-5-4H4z"/><path d="m16 9 5 6M21 9l-5 6"/>',
+sun:'<circle class="y" cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>',
+moon:'<path class="a" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+quiz:'<path class="a" d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path class="w" d="M9.8 9a2.2 2.2 0 1 1 3.3 1.9c-.7.4-1.1.8-1.1 1.6M12 14.6v.01"/>',
+code:'<rect class="a" x="3" y="4" width="18" height="16" rx="3"/><path class="w" d="m9.5 10-3 2.5 3 2.5M14.5 10l3 2.5-3 2.5"/>',
+hack:'<path class="a" d="M12 3a8 8 0 0 0-8 8v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a8 8 0 0 0-8-8z"/><rect class="b" x="7" y="9" width="10" height="7" rx="3"/><path d="M10 12.5v.01M14 12.5v.01"/>',
+chip:'<path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/><rect class="a" x="6" y="6" width="12" height="12" rx="2.5"/><rect class="b" x="9.5" y="9.5" width="5" height="5" rx="1"/>',
+puzzle:'<path class="a" d="M10 4a2 2 0 1 1 4 0v2h4a1 1 0 0 1 1 1v4h-2a2 2 0 1 0 0 4h2v4a1 1 0 0 1-1 1h-4v-2a2 2 0 1 0-4 0v2H6a1 1 0 0 1-1-1v-4h2a2 2 0 1 0 0-4H5V7a1 1 0 0 1 1-1h4z"/>',
+abc:'<rect class="a" x="3" y="5" width="18" height="14" rx="3"/><path class="w" d="m8 16 3-8 3 8M9.3 13.5h3.4M17 9v7"/>',
+wheel:'<circle class="a" cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle class="b" cx="12" cy="12" r="2.3"/>',
+robot:'<path d="M12 8V4.5M3 12.5v3M21 12.5v3"/><circle class="y" cx="12" cy="3.8" r="1.4"/><rect class="a" x="5" y="8" width="14" height="11.5" rx="3.2"/><circle class="b" cx="9.5" cy="13" r="1.7"/><circle class="b" cx="14.5" cy="13" r="1.7"/><path d="M9.5 16.5h5"/>',
+lock:'<path d="M8 11V8a4 4 0 0 1 8 0v3"/><rect class="a" x="5" y="11" width="14" height="10" rx="2.5"/><circle class="b" cx="12" cy="15.5" r="1.5"/>',
+unlock:'<path d="M8 11V8a4 4 0 0 1 7.6-1.7"/><rect class="g" x="5" y="11" width="14" height="10" rx="2.5"/><circle class="b" cx="12" cy="15.5" r="1.5"/>',
+flag:'<path d="M6 21V4"/><path class="a" d="M6 4h12l-2.5 4 2.5 4H6z"/>',
+key:'<path d="m11 12 9-9M16 7l3 3M14 9l2 2"/><circle class="a" cx="8" cy="15" r="4.5"/><circle class="b" cx="7" cy="14" r="1.2"/>',
+check:'<circle class="g" cx="12" cy="12" r="9.5"/><path class="w" d="m7.5 12.5 3 3 6-6.5"/>',
+cross:'<circle class="r" cx="12" cy="12" r="9.5"/><path class="w" d="m8.5 8.5 7 7M15.5 8.5l-7 7"/>',
+play:'<path class="a" d="M7 4.5 19.5 12 7 19.5z"/>',
+prev:'<path d="m14.5 5-7 7 7 7" style="stroke-width:3"/>',
+next:'<path d="m9.5 5 7 7-7 7" style="stroke-width:3"/>',
+trophy:'<path d="M7 5H4v2.5A3.5 3.5 0 0 0 7.5 11M17 5h3v2.5a3.5 3.5 0 0 1-3.5 3.5M12 14v4M8 21h8M9.5 18h5"/><path class="y" d="M7 3.5h10V9a5 5 0 0 1-10 0z"/>',
+warn:'<path class="y" d="m12 3 10 18H2z"/><path d="M12 10v5M12 18v.01"/>',
+bulb:'<path d="M9.5 21h5"/><path class="y" d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+doc:'<path class="a" d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path class="w" d="M8.5 12h7M8.5 16h5"/>',
+globe:'<circle class="a" cx="12" cy="12" r="9"/><path class="w" d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+cal:'<rect class="a" x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4"/><path class="w" d="M3.5 10h17"/>'};
+const ic=(n,c)=>`<svg class="i${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${ICP[n]||''}</svg>`;
+/* mascotte: RoboBot, sbuca da sopra le card come gli uccellini del video */
+const MASCOT=`<svg class="mas" viewBox="0 0 80 84" aria-hidden="true"><g class="mas-b"><path d="M40 20V9" class="mo"/><circle cx="40" cy="7" r="4.5" class="my mo"/><path d="M8 48v10M72 48v10" class="mo" style="stroke-width:5"/><rect x="14" y="20" width="52" height="46" rx="14" class="mp mo"/><rect x="21" y="29" width="38" height="24" rx="9" class="mw mo"/><circle cx="32" cy="41" r="4.2" class="mo mi"/><circle cx="48" cy="41" r="4.2" class="mo mi"/><path d="M33 59h14" class="mo" style="stroke-width:3.5"/><rect x="22" y="66" width="12" height="10" rx="4" class="mp mo"/><rect x="46" y="66" width="12" height="10" rx="4" class="mp mo"/></g></svg>`;
+document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic));
