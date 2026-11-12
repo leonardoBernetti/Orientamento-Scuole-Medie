@@ -153,7 +153,7 @@ function start(){
   out+=L[i][j++];tm.innerHTML=esc(out).replace(/\n/g,'<br>')+'<b>█</b>';if(j>=L[i].length){i++;j=0;out+='\n';setTimeout(type,250)}else setTimeout(type,28)})();
  $('#go').onclick=()=>{sWin();menu()};
 }
-function card(a,onclick,label){const d=S.done[a.id];return `<div class="card" style="--c:${a.c}"><span class="no">${ORDER.indexOf(a.id)+1}</span><div class="ic">${ic(a.ic)}</div><h3>${a.t}</h3><p>${a.d}</p>${d?`<div class="tag">${ic('check')} ${d.pts} pt</div>`:''}<button class="btn" data-a="${a.id}">${d?'RIGIOCA':label}</button></div>`}
+function card(a,onclick,label){const d=S.done[a.id];return `<div class="card" style="--c:${a.c}"><span class="no">${ORDER.indexOf(a.id)+1}</span><div class="ic">${ic(a.ic)}</div><h3>${a.t}</h3><p>${a.d}</p>${d?`<div class="tag">${ic('check')} Completata · ${d.pts} pt</div>`:''}<button class="btn" data-a="${a.id}">${d?'RIGIOCA':label}</button></div>`}
 function menu(){
  const all=nd()>=ALL;
  go(`<div class="mh"><img class="il" src="assets/informatica.png" alt="Logo Informatica"><h2>SCEGLI LA TUA MISSIONE</h2>${all?'<button class="btn" id="fin">VEDI IL RISULTATO FINALE</button>':`<span class="mh-hint">Scegli una missione e gioca · completate ${nd()}/${ALL}: finiscile tutte per sbloccare il finale</span>`}</div><div class="mg">${ACT.map(a=>card(a,0,'INIZIA')).join('')}${GAMES.map(a=>card(a,0,'GIOCA')).join('')}</div>
