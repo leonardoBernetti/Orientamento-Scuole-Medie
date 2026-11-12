@@ -48,7 +48,18 @@
   --shade:rgba(27,33,64,.16);
   color-scheme:light;
 }
-
+/* tema Natale (easter egg: 5 click rapidi sul logo): base scura, rosso/verde/oro */
+:root[data-theme=xmas]{
+  --pr:#c8102e; --pr-h:#e0213f; --pr-d:#9b0c23;
+  --bg:#0b1a12; --fade:rgba(11,26,18,.14);
+  --card:#12281c; --card2:#1a3827;
+  --tx:#f8fff6; --mut:#a9c9b4; --bd:#2f5a40;
+  --ac:#ffd23f; --gr:#5dff9b; --rd:#ff6b6b; --yl:#ffd23f;
+  --w0:#c8102e; --w1:#0f3d22;
+}
+.snow{position:fixed;top:-1rem;z-index:1;pointer-events:none;color:#fff;animation:snow linear forwards}
+@keyframes snow{to{transform:translateY(105vh) translateX(2rem)}}
+:root[data-theme=xmas] .lg{border-color:#c8102e}
 /* ---------- 2. Base e sfondo ---------- */
 *{box-sizing:border-box}
 /* Il testo cresce con lo schermo: circa 20px su un proiettore Full HD, 16px su 1366×768 */
@@ -364,3 +375,7 @@ pre{background:#05070d;color:#dbe8f5;border-left:.25rem solid var(--pr);border-r
   .nv .btn{padding:.45em .6em;font-size:.82rem}
   .panel{padding:1rem}
 }
+
+.ghost{color:var(--card);background:var(--card);font:600 1.1rem var(--f-m);padding:.1rem .3rem;display:inline-block}
+.ghost::selection{background:var(--yl);color:#000}
+details summary{cursor:pointer;color:var(--ac);margin:.3rem 0}

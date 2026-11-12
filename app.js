@@ -54,14 +54,14 @@ const LINKS=[
 ['🎒','Studente per un giorno',SITE+'pagine/prenotazioni---studente-per-un-giorno'],
 ['🖼️','Locandina e brochure',SITE+'pagine/locandina-brochure']];
 const school=()=>`<div class="panel school"><h2>🏫 SCOPRI LA NOSTRA SCUOLA</h2><p>Presentazioni, video e informazioni ufficiali sull’indirizzo Informatica (si aprono in una nuova scheda).</p><div class="lk">${LINKS.map(l=>`<a class="btn ${l[3]?'':'g'}" href="${l[2]}" target="_blank" rel="noopener noreferrer"><span>${l[0]}</span> ${l[1]}</a>`).join('')}</div></div>`;
-const QN=5;const GAMES=[{id:'ruota',ic:'🔤',t:'RUOTA DELLE LETTERE',c:'#ff9f1c',d:'Sfida a 2 squadre: gira la ruota, scegli le lettere e indovina la frase misteriosa!'},{id:'ruotaq',ic:'🎡',t:'RUOTA DEI QUIZ',c:'#ffd23f',d:'Gira la ruota, poi rispondi alla domanda a scelta multipla per vincere i punti!'},{id:'robot',ic:'🤖',t:'GUIDA IL ROBOT',c:'#27d3ff',d:'Programma RoboBot con le istruzioni giuste e portalo fino al Server!'},{id:'pin',ic:'🔐',t:'CYBER ESCAPE: TROVA IL PIN',c:'#2ee59d',d:'Risolvi 4 stazioni informatiche, scopri le cifre e inserisci il PIN!'}];
+const QN=5;const GAMES=[{id:'ruota',ic:'🔤',t:'RUOTA DELLE LETTERE',c:'#ff9f1c',d:'Sfida a 2 squadre: gira la ruota, scegli le lettere e indovina la frase misteriosa!'},{id:'ruotaq',ic:'🎡',t:'RUOTA DEI QUIZ',c:'#ffd23f',d:'Gira la ruota, poi rispondi alla domanda a scelta multipla per vincere i punti!'},{id:'robot',ic:'🤖',t:'GUIDA IL ROBOT',c:'#27d3ff',d:'Programma RoboBot con le istruzioni giuste e portalo fino al Server!'},{id:'pin',ic:'🔐',t:'CYBER ESCAPE: TROVA IL PIN',c:'#2ee59d',d:'Risolvi 6 stazioni informatiche, scopri le cifre e inserisci il PIN!'},{id:'ctf',ic:'🚩',t:'CTF LAB',c:'#ff5470',d:'Cinque sfide da hacker buono: messaggi al contrario, binario, testo invisibile e truffe da scovare!'}];
 /* ===== STATO ===== */
 const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 let S={done:{}},snd=true,P=null;
 try{const x=JSON.parse(localStorage.getItem('rr_open'));if(x&&x.done)S=x}catch(_){}
 const save=()=>{try{localStorage.setItem('rr_open',JSON.stringify(S))}catch(_){}};
-const total=()=>Object.values(S.done).reduce((a,d)=>a+d.pts,0), nd=()=>Object.keys(S.done).length, ALL=ACT.length+4;
-const MAX=ACT.length*(QN*PT+BONUS)+4*BONUS;
+const total=()=>Object.values(S.done).reduce((a,d)=>a+d.pts,0), nd=()=>Object.keys(S.done).length, ALL=ACT.length+5;
+const MAX=ACT.length*(QN*PT+BONUS)+5*BONUS;
 /* ===== SUONI ===== */
 let AC;function beep(f,d=.12,t='square',dl=0){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.08,AC.currentTime+dl);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+dl+d);o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+dl);o.stop(AC.currentTime+dl+d)}catch(_){}}
 const sOk=()=>{beep(660,.1);beep(880,.18,'square',.1)},sKo=()=>beep(150,.3,'sawtooth'),sClk=()=>beep(440,.06),sWin=()=>[523,659,784,1047].forEach((f,i)=>beep(f,.2,'triangle',i*.12));
@@ -256,19 +256,6 @@ const V_Maze=`<div class="game gm">
   </div>
  </section>
 </div>`;
-const V_Pin=`<div class="game gp">
- <section class="panel gp-head">
-  <div><h2><i class="fa-solid fa-key"></i> CyberEscape - Rosselli Rasetti</h2><p>Sblocca le 4 stazioni informatiche per ottenere le 4 cifre del PIN!</p></div>
-  <div class="locks">${[1,2,3,4].map(n=>`<div id="lockBadge${n}" class="lock"><span class="lock-icon">🔒</span> <span>Cifra ${n}: ?</span></div>`).join('')}</div>
- </section>
- <div class="gp-grid">
-  <div class="stations">${[1,2,3,4].map(n=>`<div id="stationCard${n}" class="panel station"></div>`).join('')}</div>
-  <div class="panel keypad"><h3 class="sub">Terminale Evacuazione</h3>
-   <div id="keypadDisplay" class="kd">_ _ _ _</div>
-   <div class="keys">${[1,2,3,4,5,6,7,8,9].map(n=>`<button onclick="pressKey('${n}')" class="key">${n}</button>`).join('')}<button onclick="clearKeypad()" class="key clr">CLR</button><button onclick="pressKey('0')" class="key">0</button><button onclick="submitKeypad()" class="key ok">OK</button></div>
-  </div>
- </div>
-</div>`;
 function final(){
  const p=total(),r=p/MAX,m=r>.85?'Sei un vero genio dell’informatica!':r>.6?'Hai un grande talento da programmatore!':'Hai fatto il primo passo: il bello viene adesso!';
  sWin();conf(90);setTimeout(()=>conf(60),1800);
@@ -277,66 +264,9 @@ function final(){
  <div class="row"><button class="btn" id="rp">↻ RIGIOCA</button><button class="btn g" id="st">⌂ TORNA ALL’INIZIO</button></div></div>`,'fin');
  $('#rp').onclick=()=>{S={done:{}};save();menu()};$('#st').onclick=start;
 }
-/* ----------------------------------------------------
-           2. WEB AUDIO SYNTHESIZER
-        ---------------------------------------------------- */
-        let audioCtx = null;
-        
-        function initAudio() {
-            AC = AC || new (window.AudioContext || window.webkitAudioContext)();
-            if (AC.state === 'suspended') AC.resume();
-            audioCtx = AC;
-        }
-
-        
-        function playSound(type) {
-            if (!snd) return;
-            initAudio();
-            try {
-                const now = audioCtx.currentTime;
-                if (type === 'tick') {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(600, now);
-                    osc.frequency.exponentialRampToValueAtTime(200, now + 0.04);
-                    gain.gain.setValueAtTime(0.1, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(now);
-                    osc.stop(now + 0.04);
-                }
-                else if (type === 'win') {
-                    const notes = [523.25, 659.25, 783.99, 1046.50];
-                    notes.forEach((freq, idx) => {
-                        const osc = audioCtx.createOscillator();
-                        const gain = audioCtx.createGain();
-                        osc.type = 'triangle';
-                        osc.frequency.setValueAtTime(freq, now + idx * 0.1);
-                        gain.gain.setValueAtTime(0.15, now + idx * 0.1);
-                        gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.1 + 0.25);
-                        osc.connect(gain);
-                        gain.connect(audioCtx.destination);
-                        osc.start(now + idx * 0.1);
-                        osc.stop(now + idx * 0.1 + 0.25);
-                    });
-                }
-                else if (type === 'wrong') {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sawtooth';
-                    osc.frequency.setValueAtTime(160, now);
-                    osc.frequency.linearRampToValueAtTime(90, now + 0.25);
-                    gain.gain.setValueAtTime(0.15, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(now);
-                    osc.stop(now + 0.25);
-                }
-            } catch(e){}
-        }
+/* audio unico: i giochi 'a blocchi' usano gli stessi suoni di beep() */
+const initAudio=()=>{try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume()}catch(_){}};
+const playSound=t=>t==='tick'?beep(600,.04,'sine'):t==='win'?sWin():sKo();
 
         /* ----------------------------------------------------
            3. GAME 1: RUOTA DELLA FORTUNA ENGINE
@@ -697,74 +627,13 @@ function final(){
             runProgram();
         }
 
-        /* ----------------------------------------------------
-           5. GAME 3: CYBERESCAPE ENGINE
-        ---------------------------------------------------- */
-        let solvedStations = { 1: false, 2: false, 3: false, 4: false };
-        let stationDigits = { 1: '?', 2: '?', 3: '?', 4: '?' };
-        let keypadInput = "";
-
-        function solveStation(stNum, code, digitVal) {
-            const card = document.getElementById(`stationCard${stNum}`);
-            if (code === 'WRONG') {
-                playSound('wrong');
-                card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
-                toast("❌ Risposta non corretta! Riprova.", 'ko');
-                return;
-            }
-            playSound('win');
-            solvedStations[stNum] = true;
-            stationDigits[stNum] = digitVal;
-
-            const badge = document.getElementById(`lockBadge${stNum}`);
-            badge.className = "lock open";
-            badge.innerHTML = `<span>🔓</span> <span>Cifra ${stNum}: ${digitVal}</span>`;
-
-            document.getElementById(`st${stNum}Status`).innerText = "🔓 SBLOCCATO";
-            document.getElementById(`st${stNum}Status`).className = "st-s open";
-            card.classList.add('open');
-        }
-
-        function pressKey(num) {
-            playSound('tick');
-            if (keypadInput.length < 4) {
-                keypadInput += num;
-                updateKeypadDisplay();
-            }
-        }
-
-        function clearKeypad() {
-            keypadInput = "";
-            updateKeypadDisplay();
-        }
-
-        function updateKeypadDisplay() {
-            const disp = document.getElementById("keypadDisplay");
-            let formatted = keypadInput.padEnd(4, '_').split('').join(' ');
-            disp.innerText = formatted;
-        }
-
-        function submitKeypad() {
-            if (keypadInput === pinDigits.join("")) {
-                playSound('win');
-                confetti({ particleCount: 150, spread: 90, colors: CFC });
-                markDone('pin');
-                say("EVACUAZIONE RIUSCITA! Codice PIN " + pinDigits.join("") + " Corretto! Benvenuti al Rosselli Rasetti!", 'ok');
-            } else {
-                playSound('wrong');
-                say("PIN Errato! Risolvi tutte le 4 stazioni per scoprire le cifre.", 'ko');
-                clearKeypad();
-            }
-        }
-
-        
 function markDone(id){if(!S.done[id]){S.done[id]={pts:BONUS,ok:0};save();hud();toast('✅ Missione completata: +'+BONUS+' punti!')}}
 if(typeof confetti!=='function')window.confetti=()=>conf(40);
-const ORDER=[...ACT.map(a=>a.id),'ruota','ruotaq','robot','pin'],NAVS=['play','res','ruota','game'];let CUR='';
+const ORDER=[...ACT.map(a=>a.id),'ruota','ruotaq','robot','pin','ctf'],NAVS=['play','res','ruota','game'];let CUR='';
 const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const shq=q=>{if(!q.o)return q;const ix=sh(q.o.map((_,i)=>i));return {...q,o:ix.map(i=>q.o[i]),a:ix.indexOf(q.a)}};
 const navBar=()=>{const i=ORDER.indexOf(CUR);return '<div class="nv"><button class="btn g" data-nv="start" title="Home">🏠</button><button class="btn g" data-nv="menu">🎮 Menu</button><button class="btn g" data-nv="-1">◀ Indietro</button><span class="np">'+(i+1)+' / '+ORDER.length+'</span><button class="btn" data-nv="1">Avanti ▶</button></div>'};
-function openG(id){const f={ruota:ruota,ruotaq:gameWheel,robot:gameMaze,pin:gamePin}[id];f?f():begin(id)}
+function openG(id){const f={ruota:ruota,ruotaq:gameWheel,robot:gameMaze,pin:gamePin,ctf:gameCtf}[id];f?f():begin(id)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-nv]');if(!b)return;sClk();const v=b.dataset.nv;v==='start'?start():v==='menu'?menu():v==='next'?openG(ORDER.find(i=>!S.done[i])||ORDER[0]):openG(ORDER[(ORDER.indexOf(CUR)+ +v+ORDER.length)%ORDER.length])});
 /* domande extra: [domanda, risposta giusta, [sbagliate], spiegazione, codice] */
 const MORE={
@@ -793,7 +662,7 @@ logic:[['Quale numero continua? 3, 6, 9, 12, …','15',['14','16','18'],'Si aggi
 ['Se oggi è giovedì, che giorno sarà fra 3 giorni?','Domenica',['Sabato','Lunedì','Venerdì'],'Giovedì → venerdì → sabato → domenica.'],
 ['Quale parola non c’entra con le altre? Mouse, Tastiera, Monitor, Pizza','Pizza',['Mouse','Tastiera','Monitor'],'Le altre tre sono parti di un computer.'],
 ['Quale numero continua? 5, 10, 20, 40, …','80',['60','50','100'],'Ogni numero è il doppio del precedente.']]};
-ACT.forEach(a=>(MORE[a.id]||[]).forEach(m=>a.qs.push({q:m[0],o:[m[1],...m[2]],a:0,x:m[3],k:m[4]})));
+ACT.forEach(a=>[...(MORE[a.id]||[]),...(EXTRA[a.id]||[])].forEach(m=>a.qs.push({q:m[0],o:[m[1],...m[2]],a:0,x:m[3],k:m[4]})));
 [['Internet e Web','CERCARE CON UN MOTORE DI RICERCA'],['Sicurezza','NON DIRE A NESSUNO LA PASSWORD'],['Programmazione','UN ALGORITMO RISOLVE PROBLEMI'],['Dispositivi','LO SMARTPHONE HA LA FOTOCAMERA'],['Reti','IL WIFI COLLEGA I DISPOSITIVI'],['Videogiochi','IL GIOCO HA TANTI LIVELLI'],['Intelligenza Artificiale','L ASSISTENTE VOCALE CAPISCE LE DOMANDE']].forEach(f=>FR.push(f));
 /* ruota dei quiz: [categoria, domanda, giusta, [sbagliate]] */
 [['HARDWARE','Come si chiama il “cervello” del computer?','CPU',['Mouse','Monitor','Router']],
@@ -811,24 +680,51 @@ ACT.forEach(a=>(MORE[a.id]||[]).forEach(m=>a.qs.push({q:m[0],o:[m[1],...m[2]],a:
 ['BINARIO','Quali cifre usa il sistema binario?','0 e 1',['Da 0 a 9','A e B']],
 ['INTELLIGENZA ARTIFICIALE','Quale di questi usa l’intelligenza artificiale?','Un assistente vocale che capisce le domande',['Un righello','Una matita','Una gomma']],
 ['SOFTWARE','Quale di questi è un sistema operativo?','Windows',['Google','Word','Instagram']],
-['STORIA','Chi è considerata la prima programmatrice della storia?','Ada Lovelace',['Marie Curie','Rita Levi-Montalcini']]].forEach(m=>techQuestions.push({cat:m[0],text:m[1],options:[m[2],...m[3]],correct:0}));
+['STORIA','Chi è considerata la prima programmatrice della storia?','Ada Lovelace',['Marie Curie','Rita Levi-Montalcini']],...EXTRA_W].forEach(m=>techQuestions.push({cat:m[0],text:m[1],options:[m[2],...m[3]],correct:0}));
 let wBag=[];
 function nextWheelQ(){if(!wBag.length)wBag=sh(techQuestions.map((_,i)=>i));const q=techQuestions[wBag.pop()],ix=sh(q.options.map((_,i)=>i));return {...q,options:ix.map(i=>q.options[i]),correct:ix.indexOf(q.correct)}}
-/* stazioni del PIN: ogni partita ne pesca una a caso per stazione e il PIN cambia */
-const PS={1:['Hardware',[['Qual è il “cervello” del computer che elabora i calcoli?','La CPU',['La tastiera','Il monitor']],['Quale memoria si svuota quando spegni il PC?','La RAM',['L’SSD','Lo scanner']],['Quale periferica serve per digitare?','La tastiera',['Lo schermo','Le casse']],['Dove si collegano tutti i componenti del PC?','Alla scheda madre',['Alla webcam','Al mouse']]]],
-2:['Scorciatoie',[['Dopo aver copiato con Ctrl + C, come si INCOLLA?','Ctrl + V',['Ctrl + Z','Ctrl + X']],['Quale scorciatoia annulla l’ultima azione?','Ctrl + Z',['Ctrl + S','Ctrl + P']],['Quale scorciatoia seleziona TUTTO il testo?','Ctrl + A',['Ctrl + Q','Ctrl + T']]]],
-3:['Web Safety',[['Ricevi un’email: “Hai vinto uno smartphone! Clicca qui!”. Cosa fai?','La cancello: è una truffa',['Clicco subito','La inoltro a tutti']],['Quale password è più sicura?','Qx9!mT4#vL',['ciao123','il mio nome']],['Un conoscente online ti chiede la password. Cosa fai?','Non la do a nessuno',['La do se è gentile','La scrivo in chat']]]],
-4:['Logica Robot',[['Un robot deve fare un quadrato. Quante volte ripete “Avanti + Gira a destra”?','4 volte',['2 volte','3 volte']],['Un algoritmo è…','Una sequenza di istruzioni per risolvere un problema',['Un componente del PC','Un virus']],['Quale istruzione serve a ripetere più volte la stessa azione?','Un ciclo',['Un mouse','Un file']],['Il robot trova un muro davanti: cosa serve?','Una condizione: se c’è un muro, gira',['Più batteria','Un altro robot']]]]};
-let pinDigits=[0,0,0,0];
-function renderStations(){pinDigits=[0,0,0,0].map(()=>Math.random()*10|0);for(let n=1;n<=4;n++){const [t,pool]=PS[n],q=pool[Math.random()*pool.length|0],o=sh([[q[1],1],...q[2].map(w=>[w,0])]);document.getElementById('stationCard'+n).innerHTML=`<div class="gh"><span class="st-t">Stazione ${n}: ${t}</span><span id="st${n}Status" class="st-s">🔒 BLOCCATO</span></div><p>${esc(q[0])}</p><div class="opts one">${o.map(x=>`<button onclick="solveStation(${n},'${x[1]?'OK':'WRONG'}',${x[1]?pinDigits[n-1]:0})" class="opt">${esc(x[0])}</button>`).join('')}</div>`}}
 function gameShell(id,html,init){CUR=id;go(html,'game');init&&init()}
 function gameWheel(){gameShell('ruotaq',V_Wheel,()=>{wheelCanvas=document.getElementById("wheelCanvas");wheelCtx=wheelCanvas.getContext("2d");currentAngle=0;isSpinning=false;teamTurn='A';scoreA=0;scoreB=0;REDRAW=drawWheel;drawWheel()})}
 function gameMaze(){gameShell('robot',V_Maze,()=>{mazeCanvas=document.getElementById("mazeCanvas");mazeCtx=mazeCanvas.getContext("2d");isExecuting=false;REDRAW=drawGrid;loadLevel(0)})}
-function gamePin(){gameShell('pin',V_Pin,()=>{solvedStations={1:false,2:false,3:false,4:false};stationDigits={1:'?',2:'?',3:'?',4:'?'};keypadInput="";renderStations()})}
+/* ===== CYBER ESCAPE: 6 stazioni -> PIN di 6 cifre. Risposte e PIN restano in memoria (non nel DOM) ===== */
+const norm=v=>String(v).trim().toUpperCase().replace(/^RR\{(.*)\}$/,'$1').replace(/\s+/g,' ');
+let cool=0; /* dopo un errore i pulsanti restano fermi per 1,5 s: niente click a caso */
+const wrong=card=>{sKo();card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake');cool=Date.now()+1500;toast('❌ Risposta non corretta! Riprova tra un attimo.','ko')};
+function gamePin(){
+ const st=sh(PIN_ST).slice(0,6).map(s=>({t:s.t,q:s.p[Math.random()*s.p.length|0]})),n=st.length,
+  dg=st.map(()=>Math.random()*10|0),pin=dg.join(''),open=st.map(()=>0),opts=st.map(s=>s.q.w?sh([s.q.a,...s.q.w]):0);let kp='';
+ const html=`<div class="game gp"><section class="panel gp-head"><div><h2><i class="fa-solid fa-key"></i> CyberEscape - Rosselli Rasetti</h2><p>Sblocca le ${n} stazioni informatiche per ottenere le ${n} cifre del PIN!</p></div>
+  <div class="locks">${st.map((_,i)=>`<div id="lk${i}" class="lock"><span>🔒</span> <span>Cifra ${i+1}: ?</span></div>`).join('')}</div></section>
+  <div class="gp-grid"><div class="stations">${st.map((s,i)=>`<div id="sc${i}" class="panel station"><div class="gh"><span class="st-t">Stazione ${i+1}: ${esc(s.t)}</span><span id="ss${i}" class="st-s">🔒 BLOCCATO</span></div><p>${esc(s.q.q)}</p>${s.q.k?`<pre>${esc(s.q.k)}</pre>`:''}
+   ${opts[i]?`<div class="opts one">${opts[i].map((o,k)=>`<button class="opt" data-s="${i}" data-o="${k}">${esc(o)}</button>`).join('')}</div>`:`<div class="row" style="margin:0"><input class="inp" id="in${i}" autocomplete="off" placeholder="Scrivi qui…" style="margin:0;flex:1;min-width:8rem;font-size:1.2rem"><button class="btn" data-t="${i}">VERIFICA</button></div>`}</div>`).join('')}</div>
+  <div class="panel keypad"><h3 class="sub">Terminale Evacuazione</h3><div id="kd" class="kd">${'_ '.repeat(n).trim()}</div>
+   <div class="keys">${[1,2,3,4,5,6,7,8,9].map(d=>`<button class="key" data-d="${d}">${d}</button>`).join('')}<button class="key clr" data-d="c">CLR</button><button class="key" data-d="0">0</button><button class="key ok" data-d="ok">OK</button></div></div></div></div>`;
+ gameShell('pin',html,()=>{
+  const g=id=>document.getElementById(id),show=()=>g('kd').textContent=kp.padEnd(n,'_').split('').join(' ');
+  const solve=(i,ok)=>{if(open[i]||Date.now()<cool)return;if(!ok)return wrong(g('sc'+i));
+   sWin();open[i]=1;g('lk'+i).className='lock open';g('lk'+i).innerHTML=`<span>🔓</span> <span>Cifra ${i+1}: ${dg[i]}</span>`;g('ss'+i).textContent='🔓 SBLOCCATO';g('ss'+i).className='st-s open';g('sc'+i).classList.add('open');
+   g('sc'+i).querySelectorAll('button,input').forEach(e=>e.disabled=true)};
+  document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const i=+b.dataset.s;solve(i,opts[i][+b.dataset.o]===st[i].q.a)});
+  document.querySelectorAll('[data-t]').forEach(b=>{const i=+b.dataset.t,f=()=>{if(g('in'+i).value.trim())solve(i,norm(g('in'+i).value)===st[i].q.a)};b.onclick=f;g('in'+i).onkeydown=e=>{if(e.key==='Enter')f()}});
+  document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{const d=b.dataset.d;sClk();
+   if(d==='c')kp='';else if(d==='ok'){if(kp===pin){conf(80);sWin();markDone('pin');say('EVACUAZIONE RIUSCITA! Codice PIN '+pin+' corretto! Benvenuti al Rosselli Rasetti!','ok')}else{sKo();say('PIN errato! Risolvi tutte le '+n+' stazioni per scoprire le cifre.','ko');kp=''}}
+   else if(kp.length<n)kp+=d;show()})})}
+/* ===== CTF LAB: esercizi basilari, si vince trovando tutte le risposte ===== */
+function gameCtf(){
+ const ok=CTF.map(()=>0),html=`<div class="game"><section class="panel gp-head"><div><h2>🚩 CTF LAB</h2><p>Capture The Flag: trova la parola nascosta in ogni sfida. Le maiuscole non contano!</p></div><div class="chip" id="cn">0/${CTF.length}</div></section>
+  <div class="stations">${CTF.map((c,i)=>`<div id="cc${i}" class="panel station"><div class="gh"><span class="st-t">Flag ${i+1}: ${esc(c.t)}</span><span id="cs${i}" class="st-s">🚩</span></div><p>${esc(c.q)}</p>${c.k?`<pre>${esc(c.k)}</pre>`:''}${c.ghost?`<span class="ghost">${esc(c.ghost)}</span>`:''}<details><summary>💡 Indizio</summary><p>${esc(c.h)}</p></details>
+   <div class="row" style="margin:0"><input class="inp" id="ci${i}" autocomplete="off" placeholder="Scrivi qui…" style="margin:0;flex:1;min-width:8rem;font-size:1.2rem"><button class="btn" data-c="${i}">VERIFICA</button></div></div>`).join('')}</div></div>`;
+ gameShell('ctf',html,()=>{
+  const g=id=>document.getElementById(id),chk=i=>{if(ok[i]||Date.now()<cool||!g('ci'+i).value.trim())return;if(norm(g('ci'+i).value)!==CTF[i].a)return wrong(g('cc'+i));
+   sWin();ok[i]=1;g('cs'+i).textContent='✅ TROVATA';g('cs'+i).className='st-s open';g('cc'+i).classList.add('open');g('ci'+i).disabled=true;g('cc'+i).querySelector('[data-c]').disabled=true;g('cn').textContent=ok.filter(Boolean).length+'/'+CTF.length;
+   if(ok.every(Boolean)){conf(80);markDone('ctf');say('FLAG CATTURATE! Hai completato il CTF Lab: sei un vero hacker buono (white hat)!','ok')}};
+  document.querySelectorAll('[data-c]').forEach(b=>{const i=+b.dataset.c;b.onclick=()=>chk(i);g('ci'+i).onkeydown=e=>{if(e.key==='Enter')chk(i)}})})}
 $('#hh').onclick=()=>{sClk();start()};$('#hm').onclick=()=>{sClk();menu()};
 addEventListener('keydown',e=>{if(!$('#dlg').classList.contains('hidden')){if(e.key==='Escape')unsay();return}if(e.target.matches('input,select,textarea')||e.ctrlKey||e.metaKey||e.altKey)return;const s=document.body.dataset.s;if(!NAVS.includes(s))return;if(e.key==='Escape')menu();else if(e.key==='ArrowRight'&&s!=='ruota')openG(ORDER[(ORDER.indexOf(CUR)+1)%ORDER.length]);else if(e.key==='ArrowLeft'&&s!=='ruota')openG(ORDER[(ORDER.indexOf(CUR)+ORDER.length-1)%ORDER.length])});
 /* tema: 'dark' (predefinito) oppure 'light'; la scelta resta salvata nel browser */
-function setTheme(t,sv){t=t==='light'?'light':'dark';document.documentElement.dataset.theme=t;$('#tb').setAttribute('aria-checked',t==='dark');$('#tb').title=t==='dark'?'Passa al tema chiaro':'Passa al tema scuro';document.querySelector('meta[name=theme-color]').content=t==='dark'?'#0b0e18':'#eef2fb';if(sv)try{localStorage.setItem('rr_theme',t)}catch(_){}}
+function setTheme(t,sv){t=t==='light'||t==='xmas'?t:'dark';document.documentElement.dataset.theme=t;$('#tb').setAttribute('aria-checked',t!=='light');$('#tb').title=t!=='light'?'Passa al tema chiaro':'Passa al tema scuro';document.querySelector('meta[name=theme-color]').content={dark:'#0b0e18',light:'#eef2fb',xmas:'#0b1a12'}[t];if(sv)try{localStorage.setItem('rr_theme',t)}catch(_){}}
+/* easter egg: 5 click rapidi sul grande logo della home alternano il tema Natale */
+let lc=[];document.addEventListener('click',e=>{if(!e.target.closest('img.big'))return;const n=Date.now();lc=lc.filter(t=>n-t<2500);lc.push(n);if(lc.length<5)return;lc=[];const x=document.documentElement.dataset.theme!=='xmas';setTheme(x?'xmas':'dark',1);cx.clearRect(0,0,cv.width,cv.height);REDRAW&&REDRAW();x&&(sWin(),conf(60));toast(x?'🎄 Buon Natale dal Rosselli!':'Tema scuro ripristinato')});
 $('#tb').onclick=()=>{sClk();setTheme(document.documentElement.dataset.theme==='light'?'dark':'light',1);cx.clearRect(0,0,cv.width,cv.height);REDRAW&&REDRAW()};
 setTheme(document.documentElement.dataset.theme);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fitWord();REDRAW&&REDRAW()});
@@ -839,5 +735,6 @@ addEventListener('resize',rs);rs();
 setInterval(()=>{if(document.hidden||document.body.dataset.s==='game'||calm())return;
  cx.fillStyle=cssv('--fade');cx.fillRect(0,0,cv.width,cv.height);cx.font='16px monospace';
  dr.forEach((y,i)=>{cx.fillStyle=i%3?'rgba(96,151,202,.6)':'rgba(29,113,184,.8)';cx.fillText(Math.random()<.5?'0':'1',i*20,y*20);dr[i]=y*20>cv.height&&Math.random()>.97?0:y+1})},70);
+setInterval(()=>{if(document.hidden||calm()||document.documentElement.dataset.theme!=='xmas')return;const f=document.createElement('span');f.className='snow';f.textContent='❄';f.style.left=Math.random()*100+'vw';f.style.fontSize=(.7+Math.random()*1.1)+'rem';f.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),12500)},450);
 start();
 

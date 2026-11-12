@@ -37,7 +37,7 @@ Non è un sito scolastico tradizionale: è un'esperienza di **gamification** che
 | | |
 |---|---|
 | 🎯 **Pensato per l'aula** | Testi grandi e leggibili dal fondo, ogni gioco sta in una schermata a 1920×1080 e 1366×768 |
-| 🧩 **Nessuna build** | HTML, CSS e JavaScript puri: tre file, nessun framework, nessun server |
+| 🧩 **Nessuna build** | HTML, CSS e JavaScript puri: pochi file, nessun framework, nessun server |
 | 🔒 **Privacy by design** | Nessun login, nessun dato personale, nessun tracciamento |
 | 📱 **Ovunque** | Responsive: proiettore, LIM, PC, tablet e smartphone |
 | 💾 **Progressi salvati** | Salvataggio automatico nel browser (`localStorage`) |
@@ -75,7 +75,8 @@ Non è un sito scolastico tradizionale: è un'esperienza di **gamification** che
 | 6 | 🔤 **Ruota delle lettere** | Gioco a 2 squadre con frasi a tema informatico | Lavoro di squadra |
 | 7 | 🎡 **Ruota dei quiz** | Gira la ruota e rispondi per vincere i punti dello spicchio | Cultura digitale a squadre |
 | 8 | 🤖 **Guida il robot** | Programmare RoboBot con blocchi di istruzioni, 5 livelli | Algoritmi e sequenze |
-| 9 | 🔐 **Cyber Escape: trova il PIN** | 4 stazioni da sbloccare, ognuna rivela una cifra | Sicurezza e logica |
+| 9 | 🔐 **Cyber Escape: trova il PIN** | 6 stazioni (quiz, decifrazione, trova l’errore), ognuna rivela una cifra del PIN | Sicurezza e logica |
+| 10 | 🚩 **CTF Lab** | 5 sfide da hacker buono: messaggio al contrario, Cesare, binario, testo invisibile, truffa | Sicurezza e curiosità |
 
 Nelle prime cinque missioni ogni partita pesca **5 domande a caso** da un gruppo più ampio e mescola le risposte. Le risposte sono contrassegnate **A, B, C, D**, così la classe può rispondere a voce.
 
@@ -124,7 +125,7 @@ Non serve installare nulla.
 
 ### Pubblicazione con GitHub Pages
 
-1. Carica nella repository `index.html`, `style.css`, `app.js`, `favicon.png` e le cartelle `assets/` e `docs/`.
+1. Carica nella repository `index.html`, `style.css`, `app.js`, `contenuti.js`, `favicon.png` e le cartelle `assets/` e `docs/`.
 2. Vai in **Settings → Pages**.
 3. In *Build and deployment* scegli **Deploy from a branch**, branch `main`, cartella `/ (root)`.
 4. Dopo qualche minuto il sito sarà online all'indirizzo mostrato da GitHub.
@@ -140,7 +141,7 @@ Non serve installare nulla.
 
 ## 🛠️ Personalizzazione
 
-I contenuti stanno in `app.js`. Domande, frasi e link principali sono in cima, sotto il commento `CONTENUTI`.
+Le domande extra, le stazioni del PIN e gli esercizi CTF stanno in `contenuti.js`; le domande base, le frasi e i link principali in cima ad `app.js`, sotto il commento `CONTENUTI`.
 
 | Cosa | Dove |
 |------|------|
@@ -195,7 +196,7 @@ flowchart LR
     F --> B
     D --> B
     E --> B
-    B -->|9/9 missioni| G[final]
+    B -->|10/10 missioni| G[final]
     G -->|RIGIOCA| B
     G -->|TORNA ALL'INIZIO| A
 ```
@@ -206,7 +207,8 @@ flowchart LR
 .
 ├── index.html          # struttura della pagina e collegamenti a font e librerie
 ├── style.css           # tutta la grafica: colori, tipografia, componenti, schermate
-├── app.js              # contenuti e logica dei giochi
+├── app.js              # logica dei giochi e contenuti base
+├── contenuti.js        # domande extra, stazioni PIN, esercizi CTF
 ├── favicon.png
 ├── assets/             # logo della scuola e dell'indirizzo, icona
 ├── README.md
@@ -217,7 +219,7 @@ flowchart LR
 
 ### Scelte tecniche
 
-- **Tre file separati** (struttura, grafica, logica) per poter cambiare l'aspetto senza toccare i giochi e viceversa.
+- **File separati** (struttura, grafica, logica) per poter cambiare l'aspetto senza toccare i giochi e viceversa.
 - **Un solo sistema grafico**: tutte le schermate usano le stesse variabili CSS, quindi il tema scuro/chiaro vale ovunque. Il colore principale è il blu del logo dell'indirizzo Informatica (`#1d71b8`); verde e rosso servono solo per giusto/sbagliato.
 - **Testo fluido**: la dimensione di base cresce con lo schermo (circa 20px su un proiettore Full HD), e tutte le misure sono in `rem`.
 - **Messaggi in pagina** al posto delle finestre `alert()` del browser.
@@ -273,3 +275,5 @@ Segnalazioni e proposte sono benvenute: apri una *issue* descrivendo il problema
 *Realizzato per l'orientamento dell'IIS Rosselli-Rasetti.*
 
 </div>
+
+> **Easter egg**: 5 click rapidi sul grande logo della home attivano (o disattivano) il tema natalizio.
