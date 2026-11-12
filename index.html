@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"><meta name="theme-color" content="#0b0e18"><link rel="preconnect" href="https://cdn.tailwindcss.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Open Day Informatica – IIS Rosselli-Rasetti</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Nunito:wght@600;800&display=swap">
 <style>
+.game{font:400 16px/1.5 Outfit,system-ui,sans-serif;color:#f1f5f9;background:#0b1220;border-radius:24px;padding:12px;text-transform:none}
+:where(.game) *,:where(.game) ::before,:where(.game) ::after{border:0 solid #334155}
+.game h2,.game h3,.game p{margin:0;font-family:inherit}.game canvas{display:block}.game select{font:inherit}
+.game button{font-family:inherit}.game .font-mono-tech{font-family:'Share Tech Mono',monospace}
+.game .glass-panel{background:rgba(15,23,42,.94);border:1px solid rgba(56,189,248,.2)}
+.game .glass-card{background:rgba(30,41,59,.65);border:1px solid rgba(255,255,255,.08)}
+.game .block-executing{border-color:#38bdf8!important;background:rgba(6,182,212,.4)!important}
+
 :root{--bg:#0b0e18;--fade:rgba(11,14,24,.14);--card:#161b2e;--card2:#1e2540;--tx:#f2f5ff;--mut:#9aa6c9;--or:#f15a22;--cy:#27d3ff;--gr:#2ee59d;--rd:#ff5470;--yl:#ffd23f;--bd:#2c3558;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
 @media (prefers-color-scheme:light){:root{--bg:#eef2fb;--fade:rgba(238,242,251,.14);--card:#fff;--card2:#e6ebf8;--tx:#1b2140;--mut:#56608a;--bd:#c9d2ec;--cy:#0a8fb8;--gr:#0d9c66;--rd:#d62f4d;--yl:#b88600;color-scheme:light}}
@@ -41,7 +49,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .big-btn{font-size:1.3rem;padding:18px 40px;animation:pu 1.6s infinite}
 @keyframes pu{50%{transform:scale(1.06)}}
 h2{font-size:1.5rem;margin:6px 0 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
 .card{background:var(--card);border:2px solid var(--bd);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:8px;transition:transform .2s,border-color .2s,box-shadow .2s}
 .card:hover{transform:translateY(-6px) rotate(-.4deg);border-color:var(--c,var(--cy));box-shadow:0 10px 30px rgba(0,0,0,.25)}
 .card .ic{font-size:2.6rem;line-height:1}
@@ -85,7 +93,12 @@ pre{background:#05070d;color:#7dffb5;border-radius:14px;padding:14px;overflow-x:
 .msg{min-height:3.2em;font-weight:900}.rc .btn{padding:10px 16px;font-size:.95rem}
 a.btn{display:inline-block;text-decoration:none;text-align:center}.lk{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:12px}.lk a.btn{padding:12px 16px;font-size:.95rem}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+.mh{display:flex;align-items:center;gap:14px;margin-bottom:14px}.mh h2{margin:0}.il{width:64px;height:64px;border-radius:50%;box-shadow:0 0 22px rgba(39,211,255,.5);flex:none}.nv{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px;position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);padding:8px 0;border-bottom:2px solid var(--bd)}.np{font:900 .9rem Orbitron,sans-serif;color:var(--mut);margin:0 auto}button{touch-action:manipulation}@media(max-width:520px){.nv .btn{padding:8px 10px;font-size:.8rem}}.nv .btn{padding:8px 14px;font-size:.9rem;box-shadow:0 3px 0 var(--bd)}</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Share+Tech+Mono&display=swap">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>if(window.tailwind)tailwind.config={corePlugins:{preflight:false},theme:{extend:{colors:{techBlue:'#2563eb',techCyan:'#06b6d4',techNeon:'#38bdf8'},boxShadow:{neon:'0 0 25px rgba(56,189,248,.4)','neon-cyan':'0 0 20px rgba(6,182,212,.5)','neon-green':'0 0 20px rgba(16,185,129,.5)'}}}}</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body data-s="start">
 <canvas id="bg"></canvas>
@@ -94,6 +107,7 @@ a.btn{display:inline-block;text-decoration:none;text-align:center}.lk{display:gr
  <header>
   <img class="lg hd" id="hl" alt="IIS Rosselli – torna all’inizio" src="data:image/png;base64,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">
   <div class="sp"></div>
+  <button class="snd hd" id="hh" title="Home" aria-label="Torna alla home">🏠</button><button class="snd hd" id="hm" title="Menu giochi" aria-label="Menu giochi">🎮</button>
   <div class="chip hd">⭐ <span id="sc">0</span> pt</div>
   <div class="chip hd"><div class="bar"><i id="pb"></i></div><span id="pt">0/6</span></div>
   <button class="snd" id="sb" title="Suoni on/off" aria-label="Attiva o disattiva i suoni">🔊</button>
@@ -134,13 +148,7 @@ const ACT=[
  {q:'Tutti i robot sono macchine. R2 è un robot. Quindi R2 è…',o:['Una persona','Una macchina','Un animale','Non si sa'],a:1,x:'Se tutti i robot sono macchine, ogni robot (R2 compreso) lo è.'},
  {q:'Un pastore ha 10 pecore. Tutte tranne 4 scappano. Quante ne restano?',o:['4','6','10','0'],a:0,x:'“Tutte tranne 4” significa che 4 non scappano: ne restano 4!'},
  {q:'Quale numero continua? 1, 4, 9, 16, …',o:['20','24','25','32'],a:2,x:'Sono i quadrati: 1², 2², 3², 4²… quindi 5² = 25.'}]}];
-const INFO={t:'SCOPRI L’INDIRIZZO INFORMATICO',ic:'🚀',c:'#ff7ab8',d:'Materie, laboratori e futuro: scopri cosa ti aspetta al Liceo Tecnologico Informatica.'};
-const TABS=[
-{n:'📚 Cosa si studia',l:[['💻','Informatica e Telecomunicazioni','Sistemi informatici, applicazioni e tecnologie Web, basi di dati.'],['🤖','Intelligenza Artificiale e Big Data','Industria 4.0, analisi dei dati e progetti di IA.'],['🛡️','Cybersecurity e privacy','Proteggere sistemi e informazioni in modo responsabile.'],['🌐','Sistemi e reti','Come comunicano i computer: lezioni già dalla classe terza.'],['🇬🇧','Inglese a livello avanzato','Per lavorare in contesti internazionali.'],['👥','Lavoro di squadra','Si impara a progettare in team, come in una vera azienda.']]},
-{n:'🛠️ I laboratori',l:[['🏗️','Nuove aule e laboratori','Il Polo Tecnologico ha spazi rinnovati: guarda il video qui sotto!'],['🖥️','Laboratorio di informatica','Si programma, si sperimenta, si sbaglia e si riprova insieme.'],['🤖','Progetti di Intelligenza Artificiale','Esperienze pratiche con l’IA, raccontate nel video dell’indirizzo.'],['🌐','Lezioni di Sistemi e reti','Si impara facendo, già dalla classe terza.']]},
-{n:'🎓 Dopo il diploma',l:[['🏛️','Università','Informatica, Ingegneria, Matematica, Fisica e molto altro.'],['🎯','ITS e formazione tecnica','Percorsi professionalizzanti molto richiesti dalle aziende.'],['💼','Lavoro','Sviluppatore, esperto di cybersecurity, data analyst, game designer…'],['🌍','Un mondo di possibilità','L’informatica serve in ogni settore: salute, arte, sport, ambiente.']]}];
 const COST=1000;
-const RUOTA={t:'RUOTA DELLA FORTUNA',ic:'🎡',c:'#ff9f1c',d:'Sfida a 2 squadre: gira la ruota, scopri le lettere e indovina la frase misteriosa!'};
 const FR=[['Hardware','MOUSE E TASTIERA'],['Internet e Web','NAVIGARE SU INTERNET'],['Programmazione','IL CODICE SORGENTE'],['Scuola','IL LABORATORIO DI INFORMATICA'],['Dispositivi','LO SCHERMO TOUCH'],['Sicurezza','PASSWORD SICURA'],['Hardware','PROCESSORE VELOCE'],['Intelligenza Artificiale','ROBOT INTELLIGENTE'],['Programmazione','CICLO FOR E WHILE'],['Reti','IL ROUTER COLLEGA I COMPUTER'],['Videogiochi','CREARE UN VIDEOGIOCO'],['Sicurezza','ATTENTO AL PHISHING'],['Hardware','SCHEDA MADRE E MEMORIA RAM']];
 const SP=[100,200,500,50,300,1000,200,400,'BANCAROTTA',150,600,300,800,'PERDI TURNO',250,500];
 const SC=['#27d3ff','#ffd23f','#2ee59d','#ff9f1c','#b583ff','#ff7ab8'];
@@ -156,28 +164,21 @@ const LINKS=[
 ['🎒','Studente per un giorno',SITE+'pagine/prenotazioni---studente-per-un-giorno'],
 ['🖼️','Locandina e brochure',SITE+'pagine/locandina-brochure']];
 const school=()=>`<div class="panel" style="margin-top:20px;border-color:var(--or)"><h2 style="margin:0">🏫 SCOPRI LA NOSTRA SCUOLA</h2><p style="margin:6px 0 0;color:var(--mut)">Presentazioni, video e informazioni ufficiali sull’indirizzo Informatica (si aprono in una nuova scheda).</p><div class="lk">${LINKS.map(l=>`<a class="btn ${l[3]?'':'g'}" href="${l[2]}" target="_blank" rel="noopener noreferrer">${l[0]} ${l[1]}</a>`).join('')}</div></div>`;
-const BD=[
-{ic:'👣',n:'Primo passo nel coding',ok:s=>s.code},
-{ic:'🔍',n:'Detective dell’hardware',ok:s=>s.hw&&s.hw.ok>=4},
-{ic:'🧩',n:'Mente logica',ok:s=>s.logic&&s.logic.ok>=4},
-{ic:'🛰️',n:'Cyber Explorer',ok:s=>s.hack},
-{ic:'🎡',n:'Campioni della Ruota',ok:s=>s.ruota},
-{ic:'🏆',n:'Genio dell’informatica',ok:s=>[...ACT.map(a=>a.id),'info','ruota'].every(i=>s[i])}];
+const QN=5;const GAMES=[{id:'ruota',ic:'🔤',t:'RUOTA DELLE LETTERE',c:'#ff9f1c',d:'Sfida a 2 squadre: gira la ruota, scegli le lettere e indovina la frase misteriosa!'},{id:'ruotaq',ic:'🎡',t:'RUOTA DEI QUIZ',c:'#ffd23f',d:'Gira la ruota, poi rispondi alla domanda a scelta multipla per vincere i punti!'},{id:'robot',ic:'🤖',t:'GUIDA IL ROBOT',c:'#27d3ff',d:'Programma RoboBot con le istruzioni giuste e portalo fino al Server!'},{id:'pin',ic:'🔐',t:'CYBER ESCAPE: TROVA IL PIN',c:'#2ee59d',d:'Risolvi 4 stazioni informatiche, scopri le cifre e inserisci il PIN!'}];
 /* ===== STATO ===== */
 const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-let S={done:{}},snd=true,P=null,seen=new Set([0]);
+let S={done:{}},snd=true,P=null;
 try{const x=JSON.parse(localStorage.getItem('rr_open'));if(x&&x.done)S=x}catch(_){}
 const save=()=>{try{localStorage.setItem('rr_open',JSON.stringify(S))}catch(_){}};
-const total=()=>Object.values(S.done).reduce((a,d)=>a+d.pts,0), nd=()=>Object.keys(S.done).length, ALL=ACT.length+2;
-const MAX=ACT.reduce((a,x)=>a+x.qs.length*PT+BONUS,0)+2*BONUS;
-const earned=()=>BD.filter(b=>b.ok(S.done));
+const total=()=>Object.values(S.done).reduce((a,d)=>a+d.pts,0), nd=()=>Object.keys(S.done).length, ALL=ACT.length+4;
+const MAX=ACT.length*(QN*PT+BONUS)+4*BONUS;
 /* ===== SUONI ===== */
 let AC;function beep(f,d=.12,t='square',dl=0){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.08,AC.currentTime+dl);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+dl+d);o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+dl);o.stop(AC.currentTime+dl+d)}catch(_){}}
 const sOk=()=>{beep(660,.1);beep(880,.18,'square',.1)},sKo=()=>beep(150,.3,'sawtooth'),sClk=()=>beep(440,.06),sWin=()=>[523,659,784,1047].forEach((f,i)=>beep(f,.2,'triangle',i*.12));
 $('#sb').onclick=()=>{snd=!snd;$('#sb').textContent=snd?'🔊':'🔇';sClk()};
 /* ===== UI ===== */
 function hud(){$('#sc').textContent=total();$('#pt').textContent=nd()+'/'+ALL;$('#pb').style.width=(nd()/ALL*100)+'%'}
-function go(html,s){document.body.dataset.s=s||'';$('#main').innerHTML='<div class="scr">'+html+'</div>';hud();window.scrollTo({top:0,behavior:'smooth'})}
+function go(html,s){document.body.dataset.s=s||'';$('#main').innerHTML='<div class="scr">'+(NAVS.includes(s)?navBar():'')+html+'</div>';hud();window.scrollTo({top:0,behavior:'smooth'})}
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('s');setTimeout(()=>t.classList.remove('s'),2800)}
 function conf(n=50){const E=['🎉','⭐','💻','🟧','✨','🏆','👾'];for(let i=0;i<n;i++){const s=document.createElement('span');s.className='cf';s.textContent=E[i%E.length];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(2+Math.random()*2.5)+'s';s.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),5500)}}
 const LOGO=$('#hl').src;
@@ -196,18 +197,17 @@ function start(){
 function card(a,onclick,label){const d=S.done[a.id];return `<div class="card" style="--c:${a.c}"><div class="ic">${a.ic}</div><h3>${a.t}</h3><p>${a.d}</p>${d?`<div class="tag">✔ Completata · ${d.pts} pt</div>`:''}<button class="btn" data-a="${a.id}">${d?'↻ RIGIOCA':label}</button></div>`}
 function menu(){
  const all=nd()>=ALL;
- go(`<h2>🎮 SCEGLI LA TUA MISSIONE</h2><div class="grid">${ACT.map(a=>card(a,0,'▶ INIZIA')).join('')}${card({...RUOTA,id:'ruota'},0,'▶ GIOCA')}${card({...INFO,id:'info'},0,'▶ SCOPRI')}</div>
- <div class="row">${all?'<button class="btn" id="fin">🏁 VEDI IL RISULTATO FINALE</button>':`<div class="chip">Completa tutte le missioni per sbloccare il finale: ${nd()}/${ALL}</div>`}</div>
- ${school()}<h2 style="margin-top:24px">🏅 I TUOI BADGE</h2>${badges()}`,'menu');
- document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{sClk();b.dataset.a==='info'?info():b.dataset.a==='ruota'?ruota():begin(b.dataset.a)});
+ go(`<div class="mh"><img class="il" src="data:image/png;base64,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" alt="Logo Informatica"><h2>🎮 SCEGLI LA TUA MISSIONE</h2></div><div class="mg">${ACT.map(a=>card(a,0,'▶ INIZIA')).join('')}${GAMES.map(a=>card(a,0,'▶ GIOCA')).join('')}</div>
+ <div class="row"><button class="btn g" data-nv="start">🏠 Home</button><button class="btn" data-nv="next">⏭ Prossimo gioco</button></div><div class="row">${all?'<button class="btn" id="fin">🏁 VEDI IL RISULTATO FINALE</button>':`<div class="chip">Completa tutte le missioni per sbloccare il finale: ${nd()}/${ALL}</div>`}</div>
+ ${school()}`,'menu');
+ document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{sClk();openG(b.dataset.a)});
  if(all)$('#fin').onclick=final;
 }
-function badges(n=[]){return `<div class="bd">${BD.map(b=>{const o=b.ok(S.done);return `<div class="b ${o?'':'lock'} ${n.includes(b.n)?'get':''}"><span>${o?b.ic:'🔒'}</span>${b.n}</div>`}).join('')}</div>`}
-function begin(id){P={id,i:0,ok:0,r:[]};ask()}
+function begin(id){CUR=id;const A=ACT.find(a=>a.id===id);P={id,i:0,ok:0,r:[],qs:sh(A.qs).slice(0,QN).map(shq)};ask()}
 function ask(){
- const A=ACT.find(a=>a.id===P.id),Q=A.qs[P.i];P.lock=0;
- const dots=A.qs.map((_,i)=>`<i class="${i<P.i?P.r[i]:i===P.i?'on':''}"></i>`).join('');
- go(`<div class="panel" style="border-color:${A.c}"><div class="ft" style="color:${A.c};margin-bottom:10px">${A.ic} ${A.t} · ${P.i+1}/${A.qs.length}</div><div class="dots">${dots}</div>
+ const A=ACT.find(a=>a.id===P.id),Q=P.qs[P.i];P.lock=0;
+ const dots=P.qs.map((_,i)=>`<i class="${i<P.i?P.r[i]:i===P.i?'on':''}"></i>`).join('');
+ go(`<div class="panel" style="border-color:${A.c}"><div class="ft" style="color:${A.c};margin-bottom:10px">${A.ic} ${A.t} · ${P.i+1}/${P.qs.length}</div><div class="dots">${dots}</div>
  ${Q.e?`<div class="big-e">${Q.e}</div>`:''}<p class="q">${esc(Q.q)}</p>${Q.k?`<pre>${esc(Q.k)}</pre>`:''}
  ${Q.in?`<input class="inp" id="in" autocomplete="off" autocapitalize="characters" placeholder="Scrivi qui…"><div class="center"><button class="btn" id="ck">VERIFICA</button></div>`
  :`<div class="opts">${Q.o.map((o,k)=>`<button class="opt" data-k="${k}">${esc(o)}</button>`).join('')}</div>`}
@@ -217,40 +217,27 @@ function ask(){
  else document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k));
 }
 function answer(k){
- if(P.lock)return;const A=ACT.find(a=>a.id===P.id),Q=A.qs[P.i];let ok;
+ if(P.lock)return;const A=ACT.find(a=>a.id===P.id),Q=P.qs[P.i];let ok;
  if(Q.in){const v=$('#in').value.trim().toUpperCase();if(!v)return;ok=v===Q.a;$('#in').disabled=true;$('#ck').remove()}
  else{ok=k===Q.a;document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true;if(i===Q.a)b.classList.add('ok');else if(i===k)b.classList.add('ko')})}
  P.lock=1;P.r[P.i]=ok?'ok':'ko';if(ok){P.ok++;sOk()}else sKo();
- const last=P.i===A.qs.length-1;
+ const last=P.i===P.qs.length-1;
  $('#fb').innerHTML=`<div class="fb ${ok?'ok':'ko'}"><b>${ok?'✅ Esatto! +'+PT+' punti':'❌ Quasi!'+(Q.in?' La risposta era '+Q.a:'')}</b><br>${esc(Q.x)}</div><div class="row"><button class="btn" id="nx">${last?'🏁 VEDI RISULTATO':'AVANTI ▶'}</button></div>`;
  $('#nx').onclick=()=>{sClk();last?finish():(P.i++,ask())};$('#nx').focus({preventScroll:true});
 }
 function finish(){
- const A=ACT.find(a=>a.id===P.id),n=A.qs.length,pts=P.ok*PT+BONUS,before=earned().map(b=>b.n),old=S.done[P.id];
+ const A=ACT.find(a=>a.id===P.id),n=P.qs.length,pts=P.ok*PT+BONUS,old=S.done[P.id];
  if(!old||pts>=old.pts)S.done[P.id]={pts,ok:P.ok};save();
- const nw=earned().map(b=>b.n).filter(x=>!before.includes(x));
  const msg=P.ok===n?'Perfetto! Sei un fenomeno! 🚀':P.ok>=n-1?'Ottimo lavoro! 💪':P.ok>=2?'Bella prova! Riprova per fare ancora meglio.':'Non mollare: i migliori informatici imparano dagli errori!';
- P.ok>=n-1?(conf(),sWin()):beep(330,.25,'triangle');if(nw.length)setTimeout(()=>toast('🏅 Nuovo badge: '+nw[0]),600);
- done(`${A.ic} ${A.t}`,P.ok+'/'+n+' risposte corrette',pts,msg,nw,()=>begin(P.id));
+ P.ok>=n-1?(conf(),sWin()):beep(330,.25,'triangle');
+ done(`${A.ic} ${A.t}`,P.ok+'/'+n+' risposte corrette',pts,msg,()=>begin(P.id));
 }
-function done(t,sub,pts,msg,nw,again){
+function done(t,sub,pts,msg,again){
  go(`<div class="panel center"><div class="ft">MISSIONE COMPLETATA</div><h2>${t}</h2><p>${sub}</p><div class="score">+${pts}</div><p>${msg}</p>
- ${nw.length?`<h3>🏅 Badge sbloccati</h3>${badges(nw)}`:''}
  <div class="row"><button class="btn g" id="ag">↻ RIPROVA</button><button class="btn" id="mn">⌂ TORNA AL MENU</button>${nd()>=ALL?'<button class="btn" id="fin">🏁 VAI AL FINALE</button>':''}</div></div>`,'res');
  $('#ag').onclick=again;$('#mn').onclick=menu;if(nd()>=ALL)$('#fin').onclick=final;
 }
-function info(){
- const draw=t=>{seen.add(t);const T=TABS[t];
-  go(`<h2>${INFO.ic} ${INFO.t}</h2><div class="tabs">${TABS.map((x,i)=>`<button class="btn ${i===t?'a':'g'}" data-t="${i}">${x.n}</button>`).join('')}</div>
-  <div class="panel"><div class="info">${T.l.map(r=>`<div><b>${r[0]} ${r[1]}</b>${r[2]}</div>`).join('')}</div></div>${school()}
-  <div class="row"><button class="btn g" id="mn">⌂ MENU</button><button class="btn" id="ok" ${seen.size<TABS.length?'disabled':''}>${seen.size<TABS.length?'👀 Guarda tutte le sezioni ('+seen.size+'/'+TABS.length+')':'✔ HO CAPITO! +'+BONUS+' PT'}</button></div>`,'info');
-  document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{sClk();draw(+b.dataset.t)});
-  $('#mn').onclick=menu;
-  $('#ok').onclick=()=>{const before=earned().map(b=>b.n);if(!S.done.info)S.done.info={pts:BONUS,ok:0};save();sWin();conf(25);
-   done(`${INFO.ic} ${INFO.t}`,'Ora conosci l’indirizzo informatico!',BONUS,'Ti aspettiamo a scuola per vedere i laboratori dal vivo! 👋',earned().map(b=>b.n).filter(x=>!before.includes(x)),()=>{seen=new Set([0]);info()})};
- };draw(0);
-}
-function ruota(){
+function ruota(){CUR='ruota';
  const R={sc:[0,0],nm:['Squadra A','Squadra B'],t:0,ang:0,spin:false,over:false,k:0,st:'spin'},V='AEIOU',g=id=>document.getElementById(id),live=()=>!!g('wc');
  go(`<h2>🎡 RUOTA DELLA FORTUNA</h2><div class="tm2">${[0,1].map(i=>`<div class="team" id="tc${i}"><input id="tn${i}" value="${R.nm[i]}" maxlength="14" aria-label="Nome squadra ${i+1}"><b id="ts${i}">0</b> pt</div>`).join('')}</div>
  <div class="panel rg"><div><canvas id="wc" width="360" height="360"></canvas><div class="center"><button class="btn" id="sp">🎡 GIRA LA RUOTA!</button></div></div>
@@ -282,10 +269,10 @@ function ruota(){
    ms(`✅ La ${l} compare ${c} volta/e${v?'':' (+'+c*R.val+' pt)'}! ${nm()} continua: gira ancora o compra una vocale.`,'var(--gr)');g('sp').disabled=false}
   else{R.st='wait';sKo();ms(`❌ La ${l} non c’è. Il turno passa all’altra squadra.`,'var(--rd)');later(turn,2000)}}
  function win(f){
-  const before=earned().map(b=>b.n);R.over=true;R.st='wait';if(f){[...R.ph[1]].forEach(c=>{if(c!==' '&&!R.g.includes(c))R.g.push(c)});R.sc[R.t]+=2000}
+  R.over=true;R.st='wait';if(f){[...R.ph[1]].forEach(c=>{if(c!==' '&&!R.g.includes(c))R.g.push(c)});R.sc[R.t]+=2000}
   board();ui();keys();g('sp').disabled=true;g('fr').style.display='none';const first=!S.done.ruota;if(first){S.done.ruota={pts:BONUS,ok:0};save();hud()}
   sWin();conf(70);ms(`🏆 ${nm()} vince la manche con ${R.sc[R.t]} pt!${f?' (+2000 per la frase finale)':''}${first?' Bonus missione: +'+BONUS+' punti!':''}`,'var(--yl)');
-  const nw=earned().map(b=>b.n).filter(x=>!before.includes(x));if(nw.length)setTimeout(()=>toast('🏅 Nuovo badge: '+nw[0]),500);
+  
   if(nd()>=ALL){g('wn').innerHTML='<button class="btn" id="fin">🏁 VAI AL FINALE</button>';g('fin').onclick=final}}
  g('sp').onclick=()=>{
   if(R.spin||R.over||R.st!=='spin')return;R.spin=true;g('sp').disabled=true;ms(nm()+' gira la ruota…','var(--yl)');
@@ -308,19 +295,842 @@ function ruota(){
  document.onkeydown=e=>{if(!live()||e.target.tagName==='INPUT')return;const l=e.key.toUpperCase(),b=/^[A-Z]$/.test(l)&&document.querySelector(`.k[data-l="${l}"]`);if(b&&!b.disabled)b.click()};
  draw();np();
 }
+const V_Wheel=`<div class="game"><div id="view-ruota" class="view-panel flex-grow max-w-7xl w-full mx-auto p-3 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Wheel Canvas Column -->
+        <section class="lg:col-span-7 flex flex-col items-center glass-panel rounded-3xl p-4 sm:p-6 shadow-2xl relative">
+            <div class="w-full flex items-center justify-between mb-2">
+                <h2 class="text-lg font-black text-white flex items-center gap-2">
+                    <i class="fa-solid fa-dharmachakra text-cyan-400"></i> Ruota Tech - Rosselli Rasetti
+                </h2>
+                <span id="turnDisplay" class="px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/50 text-cyan-300 font-extrabold text-xs">
+                    Turno: SQUADRA ALPHA
+                </span>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="relative w-full max-w-[420px] aspect-square flex items-center justify-center my-3">
+                <!-- Pointer Indicator -->
+                <div class="absolute -top-3 z-20 text-amber-400 drop-shadow-[0_4px_10px_rgba(251,191,36,0.8)]">
+                    <i class="fa-solid fa-caret-down text-4xl"></i>
+                </div>
+                <canvas id="wheelCanvas" width="500" height="500" class="w-full h-full drop-shadow-[0_0_20px_rgba(56,189,248,0.3)]"></canvas>
+            </div>
+
+            <!-- Spin Button -->
+            <button id="btnSpin" onclick="spinWheel()" 
+                    class="w-full max-w-xs py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-400 hover:opacity-95 text-slate-950 font-black text-lg shadow-neon transition transform active:scale-95 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>GIRA LA RUOTA!</span>
+            </button>
+        </section>
+
+        <!-- Teams & Question Log Column -->
+        <section class="lg:col-span-5 flex flex-col gap-4">
+            
+            <!-- Teams Scores Card -->
+            <div class="glass-panel rounded-3xl p-5 shadow-xl space-y-3">
+                <h3 class="text-xs font-black uppercase text-cyan-400 tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-users"></i> Punteggi Squadre
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div id="teamCardA" class="p-3.5 rounded-2xl bg-blue-900/40 border border-blue-400/40 text-center">
+                        <span class="text-xs font-bold text-slate-300 block">SQUADRA ALPHA</span>
+                        <span id="scoreA" class="text-2xl font-black text-cyan-300 font-mono-tech">0</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Punti</span>
+                    </div>
+                    <div id="teamCardB" class="p-3.5 rounded-2xl bg-purple-900/20 border border-purple-500/20 text-center">
+                        <span class="text-xs font-bold text-slate-300 block">SQUADRA BETA</span>
+                        <span id="scoreB" class="text-2xl font-black text-purple-300 font-mono-tech">0</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Punti</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status & Result Log -->
+            <div class="glass-panel rounded-3xl p-5 shadow-xl flex-grow flex flex-col min-h-[250px]">
+                <h3 class="text-xs font-black uppercase text-cyan-400 tracking-wider mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> Esito Estrazione
+                </h3>
+                <div id="wheelStatusLog" class="flex-grow flex items-center justify-center p-4 rounded-2xl bg-slate-950/60 border border-slate-800 text-slate-400 text-xs text-center italic">
+                    Premi "GIRA LA RUOTA!" per iniziare la partita!
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- ==================== VIEW 3: ALGOMAZE - LABIRINTO DEL CODICE ==================== -->
+    <div id="questionModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel max-w-lg w-full rounded-3xl p-6 border border-cyan-500/40 shadow-2xl relative space-y-4">
+            
+            <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+                <span id="modalCategory" class="px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-mono-tech text-xs font-bold">
+                    HARDWARE PC
+                </span>
+                <span id="modalPoints" class="text-amber-400 font-mono-tech font-black text-sm">+200 PUNTI</span>
+            </div>
+
+            <h3 id="modalQuestionText" class="text-base sm:text-lg font-bold text-white leading-snug">
+                Testo Domanda...
+            </h3>
+
+            <div id="modalAnswersContainer" class="space-y-2 pt-2">
+                <!-- Answer buttons injected dynamically -->
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>`;
+const V_Maze=`<div class="game"><div id="view-algomaze" class="view-panel flex-grow max-w-7xl w-full mx-auto p-3 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Column: Maze Canvas & Levels -->
+        <section class="lg:col-span-6 flex flex-col items-center glass-panel rounded-3xl p-4 md:p-6 shadow-2xl relative">
+            <div class="w-full flex items-center justify-between mb-3 px-2">
+                <div>
+                    <h2 id="levelTitle" class="text-lg font-black text-white">Livello 1: Primi Passi</h2>
+                    <p id="levelDesc" class="text-xs text-slate-300">Programma il RoboBot per raggiungere il Server!</p>
+                </div>
+                <div class="text-right">
+                    <select id="levelSelect" onchange="loadLevel(parseInt(this.value))" class="bg-slate-900 border border-cyan-500/40 text-cyan-300 font-bold text-xs rounded-xl px-2.5 py-1.5 focus:outline-none">
+                        <option value="0">Livello 1</option>
+                        <option value="1">Livello 2</option>
+                        <option value="2">Livello 3</option>
+                        <option value="3">Livello 4</option>
+                        <option value="4">Livello 5</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Canvas Grid Container -->
+            <div class="relative w-full max-w-[440px] aspect-square flex items-center justify-center my-2 rounded-2xl overflow-hidden border-2 border-cyan-500/30 shadow-neon">
+                <canvas id="mazeCanvas" width="600" height="600" class="w-full h-full bg-slate-950 touch-none"></canvas>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="w-full flex items-center justify-between mt-2 px-2 text-xs font-semibold">
+                <span class="text-slate-400">Microchip: <strong id="chipsStatus" class="text-amber-300 font-mono-tech">0 / 0</strong></span>
+                <span id="botDirectionStatus" class="text-cyan-300 font-mono-tech">Direzione: <strong id="dirIndicator" class="text-white">EST ➔</strong></span>
+            </div>
+        </section>
+
+        <!-- Right Column: Visual Coding Controls -->
+        <section class="lg:col-span-6 flex flex-col gap-4">
+            
+            <!-- Block Selection Palette -->
+            <div class="glass-panel rounded-3xl p-4 shadow-xl">
+                <h3 class="text-xs font-extrabold uppercase text-cyan-400 mb-2.5 flex items-center gap-2">
+                    <i class="fa-solid fa-cubes"></i> Istruzioni di Codice
+                </h3>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="addCommand('FORWARD')" class="p-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:bg-blue-500">
+                        <i class="fa-solid fa-arrow-up"></i> Avanza
+                    </button>
+                    <button onclick="addCommand('TURN_LEFT')" class="p-2.5 rounded-xl bg-cyan-600 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:bg-cyan-500">
+                        <i class="fa-solid fa-rotate-left"></i> Ruota SX
+                    </button>
+                    <button onclick="addCommand('TURN_RIGHT')" class="p-2.5 rounded-xl bg-cyan-600 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:bg-cyan-500">
+                        <i class="fa-solid fa-rotate-right"></i> Ruota DX
+                    </button>
+                    <button onclick="addCommand('REPEAT_2')" class="p-2.5 rounded-xl bg-purple-600 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:bg-purple-500">
+                        <i class="fa-solid fa-repeat"></i> Ripeti 2x
+                    </button>
+                    <button onclick="addCommand('REPEAT_3')" class="p-2.5 rounded-xl bg-purple-700 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:bg-purple-600">
+                        <i class="fa-solid fa-rotate"></i> Ripeti 3x
+                    </button>
+                    <button onclick="addCommand('COLLECT')" class="p-2.5 rounded-xl bg-amber-600 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:bg-amber-500">
+                        <i class="fa-solid fa-hand-holding"></i> Raccogli
+                    </button>
+                </div>
+            </div>
+
+            <!-- Program Workspace -->
+            <div class="glass-panel rounded-3xl p-4 shadow-xl flex flex-col min-h-[200px]">
+                <div class="flex items-center justify-between mb-2 border-b border-slate-700 pb-2">
+                    <h3 class="text-xs font-extrabold uppercase text-cyan-400">
+                        <i class="fa-solid fa-code"></i> Sequenza (<span id="commandCountText">0</span>)
+                    </h3>
+                    <button onclick="clearProgram()" class="text-xs text-rose-400 font-bold hover:underline">Cancella</button>
+                </div>
+                <div id="programWorkspace" class="flex-grow flex flex-wrap content-start gap-2 p-2.5 rounded-2xl bg-slate-950/60 border border-slate-800 min-h-[130px] max-h-[180px] overflow-y-auto">
+                    <div id="emptyWorkspaceHint" class="w-full text-center py-8 text-slate-500 text-xs italic">
+                        Clicca sulle istruzioni in alto per programmare il RoboBot!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Execution Toolbar -->
+            <div class="glass-panel rounded-3xl p-3.5 shadow-xl grid grid-cols-3 gap-2">
+                <button id="btnRun" onclick="runProgram()" class="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-neon flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-play"></i> Esegui
+                </button>
+                <button id="btnStep" onclick="stepDebug()" class="py-3 px-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-bug"></i> Passo-Passo
+                </button>
+                <button onclick="resetBotPosition()" class="py-3 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- ==================== VIEW 4: CYBERESCAPE - FUGA DAL LABORATORIO ==================== -->
+    </div>`;
+const V_Pin=`<div class="game"><div id="view-cyberescape" class="view-panel flex-grow max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col gap-6">
+        
+        <!-- Digital Locks Header Bar -->
+        <section class="glass-panel rounded-3xl p-4 border border-cyan-500/40 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+            <div>
+                <h2 class="text-lg font-black text-white flex items-center gap-2">
+                    <i class="fa-solid fa-key text-emerald-400"></i> CyberEscape - Rosselli Rasetti
+                </h2>
+                <p class="text-xs text-slate-300">Sblocca le 4 stazioni informatiche per ottenere le 4 cifre del PIN!</p>
+            </div>
+
+            <!-- 4 Lock Indicator Badges -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div id="lockBadge1" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 font-mono-tech font-bold text-xs flex items-center gap-1">
+                    <span class="lock-icon">🔒</span> <span>Cifra 1: ?</span>
+                </div>
+                <div id="lockBadge2" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 font-mono-tech font-bold text-xs flex items-center gap-1">
+                    <span class="lock-icon">🔒</span> <span>Cifra 2: ?</span>
+                </div>
+                <div id="lockBadge3" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 font-mono-tech font-bold text-xs flex items-center gap-1">
+                    <span class="lock-icon">🔒</span> <span>Cifra 3: ?</span>
+                </div>
+                <div id="lockBadge4" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 font-mono-tech font-bold text-xs flex items-center gap-1">
+                    <span class="lock-icon">🔒</span> <span>Cifra 4: ?</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- 4 Station Cards Column -->
+            <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Station 1 -->
+                <div id="stationCard1" class="glass-panel rounded-3xl p-5 border border-cyan-500/30 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-cyan-300 uppercase">Stazione 1: Hardware</span>
+                        <span id="st1Status" class="text-xs font-bold text-amber-400">🔒 BLOCCATO</span>
+                    </div>
+                    <p class="text-xs text-slate-200">Qual è il componente principale considerato il "cervello" del computer che elabora i calcoli?</p>
+                    <div class="space-y-2 text-xs">
+                        <button onclick="solveStation(1, 'CPU', 5)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">A) CPU (Processore)</button>
+                        <button onclick="solveStation(1, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">B) Monitor HD</button>
+                        <button onclick="solveStation(1, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">C) Tastiera USB</button>
+                    </div>
+                </div>
+
+                <!-- Station 2 -->
+                <div id="stationCard2" class="glass-panel rounded-3xl p-5 border border-cyan-500/30 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-cyan-300 uppercase">Stazione 2: Scorciatoie</span>
+                        <span id="st2Status" class="text-xs font-bold text-amber-400">🔒 BLOCCATO</span>
+                    </div>
+                    <p class="text-xs text-slate-200">Dopo aver copiato un testo con Ctrl + C, quale scorciatoia si usa per INCOLLARLO?</p>
+                    <div class="space-y-2 text-xs">
+                        <button onclick="solveStation(2, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">A) Ctrl + Z</button>
+                        <button onclick="solveStation(2, 'CTRL_V', 2)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">B) Ctrl + V</button>
+                        <button onclick="solveStation(2, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">C) Ctrl + A</button>
+                    </div>
+                </div>
+
+                <!-- Station 3 -->
+                <div id="stationCard3" class="glass-panel rounded-3xl p-5 border border-cyan-500/30 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-cyan-300 uppercase">Stazione 3: Web Safety</span>
+                        <span id="st3Status" class="text-xs font-bold text-amber-400">🔒 BLOCCATO</span>
+                    </div>
+                    <p class="text-xs text-slate-200">Ricevi un'email da uno sconosciuto che dice "Hai vinto uno smartphone! Clicca qui!". Cosa fai?</p>
+                    <div class="space-y-2 text-xs">
+                        <button onclick="solveStation(3, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">A) Clicco subito sul link</button>
+                        <button onclick="solveStation(3, 'DELETE', 8)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">B) La cancello: è un tentativo di Phishing!</button>
+                        <button onclick="solveStation(3, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">C) Invio la mia password per risposta</button>
+                    </div>
+                </div>
+
+                <!-- Station 4 -->
+                <div id="stationCard4" class="glass-panel rounded-3xl p-5 border border-cyan-500/30 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-cyan-300 uppercase">Stazione 4: Logica Robot</span>
+                        <span id="st4Status" class="text-xs font-bold text-amber-400">🔒 BLOCCATO</span>
+                    </div>
+                    <p class="text-xs text-slate-200">Per far percorrere un quadrato a un robot: "Avanti, Gira a DX, Avanti, Gira a DX, Avanti...". Qual è l'istruzione mancante finale?</p>
+                    <div class="space-y-2 text-xs">
+                        <button onclick="solveStation(4, 'FORWARD', 1)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">A) Avanti e poi Gira a DX</button>
+                        <button onclick="solveStation(4, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">B) Spegni Robot</button>
+                        <button onclick="solveStation(4, 'WRONG', 0)" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">C) Torna Indietro</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Master Keypad Column -->
+            <div class="lg:col-span-4 glass-panel rounded-3xl p-5 border border-cyan-500/40 shadow-2xl flex flex-col items-center space-y-4">
+                <h3 class="text-xs font-black uppercase text-cyan-300 tracking-wider">Terminale Evacuazione</h3>
+                
+                <!-- Display PIN Screen -->
+                <div id="keypadDisplay" class="w-full p-4 rounded-2xl bg-slate-950 border-2 border-cyan-500/50 text-center font-mono-tech text-3xl font-black text-cyan-300 tracking-widest shadow-inner">
+                    _ _ _ _
+                </div>
+
+                <!-- 0-9 Keypad -->
+                <div class="grid grid-cols-3 gap-2 w-full max-w-[240px]">
+                    <button onclick="pressKey('1')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">1</button>
+                    <button onclick="pressKey('2')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">2</button>
+                    <button onclick="pressKey('3')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">3</button>
+                    <button onclick="pressKey('4')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">4</button>
+                    <button onclick="pressKey('5')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">5</button>
+                    <button onclick="pressKey('6')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">6</button>
+                    <button onclick="pressKey('7')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">7</button>
+                    <button onclick="pressKey('8')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">8</button>
+                    <button onclick="pressKey('9')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">9</button>
+                    <button onclick="clearKeypad()" class="p-3 rounded-xl bg-rose-900/50 hover:bg-rose-800 text-rose-200 font-mono-tech font-bold text-xs">CLR</button>
+                    <button onclick="pressKey('0')" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-mono-tech font-bold text-lg">0</button>
+                    <button onclick="submitKeypad()" class="p-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono-tech font-bold text-xs">OK</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>`;
 function final(){
  const p=total(),r=p/MAX,m=r>.85?'Sei un vero genio dell’informatica!':r>.6?'Hai un grande talento da programmatore!':'Hai fatto il primo passo: il bello viene adesso!';
  sWin();conf(90);setTimeout(()=>conf(60),1800);
  go(`<div class="panel center"><div class="big-e">🏆</div><h2>MISSIONE COMPIUTA!</h2><p>Complimenti! Hai completato la tua prima missione nel mondo dell’informatica!</p>
- <div class="score">${p} / ${MAX}</div><p>${m}</p>${badges()}${school()}
+ <div class="score">${p} / ${MAX}</div><p>${m}</p>${school()}
  <div class="row"><button class="btn" id="rp">↻ RIGIOCA</button><button class="btn g" id="st">⌂ TORNA ALL’INIZIO</button></div></div>`,'fin');
- $('#rp').onclick=()=>{S={done:{}};seen=new Set([0]);save();menu()};$('#st').onclick=start;
+ $('#rp').onclick=()=>{S={done:{}};save();menu()};$('#st').onclick=start;
 }
+/* ----------------------------------------------------
+           2. WEB AUDIO SYNTHESIZER
+        ---------------------------------------------------- */
+        let audioCtx = null;
+        
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        
+        function playSound(type) {
+            if (!snd) return;
+            initAudio();
+            try {
+                const now = audioCtx.currentTime;
+                if (type === 'tick') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(200, now + 0.04);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.04);
+                }
+                else if (type === 'win') {
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+                        gain.gain.setValueAtTime(0.15, now + idx * 0.1);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.1 + 0.25);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.1);
+                        osc.stop(now + idx * 0.1 + 0.25);
+                    });
+                }
+                else if (type === 'wrong') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(160, now);
+                    osc.frequency.linearRampToValueAtTime(90, now + 0.25);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+            } catch(e){}
+        }
+
+        /* ----------------------------------------------------
+           3. GAME 1: RUOTA DELLA FORTUNA ENGINE
+        ---------------------------------------------------- */
+        const wheelSectors = [
+            { label: "100 PT", points: 100, color: "#0284c7" },
+            { label: "200 PT", points: 200, color: "#0d9488" },
+            { label: "300 PT", points: 300, color: "#2563eb" },
+            { label: "BONUS", points: 500, color: "#eab308" },
+            { label: "150 PT", points: 150, color: "#0284c7" },
+            { label: "250 PT", points: 250, color: "#0d9488" },
+            { label: "400 PT", points: 400, color: "#7c3aed" },
+            { label: "500 PT", points: 500, color: "#06b6d4" }
+        ];
+
+        const techQuestions = [
+            { cat: "HARDWARE", text: "Quale memoria volatile si svuota quando spegni il computer?", options: ["RAM", "Hard Disk", "ROM"], correct: 0 },
+            { cat: "SCORCIATOIE", text: "Quale combinazione di tasti si usa per COPIARE un file o testo?", options: ["Ctrl + C", "Ctrl + V", "Ctrl + Z"], correct: 0 },
+            { cat: "CYBER SAFETY", text: "Cos'è una password sicura?", options: ["12345678", "Il proprio nome", "Una combinazione di lettere, numeri e simboli"], correct: 2 },
+            { cat: "WEB & INTERNET", text: "Cos'è Google Chrome?", options: ["Un Sistema Operativo", "Un Browser Web", "Un Processore"], correct: 1 },
+            { cat: "CODING", text: "In informatica, cos'è un ALGORITMO?", options: ["Un componente hardware", "Una sequenza finita di istruzioni per risolvere un problema", "Un virus computer"], correct: 1 }
+        ];
+
+        let wheelCanvas;
+        let wheelCtx;
+        let currentAngle = 0;
+        let isSpinning = false;
+        let teamTurn = 'A'; // 'A' or 'B'
+        let scoreA = 0;
+        let scoreB = 0;
+        let pendingPoints = 0;
+
+        function drawWheel() {
+            const numSectors = wheelSectors.length;
+            const arc = (Math.PI * 2) / numSectors;
+            const radius = wheelCanvas.width / 2 - 10;
+            const centerX = wheelCanvas.width / 2;
+            const centerY = wheelCanvas.height / 2;
+
+            wheelCtx.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
+
+            for (let i = 0; i < numSectors; i++) {
+                const angle = currentAngle + i * arc;
+                wheelCtx.beginPath();
+                wheelCtx.fillStyle = wheelSectors[i].color;
+                wheelCtx.moveTo(centerX, centerY);
+                wheelCtx.arc(centerX, centerY, radius, angle, angle + arc);
+                wheelCtx.fill();
+                wheelCtx.strokeStyle = "rgba(255,255,255,0.3)";
+                wheelCtx.lineWidth = 2;
+                wheelCtx.stroke();
+
+                // Text
+                wheelCtx.save();
+                wheelCtx.translate(centerX, centerY);
+                wheelCtx.rotate(angle + arc / 2);
+                wheelCtx.textAlign = "right";
+                wheelCtx.fillStyle = "#ffffff";
+                wheelCtx.font = "bold 20px 'Share Tech Mono', monospace";
+                wheelCtx.fillText(wheelSectors[i].label, radius - 20, 7);
+                wheelCtx.restore();
+            }
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+            initAudio();
+
+            let spinAngle = Math.random() * 10 + 20;
+            let duration = 3000;
+            let start = null;
+
+            function animate(timestamp) {
+                if (!document.getElementById("wheelCanvas")) { isSpinning = false; return; }
+                if (!start) start = timestamp;
+                let progress = timestamp - start;
+                let easeOut = Math.pow(1 - progress / duration, 3);
+                currentAngle += (spinAngle * easeOut) * 0.05;
+                playSound('tick');
+                drawWheel();
+
+                if (progress < duration) {
+                    requestAnimationFrame(animate);
+                } else {
+                    isSpinning = false;
+                    onWheelStopped();
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function onWheelStopped() {
+            const numSectors = wheelSectors.length;
+            const arc = (Math.PI * 2) / numSectors;
+            let normalizedAngle = (2 * Math.PI - (currentAngle % (2 * Math.PI))) % (2 * Math.PI);
+            // Adjust offset for pointer at top (-Math.PI/2)
+            normalizedAngle = (normalizedAngle + Math.PI / 2) % (2 * Math.PI);
+            let sectorIndex = Math.floor(normalizedAngle / arc) % numSectors;
+
+            const sector = wheelSectors[sectorIndex];
+            pendingPoints = sector.points;
+
+            document.getElementById("wheelStatusLog").innerHTML = `
+                <div class="space-y-1">
+                    <span class="text-amber-400 font-bold text-sm block">ESTRATTO: ${sector.label}!</span>
+                    <span class="text-slate-300">Rispondi alla domanda per aggiudicarti i punti!</span>
+                </div>
+            `;
+            openQuestionModal();
+        }
+
+        function openQuestionModal() {
+            const q = nextWheelQ();
+            document.getElementById("modalCategory").innerText = q.cat;
+            document.getElementById("modalPoints").innerText = `+${pendingPoints} PUNTI`;
+            document.getElementById("modalQuestionText").innerText = q.text;
+
+            const container = document.getElementById("modalAnswersContainer");
+            container.innerHTML = "";
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement("button");
+                btn.className = "w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-cyan-900 border border-slate-700 text-slate-200 font-bold text-xs transition";
+                btn.innerText = `${String.fromCharCode(65 + idx)}) ${opt}`;
+                btn.onclick = () => answerQuestion(idx === q.correct);
+                container.appendChild(btn);
+            });
+
+            document.getElementById("questionModal").classList.remove("hidden");
+        }
+
+        function answerQuestion(isCorrect) {
+            document.getElementById("questionModal").classList.add("hidden");
+            if (isCorrect) {
+                playSound('win');
+                if (teamTurn === 'A') {
+                    scoreA += pendingPoints;
+                    document.getElementById("scoreA").innerText = scoreA;
+                } else {
+                    scoreB += pendingPoints;
+                    document.getElementById("scoreB").innerText = scoreB;
+                }
+                confetti({ particleCount: 70, spread: 60 });
+                markDone('ruotaq');
+                document.getElementById("wheelStatusLog").innerText = `ESATTO! +${pendingPoints} punti assegnati!`;
+            } else {
+                playSound('wrong');
+                document.getElementById("wheelStatusLog").innerText = `ERRATO! Nessun punto assegnato. Passa il turno!`;
+            }
+
+            // Switch turn
+            teamTurn = teamTurn === 'A' ? 'B' : 'A';
+            document.getElementById("turnDisplay").innerText = `Turno: SQUADRA ${teamTurn === 'A' ? 'ALPHA' : 'BETA'}`;
+        }
+
+        /* ----------------------------------------------------
+           4. GAME 2: ALGOMAZE ENGINE
+        ---------------------------------------------------- */
+        const mazeLevels = [
+            { title: "Livello 1: Primi Passi", desc: "Fai avanzare il robot al Server!", size: 5, start: {x:0, y:2, dir:1}, goal: {x:4, y:2}, walls: [], chips: [] },
+            { title: "Livello 2: La Curva", desc: "Usa le rotazioni per girare l'angolo!", size: 5, start: {x:1, y:4, dir:0}, goal: {x:4, y:1}, walls: [{x:1,y:0},{x:2,y:4}], chips: [] },
+            { title: "Livello 3: Firewall", desc: "Aggira gli ostacoli di sicurezza!", size: 6, start: {x:0, y:0, dir:1}, goal: {x:5, y:5}, walls: [{x:2,y:0},{x:2,y:1},{x:2,y:2},{x:4,y:3},{x:4,y:4}], chips: [] },
+            { title: "Livello 4: Super Loop", desc: "Usa 'Ripeti 2x/3x' per contrarre il codice!", size: 6, start: {x:0, y:5, dir:0}, goal: {x:5, y:0}, walls: [{x:1,y:5},{x:1,y:4},{x:1,y:3}], chips: [] },
+            { title: "Livello 5: Microchip", desc: "Raccogli i dati prima di arrivare al Server!", size: 6, start: {x:0, y:0, dir:2}, goal: {x:5, y:5}, walls: [{x:1,y:1},{x:3,y:3}], chips: [{x:0,y:4,collected:false}] }
+        ];
+
+        let currentLevelIdx = 0;
+        let botPos = { x: 0, y: 0, dir: 1 };
+        let program = [];
+        let mazeCanvas;
+        let mazeCtx;
+        let isExecuting = false;
+        let collected = [];
+
+        function loadLevel(idx) {
+            currentLevelIdx = idx;
+            const lvl = mazeLevels[idx];
+            document.getElementById("levelTitle").innerText = lvl.title;
+            document.getElementById("levelDesc").innerText = lvl.desc;
+            resetBotPosition();
+            clearProgram();
+        }
+
+        function resetBotPosition() {
+            const lvl = mazeLevels[currentLevelIdx];
+            botPos = { x: lvl.start.x, y: lvl.start.y, dir: lvl.start.dir };
+            collected = [];
+            updateChips();
+            drawGrid();
+        }
+
+        function drawGrid() {
+            const lvl = mazeLevels[currentLevelIdx];
+            const N = lvl.size;
+            const cs = mazeCanvas.width / N;
+            mazeCtx.clearRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+
+            // Tiles
+            for (let r = 0; r < N; r++) {
+                for (let c = 0; c < N; c++) {
+                    mazeCtx.fillStyle = (r + c) % 2 === 0 ? '#0f172a' : '#1e293b';
+                    mazeCtx.fillRect(c * cs, r * cs, cs, cs);
+                    mazeCtx.strokeStyle = 'rgba(56, 189, 248, 0.1)';
+                    mazeCtx.strokeRect(c * cs, r * cs, cs, cs);
+                }
+            }
+
+            // Walls
+            lvl.walls.forEach(w => {
+                mazeCtx.fillStyle = '#991b1b';
+                mazeCtx.fillRect(w.x * cs + 3, w.y * cs + 3, cs - 6, cs - 6);
+            });
+
+            // Goal
+            mazeCtx.fillStyle = '#10b981';
+            mazeCtx.fillRect(lvl.goal.x * cs + 4, lvl.goal.y * cs + 4, cs - 8, cs - 8);
+
+            // Chips
+            lvl.chips.forEach((c, i) => {
+                if (collected.includes(i)) return;
+                mazeCtx.fillStyle = '#fbbf24';
+                mazeCtx.beginPath();
+                mazeCtx.arc(c.x * cs + cs / 2, c.y * cs + cs / 2, cs * 0.18, 0, Math.PI * 2);
+                mazeCtx.fill();
+            });
+
+            // Robot
+            const rx = botPos.x * cs + cs / 2;
+            const ry = botPos.y * cs + cs / 2;
+            mazeCtx.save();
+            mazeCtx.translate(rx, ry);
+            mazeCtx.fillStyle = '#38bdf8';
+            mazeCtx.beginPath();
+            mazeCtx.arc(0, 0, cs * 0.35, 0, Math.PI * 2);
+            mazeCtx.fill();
+            mazeCtx.restore();
+        }
+
+        function addCommand(cmd) {
+            if (isExecuting) return;
+            program.push(cmd);
+            renderProgramWorkspace();
+        }
+
+        function clearProgram() {
+            program = [];
+            renderProgramWorkspace();
+        }
+
+        function renderProgramWorkspace() {
+            const ws = document.getElementById("programWorkspace");
+            document.getElementById("commandCountText").innerText = program.length;
+            if (program.length === 0) {
+                ws.innerHTML = `<div class="w-full text-center py-8 text-slate-500 text-xs italic">Clicca sulle istruzioni in alto per programmare il RoboBot!</div>`;
+                return;
+            }
+            ws.innerHTML = program.map((c, i) => `<span class="px-2.5 py-1 rounded-lg bg-blue-600 text-white font-bold text-xs">${i + 1}. ${c}</span>`).join("");
+        }
+
+        function updateChips() {
+            const el = document.getElementById("chipsStatus");
+            if (el) el.innerText = `${collected.length} / ${mazeLevels[currentLevelIdx].chips.length}`;
+        }
+
+        function runProgram() {
+            if (isExecuting || program.length === 0) return;
+            resetBotPosition();
+            isExecuting = true;
+            const flat = [];
+            program.forEach(c => {
+                if ((c === 'REPEAT_2' || c === 'REPEAT_3') && flat.length) {
+                    const last = flat[flat.length - 1];
+                    for (let k = 1; k < parseInt(c.slice(-1)); k++) flat.push(last);
+                } else if (c.indexOf('REPEAT') !== 0) flat.push(c);
+            });
+            let step = 0;
+            const lvl = mazeLevels[currentLevelIdx];
+
+            function finishRun(msg) {
+                isExecuting = false;
+                if (botPos.x === lvl.goal.x && botPos.y === lvl.goal.y && collected.length === lvl.chips.length) {
+                    playSound('win');
+                    confetti({ particleCount: 80 });
+                    markDone('robot');
+                    alert("MISSIONE COMPLETATA! RoboBot è al Server!");
+                } else {
+                    playSound('wrong');
+                    alert(msg || (collected.length < lvl.chips.length && botPos.x === lvl.goal.x && botPos.y === lvl.goal.y ? "Mancano dei microchip! Usa RACCOGLI sulle caselle gialle." : "RoboBot non è arrivato al Server. Riprova!"));
+                }
+            }
+
+            function stepLoop() {
+                if (!document.getElementById("mazeCanvas")) { isExecuting = false; return; }
+                if (step >= flat.length) { finishRun(); return; }
+                const cmd = flat[step];
+                if (cmd === 'FORWARD') {
+                    const dirs = [{x:0,y:-1},{x:1,y:0},{x:0,y:1},{x:-1,y:0}];
+                    const nx = botPos.x + dirs[botPos.dir].x, ny = botPos.y + dirs[botPos.dir].y;
+                    if (nx < 0 || ny < 0 || nx >= lvl.size || ny >= lvl.size || lvl.walls.some(w => w.x === nx && w.y === ny)) {
+                        finishRun("RoboBot ha sbattuto contro un ostacolo! Riprova.");
+                        return;
+                    }
+                    botPos.x = nx; botPos.y = ny;
+                    playSound('tick');
+                } else if (cmd === 'TURN_LEFT') {
+                    botPos.dir = (botPos.dir + 3) % 4;
+                } else if (cmd === 'TURN_RIGHT') {
+                    botPos.dir = (botPos.dir + 1) % 4;
+                } else if (cmd === 'COLLECT') {
+                    const i = lvl.chips.findIndex(c => c.x === botPos.x && c.y === botPos.y);
+                    if (i >= 0 && !collected.includes(i)) { collected.push(i); playSound('win'); updateChips(); }
+                }
+                drawGrid();
+                step++;
+                setTimeout(stepLoop, 400);
+            }
+            stepLoop();
+        }
+
+        function stepDebug() {
+            runProgram();
+        }
+
+        /* ----------------------------------------------------
+           5. GAME 3: CYBERESCAPE ENGINE
+        ---------------------------------------------------- */
+        let solvedStations = { 1: false, 2: false, 3: false, 4: false };
+        let stationDigits = { 1: '?', 2: '?', 3: '?', 4: '?' };
+        let keypadInput = "";
+
+        function solveStation(stNum, code, digitVal) {
+            if (code === 'WRONG') {
+                playSound('wrong');
+                alert("Risposta non corretta! Riprova.");
+                return;
+            }
+            playSound('win');
+            solvedStations[stNum] = true;
+            stationDigits[stNum] = digitVal;
+
+            const badge = document.getElementById(`lockBadge${stNum}`);
+            badge.className = "px-3 py-1.5 rounded-xl bg-emerald-950 border border-emerald-500/60 text-emerald-300 font-mono-tech font-bold text-xs flex items-center gap-1 shadow-neon-green";
+            badge.innerHTML = `<span>🔓</span> <span>Cifra ${stNum}: ${digitVal}</span>`;
+
+            document.getElementById(`st${stNum}Status`).innerText = "🔓 SBLOCCATO";
+            document.getElementById(`st${stNum}Status`).className = "text-xs font-bold text-emerald-400";
+        }
+
+        function pressKey(num) {
+            playSound('tick');
+            if (keypadInput.length < 4) {
+                keypadInput += num;
+                updateKeypadDisplay();
+            }
+        }
+
+        function clearKeypad() {
+            keypadInput = "";
+            updateKeypadDisplay();
+        }
+
+        function updateKeypadDisplay() {
+            const disp = document.getElementById("keypadDisplay");
+            let formatted = keypadInput.padEnd(4, '_').split('').join(' ');
+            disp.innerText = formatted;
+        }
+
+        function submitKeypad() {
+            if (keypadInput === pinDigits.join("")) {
+                playSound('win');
+                confetti({ particleCount: 150, spread: 90 });
+                markDone('pin');
+                alert("🎉 EVACUAZIONE RIUSCITA! Codice PIN " + pinDigits.join("") + " Corretto! Benvenuti al Rosselli Rasetti!");
+            } else {
+                playSound('wrong');
+                alert("❌ PIN Errato! Risolvi tutte le 4 stazioni per scoprire le cifre.");
+                clearKeypad();
+            }
+        }
+
+        
+function markDone(id){if(!S.done[id]){S.done[id]={pts:BONUS,ok:0};save();hud();toast('✅ Missione completata: +'+BONUS+' punti!')}}
+if(typeof confetti!=='function')window.confetti=()=>conf(40);
+const ORDER=[...ACT.map(a=>a.id),'ruota','ruotaq','robot','pin'],NAVS=['play','res','ruota','game'];let CUR='';
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const shq=q=>{if(!q.o)return q;const ix=sh(q.o.map((_,i)=>i));return {...q,o:ix.map(i=>q.o[i]),a:ix.indexOf(q.a)}};
+const navBar=()=>{const i=ORDER.indexOf(CUR);return '<div class="nv"><button class="btn g" data-nv="start" title="Home">🏠</button><button class="btn g" data-nv="menu">🎮 Menu</button><button class="btn g" data-nv="-1">◀ Indietro</button><span class="np">'+(i+1)+' / '+ORDER.length+'</span><button class="btn" data-nv="1">Avanti ▶</button></div>'};
+function openG(id){const f={ruota:ruota,ruotaq:gameWheel,robot:gameMaze,pin:gamePin}[id];f?f():begin(id)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-nv]');if(!b)return;sClk();const v=b.dataset.nv;v==='start'?start():v==='menu'?menu():v==='next'?openG(ORDER.find(i=>!S.done[i])||ORDER[0]):openG(ORDER[(ORDER.indexOf(CUR)+ +v+ORDER.length)%ORDER.length])});
+/* domande extra: [domanda, risposta giusta, [sbagliate], spiegazione, codice] */
+const MORE={
+quiz:[['Quale tra questi è un motore di ricerca?','Google',['Excel','Paint','Windows'],'Google serve a cercare informazioni sul Web.'],
+['Che cosa fa il mouse?','Sposta il puntatore sullo schermo',['Stampa i fogli','Salva i file','Accende il PC'],'È una periferica di input: serve a dare comandi al computer.'],
+['Che cos’è il Wi-Fi?','Una connessione a Internet senza cavi',['Un tipo di virus','Un programma di disegno','Una scheda video'],'Il Wi-Fi collega i dispositivi alla rete usando le onde radio.'],
+['A cosa serve una password?','A proteggere il proprio account',['A rendere il PC più veloce','A cambiare lo sfondo'],'Una password lunga e segreta tiene lontani gli estranei.'],
+['Che estensione ha di solito un documento di Word?','.docx',['.mp3','.png','.exe'],'.docx è il formato dei documenti Word.']],
+code:[['Cosa stampa questo codice?','CiaoCiao',['Ciao Ciao','Ciao2','Errore'],'Moltiplicare un testo per 2 lo ripete due volte.','print("Ciao" * 2)'],
+['Quanto vale y alla fine?','10',['5','15','y'],'y parte da 5 e viene raddoppiato: 5 × 2 = 10.','y = 5\ny = y * 2'],
+['Cosa stampa questo codice?','Grande',['Piccola','Niente','Errore'],'Poiché 15 è maggiore di 10, la condizione è vera.','n = 15\nif n > 10:\n    print("Grande")'],
+['Quante volte stampa “Hi”?','4',['3','5','1'],'range(4) ripete il ciclo 4 volte.','for i in range(4):\n    print("Hi")'],
+['Cosa stampa questo codice?','7',['34','3 + 4','Errore'],'Python somma i due numeri: 3 + 4 = 7.','a = 3\nb = 4\nprint(a + b)']],
+hack:[['Quale password è la più sicura?','T7!kR#92mQ',['mario2010','12345678','password'],'È lunga e mescola lettere, numeri e simboli.'],
+['Il numero binario 11 quanto vale in decimale?','3',['2','11','4'],'1×2 + 1×1 = 3.'],
+['Un sito inizia con “https”. Che significa?','La connessione è cifrata',['Il sito è gratis','Il sito è velocissimo'],'La “s” sta per “secure”: i dati viaggiano cifrati.'],
+['Uno sconosciuto online ti chiede dove abiti. Che fai?','Non rispondo e lo dico a un adulto',['Gli do l’indirizzo','Gli mando una foto'],'Mai dare dati personali agli sconosciuti.'],
+['Il binario 100 quanto vale in decimale?','4',['3','5','100'],'1×4 + 0×2 + 0×1 = 4.']],
+hw:[['Quale periferica serve per ascoltare l’audio?','Le casse',['Lo scanner','La stampante','Il microfono'],'Casse e cuffie sono periferiche di output audio.'],
+['Quale periferica trasforma un foglio in file digitale?','Lo scanner',['La stampante','Il monitor','Le casse'],'Lo scanner acquisisce immagini e documenti.'],
+['Quale componente fornisce corrente a tutto il PC?','L’alimentatore',['Il mouse','Lo scanner','Il router'],'Trasforma la corrente della presa in quella adatta ai componenti.'],
+['Quale dispositivo collega casa a Internet e distribuisce il Wi-Fi?','Il router',['La webcam','Il monitor','La tastiera'],'Il router smista i dati tra i dispositivi e Internet.'],
+['Quale periferica serve per stampare su carta?','La stampante',['Lo scanner','Il microfono'],'La stampante è una periferica di output.']],
+logic:[['Quale numero continua? 3, 6, 9, 12, …','15',['14','16','18'],'Si aggiunge 3 ogni volta.'],
+['Quale numero continua? 100, 90, 80, 70, …','60',['50','65','75'],'Si sottrae 10 ogni volta.'],
+['Se oggi è giovedì, che giorno sarà fra 3 giorni?','Domenica',['Sabato','Lunedì','Venerdì'],'Giovedì → venerdì → sabato → domenica.'],
+['Quale parola non c’entra con le altre? Mouse, Tastiera, Monitor, Pizza','Pizza',['Mouse','Tastiera','Monitor'],'Le altre tre sono parti di un computer.'],
+['Quale numero continua? 5, 10, 20, 40, …','80',['60','50','100'],'Ogni numero è il doppio del precedente.']]};
+ACT.forEach(a=>(MORE[a.id]||[]).forEach(m=>a.qs.push({q:m[0],o:[m[1],...m[2]],a:0,x:m[3],k:m[4]})));
+[['Internet e Web','CERCARE CON UN MOTORE DI RICERCA'],['Sicurezza','NON DIRE A NESSUNO LA PASSWORD'],['Programmazione','UN ALGORITMO RISOLVE PROBLEMI'],['Dispositivi','LO SMARTPHONE HA LA FOTOCAMERA'],['Reti','IL WIFI COLLEGA I DISPOSITIVI'],['Videogiochi','IL GIOCO HA TANTI LIVELLI'],['Intelligenza Artificiale','L ASSISTENTE VOCALE CAPISCE LE DOMANDE']].forEach(f=>FR.push(f));
+/* ruota dei quiz: [categoria, domanda, giusta, [sbagliate]] */
+[['HARDWARE','Come si chiama il “cervello” del computer?','CPU',['Mouse','Monitor','Router']],
+['HARDWARE','Quale componente archivia i file anche a PC spento?','SSD',['RAM','Casse']],
+['WEB & INTERNET','Cosa significa scaricare un file (download)?','Copiarlo da Internet al proprio dispositivo',['Cancellarlo','Stamparlo']],
+['WEB & INTERNET','Quale di questi è un social network?','Instagram',['Excel','Photoshop','Linux']],
+['CYBER SAFETY','Cos’è il phishing?','Un tentativo di truffa per rubare i tuoi dati',['Un videogioco','Un antivirus','Un cavo di rete']],
+['CYBER SAFETY','Cosa fai se ricevi un messaggio offensivo online?','Lo segnalo e ne parlo con un adulto',['Rispondo con insulti','Non dico nulla a nessuno']],
+['CYBER SAFETY','Puoi pubblicare la foto di un amico senza il suo permesso?','No, serve il suo consenso',['Sì, sempre','Solo se è una foto bella']],
+['CODING','Quale di questi è un linguaggio di programmazione?','Python',['Word','Paint','Chrome']],
+['CODING','Cos’è un bug?','Un errore nel programma',['Un tasto della tastiera','Un tipo di cavo']],
+['CODING','Cosa fa un ciclo (loop) in un programma?','Ripete delle istruzioni',['Spegne il computer','Cancella il codice','Cambia lo schermo']],
+['SCORCIATOIE','Quale scorciatoia annulla l’ultima azione?','Ctrl + Z',['Ctrl + C','Ctrl + V']],
+['SCORCIATOIE','Quale scorciatoia salva un documento?','Ctrl + S',['Ctrl + P','Ctrl + X','Ctrl + A']],
+['BINARIO','Quali cifre usa il sistema binario?','0 e 1',['Da 0 a 9','A e B']],
+['INTELLIGENZA ARTIFICIALE','Quale di questi usa l’intelligenza artificiale?','Un assistente vocale che capisce le domande',['Un righello','Una matita','Una gomma']],
+['SOFTWARE','Quale di questi è un sistema operativo?','Windows',['Google','Word','Instagram']],
+['STORIA','Chi è considerata la prima programmatrice della storia?','Ada Lovelace',['Marie Curie','Rita Levi-Montalcini']]].forEach(m=>techQuestions.push({cat:m[0],text:m[1],options:[m[2],...m[3]],correct:0}));
+let wBag=[];
+function nextWheelQ(){if(!wBag.length)wBag=sh(techQuestions.map((_,i)=>i));const q=techQuestions[wBag.pop()],ix=sh(q.options.map((_,i)=>i));return {...q,options:ix.map(i=>q.options[i]),correct:ix.indexOf(q.correct)}}
+/* stazioni del PIN: ogni partita ne pesca una a caso per stazione e il PIN cambia */
+const PS={1:['Hardware',[['Qual è il “cervello” del computer che elabora i calcoli?','La CPU',['La tastiera','Il monitor']],['Quale memoria si svuota quando spegni il PC?','La RAM',['L’SSD','Lo scanner']],['Quale periferica serve per digitare?','La tastiera',['Lo schermo','Le casse']],['Dove si collegano tutti i componenti del PC?','Alla scheda madre',['Alla webcam','Al mouse']]]],
+2:['Scorciatoie',[['Dopo aver copiato con Ctrl + C, come si INCOLLA?','Ctrl + V',['Ctrl + Z','Ctrl + X']],['Quale scorciatoia annulla l’ultima azione?','Ctrl + Z',['Ctrl + S','Ctrl + P']],['Quale scorciatoia seleziona TUTTO il testo?','Ctrl + A',['Ctrl + Q','Ctrl + T']]]],
+3:['Web Safety',[['Ricevi un’email: “Hai vinto uno smartphone! Clicca qui!”. Cosa fai?','La cancello: è una truffa',['Clicco subito','La inoltro a tutti']],['Quale password è più sicura?','Qx9!mT4#vL',['ciao123','il mio nome']],['Un conoscente online ti chiede la password. Cosa fai?','Non la do a nessuno',['La do se è gentile','La scrivo in chat']]]],
+4:['Logica Robot',[['Un robot deve fare un quadrato. Quante volte ripete “Avanti + Gira a destra”?','4 volte',['2 volte','3 volte']],['Un algoritmo è…','Una sequenza di istruzioni per risolvere un problema',['Un componente del PC','Un virus']],['Quale istruzione serve a ripetere più volte la stessa azione?','Un ciclo',['Un mouse','Un file']],['Il robot trova un muro davanti: cosa serve?','Una condizione: se c’è un muro, gira',['Più batteria','Un altro robot']]]]};
+let pinDigits=[0,0,0,0];
+function renderStations(){pinDigits=[0,0,0,0].map(()=>Math.random()*10|0);for(let n=1;n<=4;n++){const [t,pool]=PS[n],q=pool[Math.random()*pool.length|0],o=sh([[q[1],1],...q[2].map(w=>[w,0])]);document.getElementById('stationCard'+n).innerHTML=`<div class="flex items-center justify-between"><span class="text-xs font-black text-cyan-300 uppercase">Stazione ${n}: ${t}</span><span id="st${n}Status" class="text-xs font-bold text-amber-400">🔒 BLOCCATO</span></div><p class="text-xs text-slate-200">${esc(q[0])}</p><div class="space-y-2 text-xs">${o.map(x=>`<button onclick="solveStation(${n},'${x[1]?'OK':'WRONG'}',${x[1]?pinDigits[n-1]:0})" class="w-full text-left p-2.5 rounded-xl bg-slate-900/80 hover:bg-cyan-900/50 border border-slate-700 text-slate-200 font-bold transition">${esc(x[0])}</button>`).join('')}</div>`}}
+function gameShell(id,html,init){CUR=id;go(html,'game');init&&init()}
+function gameWheel(){gameShell('ruotaq',V_Wheel,()=>{wheelCanvas=document.getElementById("wheelCanvas");wheelCtx=wheelCanvas.getContext("2d");currentAngle=0;isSpinning=false;teamTurn='A';scoreA=0;scoreB=0;drawWheel()})}
+function gameMaze(){gameShell('robot',V_Maze,()=>{mazeCanvas=document.getElementById("mazeCanvas");mazeCtx=mazeCanvas.getContext("2d");isExecuting=false;loadLevel(0)})}
+function gamePin(){gameShell('pin',V_Pin,()=>{solvedStations={1:false,2:false,3:false,4:false};stationDigits={1:'?',2:'?',3:'?',4:'?'};keypadInput="";renderStations()})}
+$('#hh').onclick=()=>{sClk();start()};$('#hm').onclick=()=>{sClk();menu()};
+addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea')||e.ctrlKey||e.metaKey||e.altKey)return;const s=document.body.dataset.s;if(!NAVS.includes(s))return;if(e.key==='Escape')menu();else if(e.key==='ArrowRight'&&s!=='ruota')openG(ORDER[(ORDER.indexOf(CUR)+1)%ORDER.length]);else if(e.key==='ArrowLeft'&&s!=='ruota')openG(ORDER[(ORDER.indexOf(CUR)+ORDER.length-1)%ORDER.length])});
 /* ===== SFONDO ANIMATO ===== */
 const cv=$('#bg'),cx=cv.getContext('2d');let dr=[];
 function rs(){cv.width=innerWidth;cv.height=innerHeight;dr=Array.from({length:Math.ceil(cv.width/20)},()=>Math.random()*40)}
 addEventListener('resize',rs);rs();
-setInterval(()=>{if(document.hidden||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+setInterval(()=>{if(document.hidden||document.body.dataset.s==='game'||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
  cx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--fade');cx.fillRect(0,0,cv.width,cv.height);cx.font='16px monospace';
  dr.forEach((y,i)=>{cx.fillStyle=i%3?'rgba(39,211,255,.55)':'rgba(241,90,34,.65)';cx.fillText(Math.random()<.5?'0':'1',i*20,y*20);dr[i]=y*20>cv.height&&Math.random()>.97?0:y+1})},70);
 start();
