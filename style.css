@@ -486,6 +486,7 @@ header{margin-bottom:.2rem}
 .dlg-box{border-top:var(--bw) solid var(--oc)}
 .dlg-box p{font-family:var(--f-d)}
 #toast{border:var(--bw) solid var(--o);border-radius:var(--r);font-family:var(--f-d)}
+#toast .i{width:1.4em;height:1.4em;margin-right:.3em;vertical-align:-.35em}
 .fin .big-e .i{width:5rem;height:5rem}
 details summary{font-family:var(--f-d)}
 
