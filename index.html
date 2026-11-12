@@ -11,8 +11,7 @@
 <script>try{var t=localStorage.getItem("rr_theme");document.documentElement.dataset.theme=t==="light"||t==="xmas"?t:"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=Fredoka:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
@@ -23,13 +22,15 @@
 <div id="app">
  <header>
   <img class="lg hd" id="hl" alt="IIS Rosselli – torna all’inizio" src="assets/logo.png">
+  <nav class="dock hd" aria-label="Navigazione">
+   <button class="tab" id="hh" aria-label="Torna alla home"><span class="ti" data-ic="home"></span><span>Home</span></button>
+   <button class="tab" id="hm" aria-label="Menu giochi"><span class="ti" data-ic="games"></span><span>Giochi</span></button>
+  </nav>
   <div class="sp"></div>
-  <button class="snd hd" id="hh" title="Home" aria-label="Torna alla home">🏠</button>
-  <button class="snd hd" id="hm" title="Menu giochi" aria-label="Menu giochi">🎮</button>
-  <div class="chip hd">⭐ <span id="sc">0</span> pt</div>
-  <div class="chip hd"><div class="bar"><i id="pb"></i></div><span id="pt">0/9</span></div>
-  <button class="tsw" id="tb" role="switch" aria-checked="true" aria-label="Tema scuro" title="Cambia tema"><span class="kn"></span></button>
-  <button class="snd" id="sb" title="Suoni on/off" aria-label="Attiva o disattiva i suoni">🔊</button>
+  <div class="chip hd" title="Punti"><span class="ti" data-ic="star"></span><span id="sc">0</span> pt</div>
+  <div class="chip hd" title="Missioni completate"><div class="bar"><i id="pb"></i></div><span id="pt">0/9</span></div>
+  <button class="tsw" id="tb" role="switch" aria-checked="true" aria-label="Tema scuro" title="Cambia tema"><span class="kn"><span class="ti sun" data-ic="sun"></span><span class="ti moon" data-ic="moon"></span></span></button>
+  <button class="snd" id="sb" title="Suoni on/off" aria-label="Attiva o disattiva i suoni"><span class="ti" data-ic="sound"></span></button>
  </header>
  <main id="main"></main>
 </div>
