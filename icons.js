@@ -43,7 +43,7 @@ bulb:'<path d="M9.5 21h5"/><path class="y" d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.
 doc:'<path class="a" d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path class="w" d="M8.5 12h7M8.5 16h5"/>',
 globe:'<circle class="a" cx="12" cy="12" r="9"/><path class="w" d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
 cal:'<rect class="a" x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4"/><path class="w" d="M3.5 10h17"/>'};
-const ic=(n,c)=>`<svg class="i${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${ICP[n]||''}</svg>`;
+const ic=(n,c)=>{if(!ICP[n]){console.warn('icona sconosciuta:',n);n='quiz'}return `<svg class="i${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${ICP[n]}</svg>`};
 /* mascotte: RoboBot, sbuca da sopra le card come gli uccellini del video */
 const MASCOT=`<svg class="mas" viewBox="0 0 80 84" aria-hidden="true"><g class="mas-b"><path d="M40 20V9" class="mo"/><circle cx="40" cy="7" r="4.5" class="my mo"/><path d="M8 48v10M72 48v10" class="mo" style="stroke-width:5"/><rect x="14" y="20" width="52" height="46" rx="14" class="mp mo"/><rect x="21" y="29" width="38" height="24" rx="9" class="mw mo"/><circle cx="32" cy="41" r="4.2" class="mo mi"/><circle cx="48" cy="41" r="4.2" class="mo mi"/><path d="M33 59h14" class="mo" style="stroke-width:3.5"/><rect x="22" y="66" width="12" height="10" rx="4" class="mp mo"/><rect x="46" y="66" width="12" height="10" rx="4" class="mp mo"/></g></svg>`;
 document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic));
